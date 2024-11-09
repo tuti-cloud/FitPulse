@@ -1,0 +1,54 @@
+<div class="exercise-selection">
+    <div class="select-container">
+      <label for="exerciseSelect1">Selecciona un ejercicio (1):</label>
+      <select [(ngModel)]="exerciseName1" (change)="searchExercise1()" id="exerciseSelect1">
+        <option *ngFor="let option of exerciseOptions" [value]="option">
+          {{ option }}
+        </option>
+      </select>
+    </div>
+  
+    <div class="select-container">
+      <label for="exerciseSelect2">Selecciona un ejercicio (2):</label>
+      <select [(ngModel)]="exerciseName2" (change)="searchExercise2()" id="exerciseSelect2">
+        <option *ngFor="let option of exerciseOptions" [value]="option">
+          {{ option }}
+        </option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="exercise-results">
+    <div class="result-container">
+      <h3>Ejercicio Seleccionado (1): {{ exerciseNameInSpanish1 }}</h3> 
+      <div *ngIf="exercise1">
+        <h4>{{  exerciseNameInSpanish1 }} </h4>
+        <p><strong>Tipo:</strong> {{ exercise1.type }}</p>
+        <p><strong>Músculo:</strong> {{ exercise1.muscle }}</p>
+        <p><strong>Equipo:</strong> {{ exercise1.equipment }}</p>
+        <img [src]="exercise1.gifUrl" alt="{{ exercise1.name }}" />
+      </div>
+    </div>
+  
+    <div class="result-container">
+      <h3>Ejercicio Seleccionado (2): {{ exerciseNameInSpanish2 }}</h3>
+      <div *ngIf="exercise2">
+        <h4>{{ exerciseNameInSpanish2 }}</h4>
+        <p>Tipo: {{ exercise2.type }}</p>
+        <p>Músculo:{{ exercise2.muscle }}</p>
+        <p>Equipo: {{ exercise2.equipment }}</p>
+        <img [src]="exercise2.gifUrl" alt="{{ exercise2.name }}" />
+      </div>
+    </div>
+    <div class="result-container">
+      <h3>Ejercicio Seleccionado (3): {{ exerciseNameInSpanish3 }}</h3>
+      <div *ngIf="exercise3">
+        <h4>{{ exerciseNameInSpanish3 }}</h4>
+        <p>Tipo: {{ exercise3.type }}</p>
+        <p>Músculo:{{ exercise3.muscle }}</p>
+        <p>Equipo: {{ exercise3.equipment }}</p>
+        <img [src]="exercise2.gifUrl" alt="{{ exercise3.name }}" />
+      </div>
+    </div>
+  </div>
+ 
