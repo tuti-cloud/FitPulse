@@ -46,6 +46,14 @@ h1 {
     color: #6a0dad;
     font-size: 16px;
     cursor: pointer;
+
+    &:hover{
+        background-color: black ;
+    }
+
+    &.selected{
+        background-color: black ;
+    }
 }
 .start-button {
     display: block;
@@ -62,4 +70,14 @@ h1 {
     bottom: -40px;
     left: 50%;
     transform: translateX(-50%);
+
+    &.disabled{
+        background-color: #ccc;
+        pointer-events: none;
+        cursor: not-allowed;
+    }
+
+    &:hover{
+    background-color: #b394d4 ;
+    }
 }

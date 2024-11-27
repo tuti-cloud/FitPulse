@@ -1,14 +1,15 @@
 <div class="container">
     <h1>¿Qué te gustaría trabajar hoy?</h1>
     <div class="options">
-        <div class="column">
-            <div class="option">Piernas y Glúteos</div>
-            <div class="option">Abdomen</div>
-        </div>
-        <div class="column">
-            <div class="option">Espalda y Bíceps</div>
-            <div class="option">Pecho, Hombro y Triceps</div>
-        </div>
+      <div class="column">
+        <div class="option" [ngClass]="{'selected': isOptionSelected('Piernas y Glúteos')}" (click)="selectOption('Piernas y Glúteos')">Piernas y Glúteos</div>
+        <div class="option" [ngClass]="{'selected': isOptionSelected('Abdomen')}" (click)="selectOption('Abdomen')">Abdomen</div>
+      </div>
+      <div class="column">
+        <div class="option" [ngClass]="{'selected': isOptionSelected('Espalda y Bíceps')}" (click)="selectOption('Espalda y Bíceps')">Espalda y Bíceps</div>
+        <div class="option" [ngClass]="{'selected': isOptionSelected('Pecho, Hombro y Triceps')}" (click)="selectOption('Pecho, Hombro y Triceps')">Pecho, Hombro y Triceps</div>
+      </div>
     </div>
-</div>
-<a [routerLink]="['/modal-datos']" routerLinkActive="activa"  class="start-button">Iniciar →</a>
+    <a [routerLink]="['/modal-datos']" routerLinkActive="activa" class="start-button" [ngClass]="{'disabled': !canStart()}">Iniciar →</a>
+  </div>
+  

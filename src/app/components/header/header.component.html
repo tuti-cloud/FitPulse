@@ -2,13 +2,16 @@
 <div class="fondo">
   <img src="./../../../../public/img/Logo-FitPulse.png" alt="mal ahi">
       <h1>FitPulse</h1>
-  <nav>
-    
-      <a class="links" href="">Resultados</a> <!-- Acción futura -->
-      <a  class="links"  routerLink="/ejercicios">Ejercicios</a><!-- RouterLink configurado -->
-      <a  class="links" routerLink="/yogaterapia">Yogaterapia</a> <!-- RouterLink configurado -->
-    
-  </nav>
+      <nav>
+        <a class="links" href="">Resultados</a>
+        <a class="links" [routerLink]="['/rutina']" routerLinkActive="activa" >Ejercicios</a>
+        <a class="links" [routerLink]="['/yoga']" routerLinkActive="activa">Yogaterapia</a>
+        <a class="links" [routerLink]="['/pagina-inicio']">
+         <i class='bx bxs-user'> </i>
+        </a>
+      </nav>
+      
+      
 </div>
 
 </header>
