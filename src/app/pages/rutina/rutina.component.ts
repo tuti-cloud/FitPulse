@@ -1,14 +1,15 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ExerciseService } from '../app/servicios/exercise.service';
+import { ExerciseService } from '../../servicios/exercise.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from "../../components/header/header.component";
 
 @Component({
   selector: 'app-rutina',
   templateUrl: './rutina.component.html',
   styleUrls: ['./rutina.component.scss'],
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule, HeaderComponent],
 })
 export class RutinaComponent implements OnInit {
   exerciseOptions = ['press banca', 'curl de bíceps','Sentadilla',];

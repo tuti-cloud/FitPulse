@@ -1,0 +1,239 @@
+@use "./../../../../public/sytles/colores.scss";  
+
+/* Estilo del body */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* Centra horizontalmente */
+  justify-content: center;  /* Centra verticalmente */
+  height: 100vh;
+  margin: 0;
+  background-color: colores.$color-texto-invertido;
+  font-family: Arial, sans-serif;
+  text-align: center;  /* Centra el texto */
+}
+
+/* Contenedor principal (título, descripción, botón) */
+.contenedor-principal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;  /* Alinea los textos a la izquierda */
+  justify-content: center;  /* Centra verticalmente en el espacio disponible */
+  width: 100%;
+  max-width: 675px;  /* Ajustado para un ancho intermedio */
+  padding-left: 30px;  /* Espaciado para alejarlo del borde izquierdo */
+  position: absolute;
+  left: 10%;  /* Mueve la caja hacia la izquierda de la pantalla */
+}
+
+h3 {
+  font-size: 71.4px;  /* Tamaño reducido 15% de 84px */
+  line-height: 1.3;  /* Espaciado ligeramente ajustado entre líneas */
+  margin: 0;
+}
+
+.ejercitarse {
+  font-weight: normal;
+  color: colores.$color-texto;
+  margin-bottom: -1px;  /* Reducción de 6px adicionales */
+  margin-top: 75px;  /* Espacio superior ajustado */
+}
+
+.para-todos {
+  font-weight: bold;
+  color: colores.$color-principal;
+  margin-top: 0;  /* Sin margen superior para reducir el espacio */
+  margin-bottom: 60px;  /* Espacio moderado debajo */
+}
+
+h4 {
+  font-size: 35.7px;  /* Reducción del 15% desde 42px */
+  margin-bottom: 38.25px;  /* Ajuste proporcional al 15% */
+  color: colores.$color-texto;
+  span {
+    color: colores.$color-principal;
+  }
+}
+
+p {
+  font-size: 25.5px;  /* Reducción del 15% desde 30px */
+  margin: 0;
+  margin-bottom: 25.5px;  /* Ajuste proporcional */
+}
+
+.descripcion {
+  font-size: 28px;  /* Reducción del 15% desde 33px */
+  color: colores.$color-secundario;
+  font-weight: bold;
+  margin-top: 51px;  /* Ajuste proporcional */
+  margin-bottom: 25.5px;  /* Espacio ajustado */
+}
+
+/* Estilo del botón */
+.boton-iniciar {
+  background-color: colores.$color-secundario;
+  color: colores.$color-texto-invertido;
+  border: none;
+  padding: 18.7px 51px;  /* Reducción del 15% desde 22px 60px */
+  border-radius: 30px;
+  font-size: 25.5px;  /* Fuente ajustada al 15% menos */
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-top: 38.25px;  /* Ajuste proporcional */
+  max-width: 382.5px;  /* Botón más estrecho proporcionalmente */
+  
+  &:hover {
+    background-color: colores.$color-principal-bajado;
+  }
+}
+
+/* Contenedor del iframe (Spline) */
+.spline-container {
+  width: 35vw;  /* El contenedor ocupa el 35% del ancho de la ventana */
+  height: 80vh;  /* El contenedor ocupa el 80% de la altura de la ventana */
+  right: 5%;  /* Margen a la derecha */
+  position: absolute;  /* Mantiene la posición relativa del contenedor */
+  top: 10%;  /* Centra el teléfono verticalmente */
+  border-radius: 10px;  /* Bordes redondeados opcionales */
+  overflow: hidden;  /* Recorta cualquier contenido fuera del contenedor */
+}
+
+iframe {
+  width: 100%;  /* El iframe ocupa el 100% del ancho del contenedor */
+  height: 100%;  /* El iframe ocupa el 100% de la altura del contenedor */
+  border: none;  /* Sin borde en el iframe */
+  display: block;  /* Elimina espacio extra que aparece por defecto */
+}
+/* Estilos para separar las secciones */
+.section-1 {
+  margin-bottom: 500px;  /* Espacio entre la primera y la segunda sección */
+}
+
+.section-2 {
+  padding-top: 400px;  /* Agrega un poco de espacio al principio de la segunda sección */
+}
+
+
+/* Estilo del encabezado con los íconos de descarga */
+.header {
+  text-align: center;
+  margin-top: 40px;
+  position: relative;
+}
+
+.download-icons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;  /* Centra los iconos */
+}
+
+.download-icons img {
+  width: 120px;  /* Ajusté el tamaño de los iconos */
+  height: auto;
+}
+
+.header h1 {
+  font-size: 2rem;
+  color: colores.$color-principal;
+  font-weight: bold;
+  margin: 20px 0 40px;  /* Ajusté los márgenes */
+}
+
+/* Contenedor principal de las flashcards */
+/* Contenedor principal de las flashcards */
+/* Contenedor principal de las flashcards */
+/* Contenedor principal de las flashcards */
+/* Contenedor de las flashcards */
+.flashcard-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  height: 100vh;
+  overflow: hidden;  /* Impide que las tarjetas se desborden */
+  scroll-snap-type: y mandatory;
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
+
+/* Estilo base para las flashcards */
+.flashcard {
+  position: absolute; /* Para superponerlas */
+  width: 60%;
+  background-color: colores.$color-terciario;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(50px); /* Empuja la tarjeta hacia abajo */
+  transition: opacity 0.8s, transform 0.8s, z-index 0.8s;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Flashcard visible (en primer plano) */
+.flashcard.visible {
+  opacity: 1;
+  transform: translateY(0); /* Se muestra en su lugar */
+  z-index: 2;
+}
+
+/* Flashcard que está en la parte inferior */
+.flashcard.hidden {
+  opacity: 0;
+  transform: translateY(-50px); /* Empuja fuera de vista */
+  z-index: 0;  /* Queda atrás */
+}
+
+/* Estilo de las flashcards al moverse */
+.flashcard.next {
+  transform: translateY(100%);  /* Mueve la tarjeta siguiente hacia abajo */
+}
+
+/* Flashcard anterior que va saliendo */
+.flashcard.previous {
+  transform: translateY(-100%);  /* Mueve la tarjeta anterior hacia arriba */
+}
+
+/* Contenido de cada flashcard */
+.content {
+  padding: 20px;
+  text-align: left;
+}
+
+.content h2 {
+  font-size: 1.5rem;
+  color: colores.$color-principal;
+  margin-bottom: 15px;
+}
+
+.content ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.content li {
+  font-size: 1rem;
+  color: #FFFFFF;  /* Texto blanco */
+  margin-bottom: 10px;
+}
+
+/* Imagen dentro de las flashcards */
+.image img {
+  width: 150px;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* Colores de cada flashcard */
+.flashcard-1 {
+  background-color: colores.$color-secundario;
+}
+
+.flashcard-2 {
+  background-color: colores.$color-terciario;
+}
+
+.flashcard-3 {
+  background-color: colores.$color-principal;
+}
