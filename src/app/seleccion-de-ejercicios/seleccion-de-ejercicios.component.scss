@@ -1,90 +1,3 @@
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f5e9ff;
-    font-family: Arial, sans-serif;
-    margin: 0;
-}
-
-.container {
-    background-color: #f5e9ff;
-    border-radius: 20px;
-    padding: 40px;
-    text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 0;
-    width: 500px;
-}
-
-h1 {
-    color: #6a0dad;
-    font-size: 24px;
-    margin-bottom: 30px;
-}
-
-.options {
-    display: flex;
-    justify-content: space-between;
-}
-
-.column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.option {
-    background-color: #e0c3ff;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 10px;
-    width: 150px;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #6a0dad;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-
-    &:hover {
-        background-color: #f0e6ff; /* Fondo púrpura claro */
-    }
-
-    &.selected {
-        background-color: #6a0dad; /* Fondo púrpura para la opción seleccionada */
-        color: #fff;
-    }
-}
-
-.start-button {
-    display: block;
-    margin: 30px auto 0;
-    padding: 10px 20px;
-    background-color: #cdaafc;
-    border: none;
-    border-radius: 20px;
-    color: #fff;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-
-    &.disabled {
-        background-color: #ccc; /* Fondo gris para el botón desactivado */
-        pointer-events: none; /* Deshabilita interacciones */
-        cursor: not-allowed; /* Cambia el cursor a no permitido */
-    }
-
-    &:hover {
-        background-color: #b394d4; /* Púrpura más oscuro en hover */
-    }
-}
-
 .results-container {
     margin-top: 20px;
     text-align: center;
@@ -98,3 +11,9 @@ h1 {
     color: #6a0dad;
     font-size: 20px;
 }
+
+.results-container p {
+    font-size: 16px;
+    color: #333;
+}
+

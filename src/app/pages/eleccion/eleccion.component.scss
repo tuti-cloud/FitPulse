@@ -1,0 +1,38 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f5f5ff;
+    font-family: Arial, sans-serif;
+}
+.container {
+    background-color: #e6e0f8;
+    border-radius: 20px;
+    padding: 60px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.container h1 {
+    color: #5a2d82;
+    font-size: 36px;
+    margin-bottom: 50px;
+}
+.options {
+    display: flex;
+    justify-content: space-around;
+}
+.option {
+    text-align: center;
+}
+.option img {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+}
+.option p {
+    font-size: 24px;
+    color: #000;
+    margin: 0;
+}

@@ -7,7 +7,7 @@
     </div>
     <div class="column">
       <div class="option" [ngClass]="{'selected': isOptionSelected('Espalda y Bíceps')}" (click)="selectOption('Espalda y Bíceps')">Espalda y Bíceps</div>
-      <div class="option" [ngClass]="{'selected': isOptionSelected('Pecho, Hombro y Triceps')}" (click)="selectOption('Pecho, Hombro y Triceps')">Pecho, Hombro y Triceps</div>
+      <div class="option" [ngClass]="{'selected': isOptionSelected('Pecho y Hombro y Triceps')}" (click)="selectOption('Pecho y Hombro y Triceps')">Pecho, Hombro y Triceps</div>
     </div>
   </div>
   <a [routerLink]="getRouterLink()" routerLinkActive="activa" class="start-button" [ngClass]="{'disabled': !canStart()}" >Iniciar →</a>

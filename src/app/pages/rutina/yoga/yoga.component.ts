@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { YogaService } from './../../servicios/yoga.service';
-import { Yoga } from '../../interfaces/yoga';
-import { HeaderComponent } from '../../components/header/header.component';
+import { YogaService } from '../../../servicios/yoga.service';
+import { Yoga } from '../../../interfaces/yoga';
+import { HeaderComponent } from '../../../components/header/header.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Importar FormsModule
 import Swal from 'sweetalert2';
