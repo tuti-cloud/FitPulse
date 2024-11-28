@@ -1,5 +1,8 @@
 @use "./../../../..//public/styles/colores.scss";
 /* Estilo del body */
+*{
+  font-family: "oswald";
+}
 body {
   display: flex;
   flex-direction: column;
@@ -8,7 +11,7 @@ body {
   height: 100vh;
   margin: 0;
   background-color: colores.$color-texto-invertido;
-  font-family: Arial, sans-serif;
+  font-family: "Oswald";
   text-align: center;  /* Centra el texto */
 }
 
