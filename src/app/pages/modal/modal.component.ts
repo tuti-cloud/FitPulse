@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-modal',
   standalone: true,
@@ -29,6 +29,13 @@ export class ModalComponent {
     canStart(): boolean {
       return this.selectedOptions.length > 0;
     }
+  
+getRouterLink(): any[] {
+  return['/seleccion-de-ejercicios',{selectedOptions: this.selectedOptions.join(',')}];
+  
+}
+
   }
+  
   
 

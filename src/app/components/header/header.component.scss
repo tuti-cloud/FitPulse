@@ -1,4 +1,4 @@
-/* Estilo para el fondo y el contenedor principal */
+@use "./../../../..//public/styles/colores.scss";
 .fondo {
     background-color: rgb(240, 232, 249); 
     padding: 20px 50px;     display: flex; 
