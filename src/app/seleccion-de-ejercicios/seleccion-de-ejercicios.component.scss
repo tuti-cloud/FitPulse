@@ -1,19 +1,74 @@
+@use "../../../public/styles/colores.scss";
+
 .results-container {
-    margin-top: 20px;
-    text-align: center;
+  text-align: center;
+  padding: 20px;
 }
 
-.results-container div {
-    margin-bottom: 20px;
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 20px; /* Espaciado inferior del título */
+  color: #333;
 }
 
-.results-container h2 {
-    color: #6a0dad;
-    font-size: 20px;
+.exercise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Tres columnas en cada fila */
+  column-gap: 20px; /* Espaciado horizontal entre columnas */
+  row-gap: 20px; /* Espaciado vertical entre filas */
+  justify-items: center; /* Centrar las tarjetas horizontalmente */
+  margin-top: 30px; /* Separar el grid del título */
 }
 
-.results-container p {
+.exercise-card {
+  background: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  text-align: center;
+
+  h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px; /* Separar la imagen del contenido */
+  }
+
+  .details {
     font-size: 16px;
-    color: #333;
+    font-weight: bold;
+    color: #4b0082;
+    margin-top: 10px;
+
+    .sets-reps {
+      margin-bottom: 5px; /* Espaciado inferior */
+    }
+
+    .status {
+      color: #28a745; /* Color verde para indicar completado */
+    }
+  }
 }
 
+.button-container {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  margin-top: 30px; /* Separar del grid */
+}
+
+button {
+  background-color: #4b0082;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #a25fe1;
+}

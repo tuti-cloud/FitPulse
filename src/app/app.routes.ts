@@ -1,6 +1,6 @@
 // app/app.routes.ts
 import { Routes } from '@angular/router';
-import { RutinaComponent } from './pages/rutina/rutina.component'; 
+// import { RutinaComponent } from './pages/rutina/rutina.component'; 
 import { PaginaInicioComponent } from './pages/pagina-inicio/pagina-inicio.component';
 import { RegistrarseComponent } from './pages/registrarse/registrarse.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -11,7 +11,7 @@ import { SeleccionDeEjerciciosComponent } from './seleccion-de-ejercicios/selecc
 import { EleccionComponent } from './pages/eleccion/eleccion.component';
 
 export const routes: Routes = [
-  { path: 'rutina', component: RutinaComponent },
+  // { path: 'rutina', component: RutinaComponent },
   { path: '', redirectTo: '/pagina-inicio', pathMatch: 'full' }, 
 
   { path: 'pagina-inicio', component: PaginaInicioComponent },
