@@ -1,82 +1,96 @@
-<section class="section-1">
-  <div class="logo">
-    <img src="img/logo.png"  alt="logo">
+<div class="custom-cursor"></div>
 
-  </div>
-
-  <div id="spline-container" class="spline-container">
-    <!-- El iframe con el modelo de Spline se agregará aquí dinámicamente -->
-  </div>
-
-  <div class="contenedor-principal">
-    <h3 class="ejercitarse">Ejercitarse es</h3>
-    <h3 class="para-todos">para <span class="resaltado">todos</span></h3>
-
-    <h4>Empezá a través de <span class="resaltado">FitPulse</span></h4>
-
-    <p>Un poco cada día,</p> 
-    <p>potenciando tu salud</p>
-
-    <p class="descripcion">Fácil, Inclusivo y Seguro</p>
-
-    <button class="boton-iniciar" [routerLink]="['/login']" routerLinkActive="activa">Iniciar →</button>
-  </div>
-</section>
-
-<section class="section-2">
-  <!-- Nuevo contenido agregado: encabezado con íconos de descarga y flashcards -->
-  <div class="header">
-    <div class="download-icons">
-      <img src="img/apple.jpg" alt="Consíguelo en App Store" />
-      <img src="img/play.jpg" alt="Consíguelo en Google Play" />
+  <!-- Sección 1: Bienvenida -->
+  <section class="section-1">
+    <div class="logo">
+      <img src="img/logo.png" alt="Logo de FitPulse">
+      <h4>FitPulse</h4>
     </div>
-    <h1>Vos elegís dónde y cómo empezar tu rutina.</h1>
-  </div>
 
-  <div class="flashcard-container" >
-    <div class="flashcard flashcard-1">
-      <div class="content">
-        <h2>Empezá hoy:</h2>
-        <div class="text">
+    <div id="spline-container" class="spline-container">
+      <!-- Aquí se puede cargar dinámicamente el iframe de Spline -->
+    </div>
+
+    <div class="contenedor-principal">
+      <h3 class="ejercitarse">Ejercitarse es</h3>
+      <h3 class="para-todos">para <span class="resaltado">todos</span></h3>
+      <h4>Empezá a través de <span class="resaltado">FitPulse</span></h4>
+      <p>Un poco cada día,</p>
+      <p>potenciando tu salud</p>
+      <p class="descripcion">Fácil, Inclusivo y Seguro</p>
+      <button class="boton-iniciar" [routerLink]="['/login']" routerLinkActive="activa">Iniciar</button>
+    </div>
+    
+    
+  </section>
+
+  <!-- Sección 2: Flashcards -->
+  <section class="section-2">
+    <div class="header">
+      <div class="download-icons">
+        <a href="https://www.apple.com/la/app-store/">
+          <img src="img/apple.jpg" alt="Descargar en App Store">
+        </a>
+        <a href="https://play.google.com/store/games?device=windows&pli=1">
+          <img class="second-image" src="img/plays.png" alt="Descargar en Google Play">
+        </a>
+      </div>
+      
+      <h1>
+        <span class="texto">Vos elegís dónde y cómo</span>
+        <span class="resaltado">empezar tu rutina.</span>
+      </h1>
+      
+    </div>
+
+    <div class="flashcard-container">
+      <!-- Flashcard 1 -->
+      <div class="flashcard flashcard-1">
+        <div class="content">
+          <h2>Empezá hoy:</h2>
           <ul>
             <li>A un clic de tu rutina.</li>
             <li>Disponibles 24/7, todos los días, todo el año.</li>
             <li>Opciones 100% adaptadas a tus gustos y necesidades.</li>
           </ul>
         </div>
+        <div class="image-wrapper">
+          <div class="image">
+            <img src="img/timmy.png" alt="Personaje Fitness">
+          </div>
+        </div>
       </div>
-      <div class="image">
-        <img src="./page-content/El-pequeño-timmy.png" alt="Personaje Fitness">
-      </div>
-    </div>
-
-    <div class="flashcard flashcard-2">
-      <div class="content">
-        <h2>Planes de entrenamiento:</h2>
-        <div class="text">
+    
+      <!-- Flashcard 2 -->
+      <div class="flashcard flashcard-2">
+        <div class="content">
+          <h2>Planes de entrenamiento:</h2>
           <ul>
-            <li>Beneficia tu resistencia, fuerza y fortificación muscular.</li>
-            <li>Controla la duración y dificultad de las series.</li>
-            <li>Conoce tus resultados desde la App.</li>
+            <li>Beneficiá tu resistencia, fuerza y fortificación muscular.</li>
+            <li>Controlá la duración y dificultad de las series.</li>
+            <li>Conocé tus resultados desde la App.</li>
           </ul>
         </div>
       </div>
-    </div>
-
-    <div class="flashcard flashcard-3">
-      <div class="content">
-        <h2>Sesiones de YogaTerapia:</h2>
-        <div class="text">
+    
+      <!-- Flashcard 3 -->
+      <div class="flashcard flashcard-3">
+        <div class="content">
+          <h2>Sesiones de YogaTerapia:</h2>
           <ul>
-            <li>Fortalece las articulaciones.</li>
-            <li>Mejora tu postura y equilibrio.</li>
-            <li>Incrementa la flexibilidad y relajación.</li>
+            <li>Fortalecé las articulaciones.</li>
+            <li>Mejorá tu postura y equilibrio.</li>
+            <li>Incrementá la flexibilidad y relajación.</li>
           </ul>
         </div>
-      </div>
-      <div class="image">
-        <img src="path/to/image2.png" alt="Personaje Yoga">
+        <div class="image-wrapper">
+          <div class="image">
+            <img src="img/luz.png" alt="Personaje Yoga">
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+    
+
+    
+  </section>

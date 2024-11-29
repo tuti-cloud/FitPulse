@@ -11,23 +11,61 @@ body {
   padding: 0;
   background-color: colores.$color-texto-invertido;
   text-align: center;
+  cursor: none;
+  background-color: #e4dcdc;
+}
+
+.logo {
+  display: flex;
+  align-items: center; /* Alinear verticalmente al centro */
 }
 
 .logo img {
-  width: 65px; /* Ajuste el tamaño de la imagen */
+  width: 65px; /* Ajuste del tamaño de la imagen */
   height: auto;
-  margin-top: 15px; /* Ejemplo de margen agregado */
-  margin-left: 20px;
+  margin-top: 15px; /* Margen superior */
+  margin-left: 100px; /* Margen izquierdo */
+  margin-right: 10px; /* Espacio entre la imagen y el texto */
+  transition: transform 0.3s ease; /* Transición suave para transform */
 }
+
+.logo h4 {
+  margin: 0; /* Eliminar el margen por defecto del h4 */
+  padding-top: 15px; /* Alinear verticalmente con la imagen */
+  transition: color 0.3s ease, text-shadow 0.3s ease; /* Transición suave */
+}
+
+/* Definir la animación de latido de corazón */
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  20%, 60% {
+    transform: scale(1.3); /* Aumentar más el tamaño */
+  }
+  40%, 80% {
+    transform: scale(1.15); /* Ajustar tamaño intermedio */
+  }
+}
+
+/* Aplicar la animación al hacer hover */
+.logo img:hover {
+  animation: heartbeat 0.8s ease-in-out; /* Duración un poco más lenta */
+}
+
+.logo h4:hover {
+  color: colores.$color-principal; /* Cambiar color del texto al hacer hover */
+  text-shadow: 2px 2px 4px colores.$color-secundario; /* Añadir sombra al texto */
+}
+
+
 .section-2 {
-  margin-top: 50px; /* Espacio adicional por si el contenido lo requiere */
+  margin-top: 60px; /* Espacio adicional por si el contenido lo requiere */
 }
 /* Secciones */
 .section-1 {
-  margin-bottom: 50px; /* Espacio entre section-1 y section-2 */
+  margin-bottom: 60px; /* Espacio entre section-1 y section-2 */
 }
-
-
 
 /* Contenedor principal (título, descripción, botón) */
 .contenedor-principal {
@@ -53,7 +91,6 @@ h3 {
   font-weight: normal;
   color: colores.$color-texto;
   margin-bottom: -1px;
-  margin-top: 75px;
 }
 
 .para-todos {
@@ -86,8 +123,8 @@ p {
 }
 
 .boton-iniciar {
-  background-color: colores.$color-secundario;
-  color: colores.$color-texto-invertido;
+  background-color: colores.$color-secundario; /* Usando el color proporcionado */
+  color: colores.$color-texto-invertido; /* Supongo que `colores.$color-texto-invertido` es blanco */
   border: none;
   padding: 18.7px 51px;
   border-radius: 30px;
@@ -96,11 +133,34 @@ p {
   text-transform: uppercase;
   margin-top: 38.25px;
   max-width: 382.5px;
+  position: relative; /* Necesario para el ::after pseudo-elemento */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+  overflow: hidden; /* Para que el ::after no se desborde */
+
+  &::after {
+    content: "";
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: -150px;
+    left: -20px;
+    background-image: linear-gradient(90deg, colores.$color-principal 0%, colores.$color-secundario 100%);
+    z-index: -1;
+    transition: transform 0.5s ease; /* Transición suave para la rotación */
+  }
 
   &:hover {
-    background-color: colores.$color-principal-bajado;
+    transform: translate(0, -6px);
+    box-shadow: 0 0 25px 5px colores.$color-principal, 0 0 25px 5px colores.$color-secundario; /* Sombra al hacer hover */
+    
+    background-color:colores.$color-principal; /* Cambiar el color de fondo al hacer hover */
+  }
+
+  &:hover::after {
+    transform: rotate(180deg); /* Rotar el pseudo-elemento al hacer hover */
   }
 }
+
 
 /* Contenedor del iframe */
 .spline-container {
@@ -130,7 +190,8 @@ iframe {
 .download-icons {
   display: flex;
   gap: 20px;
-  justify-content: center;
+  justify-content: center; /* Cambiar para alinear al centro */
+  margin: 0 auto; /* Centrar el contenedor en la página */
 }
 
 .download-icons img {
@@ -138,11 +199,36 @@ iframe {
   height: auto;
 }
 
+.download-icons .second-image {
+  width: 133px; /* Aumentar el ancho de la segunda imagen en 2px */
+}
+
+
+
+
 .header h1 {
   font-size: 2rem;
   color: colores.$color-principal;
   font-weight: bold;
   margin: 20px 0 40px;
+}
+
+.header h1 {
+  font-size: 3rem; /* Aumentar el tamaño del texto */
+  font-weight: bold;
+  margin: 20px 0 40px;
+  display: block; /* Asegurar que los spans se comporten correctamente */
+  line-height: 1.5; /* Aumentar el espaciado entre líneas */
+}
+
+.header h1 .texto {
+  color: colores.$color-texto; /* Aplicar color para la primera parte del texto */
+  display: block; /* Asegurar que ocupe toda la línea */
+}
+
+.header h1 .resaltado {
+  color: colores.$color-principal; /* Aplicar color para la parte resaltada del texto */
+  display: block; /* Asegurar que ocupe toda la línea */
 }
 
 /* Flashcards */
@@ -157,16 +243,31 @@ iframe {
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translate(-50%, 0) scale(0.9);
+  transform: translate(-50%, 0) scale(0.7); /* Reducir tamaño en un 5% más */
   transition: transform 1s ease, opacity 1s ease;
-  width: 80%;
-  height: 80vh;
+  width: 60%; /* Reducir tamaño en un 5% más */
+  height: 65vh; /* Reducir tamaño en un 5% más */
   background: #fff;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   overflow: hidden;
   opacity: 0;
   z-index: 0;
+  display: flex; /* Añadir flexbox para alinear contenido e imagen */
+  flex-direction: row; /* Alinear en fila */
+  justify-content: space-between; /* Separar el texto de las imágenes */
+}
+
+.flashcard-1 {
+  background-color: #4b0082;
+}
+
+.flashcard-2 {
+  background-color: #A25FE1;
+}
+
+.flashcard-3 {
+  background-color: #AF6ADB;
 }
 
 .flashcard.visible {
@@ -176,27 +277,34 @@ iframe {
 }
 
 .flashcard.previous {
-  transform: translate(-50%, -20%) scale(0.8);
+  transform: translate(-50%, -20%) scale(0.6); /* Reducir tamaño en un 5% más */
   z-index: 5;
 }
 
 .flashcard.next {
-  transform: translate(-50%, 20%) scale(0.8);
+  transform: translate(-50%, 20%) scale(0.6); /* Reducir tamaño en un 5% más */
   z-index: 5;
 }
 
 .flashcard.hidden {
   opacity: 0;
-  transform: translate(-50%, 0) scale(0.7);
+  transform: translate(-50%, 0) scale(0.6); /* Reducir tamaño en un 5% más */
   z-index: 0;
 }
 
 .flashcard .content {
   padding: 20px;
+  font-size: 1.8rem; /* Aumentar tamaño de la letra */
+  color: colores.$color-texto-invertido; /* Cambiar color de la letra */
+  width: 55%; /* Extender el texto a lo largo de las flashcards */
+  line-height: 2; /* Ampliar espacio de interlineado */
 }
 
-.flashcard .image {
-  text-align: center;
+.flashcard .image-wrapper {
+  width: 45%; /* Ajustar ancho para centrar verticalmente */
+  display: flex;
+  align-items: center; /* Centrar verticalmente */
+  justify-content: center; /* Centrar horizontalmente */
 }
 
 .flashcard .image img {
@@ -204,3 +312,35 @@ iframe {
   height: auto;
 }
 
+/* Aumentar espacio entre oraciones */
+.flashcard li {
+  margin-bottom: 15px; /* Espaciado adicional entre las oraciones */
+}
+
+/* Añadir sombra al hacer hover en las oraciones */
+.flashcard li:hover {
+  text-shadow: 2px 2px 6px #87CEEB; /* Sombra más fuerte y visible */
+}
+
+/* Destacar títulos (h2) */
+.flashcard h2 {
+  font-size: 2.5rem; /* Aumentar el tamaño del título */
+  font-weight: bold; /* Hacerlo en negrita */
+  margin-bottom: 20px; /* Añadir margen inferior */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Añadir sombra para destacar */
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #a25fe1; /* Color base del cursor */
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1000;
+  box-shadow: 0 0 15px 5px colores.$color-terciario; /* Sombra alrededor del cursor */
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s, opacity 0.2s;
+}

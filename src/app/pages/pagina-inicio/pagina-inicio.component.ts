@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
 
 @Component({
   selector: 'app-pagina-inicio',
@@ -12,21 +11,21 @@ import { RouterModule } from '@angular/router';
 })
 export class PaginaInicioComponent implements OnInit, AfterViewInit {
   splineUrl: string = 'https://my.spline.design/untitled-65d38539d62bc8f679abf7d45988bad6/';
-  iframe: HTMLIFrameElement | null = null;
   flashcards: NodeListOf<HTMLElement> | null = null;
-  currentIndex: number = 0; // Índice de la tarjeta visible actualmente
-  isScrolling: boolean = false; // Evitar múltiples eventos de scroll simultáneos
+  currentIndex: number = 0; // Índice de la flashcard visible actualmente
+  isScrolling: boolean = false; // Evita múltiples transiciones simultáneas
+  private customCursor!: HTMLElement; // Referencia al cursor personalizado
+
+  constructor(private elementRef: ElementRef) {}
 
   ngOnInit(): void {
+    // Inicializar las flashcards
     this.flashcards = document.querySelectorAll('.flashcard');
 
     if (this.flashcards) {
-      // Inicializar las clases de las tarjetas
       this.flashcards.forEach((card, index) => {
         if (index === 0) {
-          card.classList.add('visible'); // La primera tarjeta es visible
-        } else if (index === 1) {
-          card.classList.add('next'); // La segunda tarjeta está "siguiente"
+          card.classList.add('visible'); // La primera flashcard es visible inicialmente
         } else {
           card.classList.add('hidden'); // Las demás están ocultas
         }
@@ -34,24 +33,61 @@ export class PaginaInicioComponent implements OnInit, AfterViewInit {
     }
 
     // Manejar el evento de scroll
-    window.addEventListener('wheel', this.onWheelScroll.bind(this));
+    window.addEventListener('wheel', this.onWheelScroll.bind(this), { passive: false });
+
+    // Inicializar el cursor personalizado
+    this.initCustomCursor();
   }
 
   ngAfterViewInit(): void {
-    // Aquí puedes agregar más lógica si necesitas cargar otros componentes, como iframes
+    this.loadSplineObject(); // Cargar el objeto Spline
+  }
+
+  private loadSplineObject(): void {
+    const splineContainer = this.elementRef.nativeElement.querySelector('#spline-container');
+    if (splineContainer) {
+      // Crear y agregar el iframe
+      const iframe = document.createElement('iframe');
+      iframe.src = this.splineUrl;
+      iframe.frameBorder = '0';
+      iframe.width = '100%';
+      iframe.height = '100%';
+      iframe.allow = 'autoplay';
+      splineContainer.appendChild(iframe);
+    }
   }
 
   onWheelScroll(event: WheelEvent): void {
-    if (this.isScrolling) return; // Ignorar scroll si ya hay una transición en curso
+    if (!this.flashcards) return;
 
-    if (event.deltaY > 0) {
-      this.showNextCard(); // Scroll hacia abajo
-    } else {
-      this.showPreviousCard(); // Scroll hacia arriba
+    if (this.isScrolling) {
+      event.preventDefault(); // Bloquear scroll mientras hay una transición activa
+      return;
     }
 
-    this.isScrolling = true;
-    setTimeout(() => (this.isScrolling = false), 1000); // Evitar que el evento se dispare varias veces rápidamente
+    const section2 = document.querySelector('.section-2') as HTMLElement;
+    const rect = section2.getBoundingClientRect();
+
+    if (rect.top > 0 && rect.bottom > window.innerHeight) {
+      // Scroll fuera de la sección de flashcards, comportamiento normal
+      return;
+    }
+
+    event.preventDefault(); // Bloquear el scroll predeterminado en la sección de flashcards
+
+    if (event.deltaY > 0 && this.currentIndex < this.flashcards.length - 1) {
+      // Scroll hacia abajo y no estamos en la última flashcard
+      this.showNextCard();
+    } else if (event.deltaY < 0 && this.currentIndex > 0) {
+      // Scroll hacia arriba y no estamos en la primera flashcard
+      this.showPreviousCard();
+    } else if (event.deltaY < 0 && this.currentIndex === 0) {
+      // En la primera flashcard, permitir scroll hacia arriba para salir
+      this.enableScrollToPreviousSection();
+    } else if (event.deltaY > 0 && this.currentIndex === this.flashcards.length - 1) {
+      // En la última flashcard, permitir scroll hacia abajo para salir
+      this.enableScrollToNextSection();
+    }
   }
 
   showNextCard(): void {
@@ -61,11 +97,12 @@ export class PaginaInicioComponent implements OnInit, AfterViewInit {
 
       // Actualizar clases
       currentCard.classList.remove('visible');
-      currentCard.classList.add('previous');
-      nextCard.classList.remove('next', 'hidden');
+      currentCard.classList.add('hidden');
+      nextCard.classList.remove('hidden');
       nextCard.classList.add('visible');
 
       this.currentIndex++;
+      this.startTransitionCooldown();
     }
   }
 
@@ -76,14 +113,64 @@ export class PaginaInicioComponent implements OnInit, AfterViewInit {
 
       // Actualizar clases
       currentCard.classList.remove('visible');
-      currentCard.classList.add('next');
-      previousCard.classList.remove('previous', 'hidden');
+      currentCard.classList.add('hidden');
+      previousCard.classList.remove('hidden');
       previousCard.classList.add('visible');
 
       this.currentIndex--;
+      this.startTransitionCooldown();
     }
   }
+
+  private startTransitionCooldown(): void {
+    this.isScrolling = true;
+    setTimeout(() => (this.isScrolling = false), 1000); // 1 segundo para transiciones suaves
+  }
+
+  private enableScrollToPreviousSection(): void {
+    // Eliminar el evento para permitir el comportamiento normal de scroll
+    window.removeEventListener('wheel', this.onWheelScroll.bind(this));
+
+    // Reanudar el evento después de un breve periodo
+    setTimeout(() => {
+      window.addEventListener('wheel', this.onWheelScroll.bind(this), { passive: false });
+    }, 500);
+  }
+
+  private enableScrollToNextSection(): void {
+    // Eliminar el evento para permitir el comportamiento normal de scroll
+    window.removeEventListener('wheel', this.onWheelScroll.bind(this));
+
+    // Reanudar el evento después de un breve periodo
+    setTimeout(() => {
+      window.addEventListener('wheel', this.onWheelScroll.bind(this), { passive: false });
+    }, 500);
+  }
+
+  private initCustomCursor(): void {
+    this.customCursor = document.querySelector('.custom-cursor') as HTMLElement;
+
+    if (!this.customCursor) return;
+
+    document.addEventListener('mousemove', (event) => {
+      const x = event.clientX;
+      const y = event.clientY;
+
+      this.customCursor.style.left = `${x}px`;
+      this.customCursor.style.top = `${y}px`;
+    });
+
+    document.addEventListener('mousedown', () => {
+      this.customCursor.classList.add('click');
+    });
+
+    document.addEventListener('mouseup', () => {
+      this.customCursor.classList.remove('click');
+    });
+  }
 }
+
+
 
 
 
