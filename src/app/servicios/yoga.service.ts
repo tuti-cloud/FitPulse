@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Yoga } from '../interfaces/yoga';
@@ -8,27 +8,29 @@ import { Yoga } from '../interfaces/yoga';
   providedIn: 'root',
 })
 export class YogaService {
-  private apiUrl = 'https://yoga-api-nzy4.onrender.com/v1/poses';
+  private apiUrl = 'https://yoga-api-nzy4.onrender.com/v1/poses'; // URL de la API de Yoga
+  private apiHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+  });
 
   constructor(private http: HttpClient) {}
 
   getYogaPoses(): Observable<Yoga[]> {
-    return this.http.get<any[]>(this.apiUrl).pipe(
+    return this.http.get<any[]>(this.apiUrl, { headers: this.apiHeaders }).pipe(
       map((poses) => {
-        console.log(poses); // Verifica lo que devuelve la API
-        if (!Array.isArray(poses)) {
-          throw new Error('La respuesta de la API no es un array.');
-        }
+        console.log(poses); // Verifica la respuesta de la API
         return poses.map((pose) => ({
-          id: pose.id,
-          name: pose.english_name || 'Nombre no disponible',
-          breaths: Math.floor(Math.random() * (10 - 5 + 1)) + 5, // Número entre 5 y 10
-          image: pose.image_url || 'assets/default-image.jpg',
+          name: pose.english_name || 'Nombre no disponible',  // Nombre de la postura
+          image: pose.url_png || 'assets/default-image.jpg',  // Imagen de la postura (si no existe, usa imagen por defecto)
         }));
       })
     );
   }
 }
+
+
+
+
 
 
 

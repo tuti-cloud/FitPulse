@@ -50,8 +50,9 @@ body {
 
 /* Aplicar la animación al hacer hover */
 .logo img:hover {
-  animation: heartbeat 0.8s ease-in-out; /* Duración un poco más lenta */
+  animation: heartbeat 1.5s ease-in-out infinite; /* Hacer la animación más lenta */
 }
+
 
 .logo h4:hover {
   color: colores.$color-principal; /* Cambiar color del texto al hacer hover */
@@ -334,10 +335,10 @@ iframe {
   position: fixed;
   top: 0;
   left: 0;
-  width: 20px;
-  height: 20px;
+  width: 10px;
+  height: 10px;
   background-color: #a25fe1; /* Color base del cursor */
-  border-radius: 50%;
+  border-radius: 75%;
   pointer-events: none;
   z-index: 1000;
   box-shadow: 0 0 15px 5px colores.$color-terciario; /* Sombra alrededor del cursor */
