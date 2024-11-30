@@ -1,53 +1,98 @@
 @use "./../../../..//public/styles/colores.scss";
-.fondo {
-    background-color: rgb(240, 232, 249); 
-    padding: 20px 50px;     display: flex; 
-    justify-content: flex-start; 
-    align-items: center; 
-    box-sizing: border-box;
-    width: 100%; 
-  }
-  
 
-  .fondo h1 {
-    font-size: 2rem; 
-    color: #333; 
-    margin: 0; 
-    padding: 0;
-    margin-right: 20px; 
+* {
+  font-family: "Oswald";
+}
+
+.fondo {
+  background-color: colores.$color-principal-superbajado; 
+  padding: 20px 50px;
+  display: flex; 
+  justify-content: space-between; /* Distribuir logo y nav */
+  align-items: center; 
+  box-sizing: border-box;
+  width: 100%; 
+}
+
+.logo {
+  display: flex;
+  align-items: center; /* Alinear verticalmente al centro */
+  margin-left: 20px; /* Achicar el margen izquierdo */
+}
+
+.logo img {
+  width: 65px; /* Ajuste del tamaño de la imagen */
+  height: auto;
+  margin-top: 0; /* Remover margen superior para alinearlo con nav */
+  margin-right: 10px; /* Espacio entre la imagen y el texto */
+  transition: transform 0.3s ease; /* Transición suave para transform */
+}
+
+.logo h4 {
+  margin: 0; /* Eliminar el margen por defecto del h4 */
+  padding-top: 0; /* Remover padding superior para alinearlo con nav */
+  font-size: 2rem; /* Aumentar tamaño del h4 */
+  transition: color 0.3s ease, text-shadow 0.3s ease; /* Transición suave */
+  display: flex;
+  align-items: center; /* Alinear verticalmente */
+}
+
+/* Definir la animación de latido de corazón */
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
   }
-  
-  
-  nav {
-    display: flex; 
-    align-items: center;
-    justify-content: space-between; 
+  20%, 60% {
+    transform: scale(1.3); /* Aumentar más el tamaño */
   }
-  
-    .links {
-    font-size: 1.5rem; 
-    color: #333; 
-    text-decoration: none; 
-    transition: color 0.3s ease; 
-    margin: 0 120px;
-    cursor: pointer;
-  
-    
-     
-  
-    
-    
-    &:hover {
-      color: rgb(50, 50, 50); 
+  40%, 80% {
+    transform: scale(1.15); /* Ajustar tamaño intermedio */
   }
 }
 
-// Estilo para el logo en el futuro
+/* Aplicar la animación al hacer hover */
+.logo img:hover {
+  animation: heartbeat 1.5s ease-in-out infinite; /* Hacer la animación más lenta */
+}
 
-// .fondo img {
-//   max-width: 120px;
-//   height: auto;
-//   margin-right: 20px;
-// }
+
+
+.logo h4:hover {
+  color: colores.$color-principal; /* Cambiar color del texto al hacer hover */
+  text-shadow: 2px 2px 4px colores.$color-secundario; /* Añadir sombra al texto */
+}
+
+.fondo h1 {
+  font-size: 2rem; 
+  color: #333; 
+  margin: 0; 
+  padding: 0;
+  margin-right: 20px; 
+}
+
+nav {
+  display: flex; 
+  align-items: center;
+  justify-content: flex-end; /* Alinear a la derecha */
+  flex-grow: 1; /* Permitir que ocupe el espacio restante */
+  gap: 80px; /* Aumentar el espacio entre los enlaces */
+}
+
+.links {
+  font-size: 1.5rem; 
+  color: #333; 
+  text-decoration: none; 
+  transition: color 0.3s ease, text-shadow 0.3s ease; /* Transición suave */
+  cursor: pointer;
+}
+
+.links:hover {
+  color: colores.$color-principal; /* Cambiar color al hacer hover */
+  text-shadow: 2px 2px 4px colores.$color-secundario; /* Añadir sombra al texto */
+}
+
+
+
+
 
   

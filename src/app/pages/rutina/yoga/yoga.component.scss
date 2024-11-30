@@ -1,21 +1,72 @@
-@use "../../../../../public/styles/colores.scss";
+@use "./../../../../../public/styles/colores.scss";
+
+* {
+  font-family: "Oswald", sans-serif; /* Asegurar que la fuente se aplica */
+  margin: 0;
+}
+
+body, html {
+  background-color: #a25fe152; /* Cambiar el fondo de la página */
+  height: 100%; /* Asegurar que el fondo cubre toda la página */
+}
 
 .yoga-container {
   text-align: center;
   padding: 20px;
+  background-color: #f3f3f3 !important;
+}
+
+h1 {
+  font-size: 3rem;
+  color: colores.$color-terciario;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  animation: fadeIn 2s ease-in-out;
+  letter-spacing: 2px; /* Espaciado entre letras */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .pose-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Tres columnas en cada fila */
-  column-gap: 20px; /* Espaciado horizontal entre columnas */
-  row-gap: 20vh; /* Incrementado el espaciado vertical entre filas */
-  justify-items: center; /* Centrar las tarjetas horizontalmente */
-  margin-top: 30px; /* Separar el grid del título */
+  column-gap: 20px;
+  row-gap: 15vh; /* Reducir el espacio entre las filas */
+  justify-items: center;
+  margin-top: 30px;
 }
 
-.yoga-container h1 {
-  margin-bottom: 20px; /* Espaciado inferior del título */
+.pose-card {
+  text-align: center;
+  background-color: #f3f3f3; /* Fondo claro para contraste */
+  border-radius: 10px;
+  padding: 15px; /* Reducir el tamaño de las tarjetas */
+  box-shadow: 0 4px 10px #7c7c7d; /* Agregar sombra con el color #4b0082 */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.pose-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px colores.$color-secundario; /* Agregar sombra más fuerte en hover */
+}
+
+.pose-card img {
+  width: 30%; /* Reducir el tamaño de las imágenes */
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.pose-card h2 {
+  font-size: 1.5rem;
+  color: colores.$color-principal;
+  margin-bottom: 10px;
 }
 
 .pose-card p {
@@ -25,30 +76,30 @@
   margin-top: 10px;
 }
 
-.pose-card img {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 15px; /* Separar la imagen del contenido */
+.pose-card label {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
 }
 
-.button-container {
-  display: flex;
-  justify-content: center; /* Centrar horizontalmente */
-  margin-top: 30px; /* Separar del grid */
+.pose-card input[type="checkbox"] {
+  margin-right: 8px;
 }
 
 button {
-  background-color: #4b0082;
+  background-color: colores.$color-secundario;
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-top: 30px;
 }
 
 button:hover {
-  background-color: #a25fe1;
+  background: linear-gradient(45deg, #4b0082, #a25fe1);
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
-
-
-  
