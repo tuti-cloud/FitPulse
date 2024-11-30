@@ -10,12 +10,8 @@
       <div class="option" [ngClass]="{'selected': isOptionSelected('Pecho y Hombro y Triceps')}" (click)="selectOption('Pecho y Hombro y Triceps')">Pecho, Hombro y Triceps</div>
     </div>
   </div>
-  <a [routerLink]="getRouterLink()" routerLinkActive="activa" class="start-button" [ngClass]="{'disabled': !canStart()}" >Iniciar →</a>
-</div>
-
-<div class="opcion-extra">
-  <div [routerLink]="['/yoga']" routerLinkActive="activa" class="opcion-yoga">Hoy quiero hacer yoga</div>
-</div>
-
   
-<!-- "startWorkout()" -->
+</div>
+<a [routerLink]="getRouterLink()" routerLinkActive="activa" class="start-button" [ngClass]="{'disabled': !canStart()}">Iniciar</a>
+<img src="img/timmy.png" class="timmy-image" alt="Timmy">
+

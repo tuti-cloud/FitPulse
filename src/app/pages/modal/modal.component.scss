@@ -1,45 +1,51 @@
 @use "./../../../..//public/styles/colores.scss";
+
 body {
     display: flex;
+    flex-direction: column; /* Cambiar a columna para centrar verticalmente */
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #f5e9ff;
     font-family: Arial, sans-serif;
     margin: 0;
+    position: relative; /* Para posicionar la imagen de Timmy */
 }
+
 .container {
     background-color: #f5e9ff;
     border-radius: 20px;
     padding: 40px;
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-    margin: 500px;
-    margin-top: 200px;
-    width: 500px;
+    width: 700px; /* Hacer el modal más grande */
+    margin: 0 auto; /* Centrar el contenedor horizontalmente */
 }
+
 h1 {
     color: #6a0dad;
     font-size: 24px;
     margin-bottom: 30px;
 }
+
 .options {
     display: flex;
     justify-content: space-between;
 }
+
 .column {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .option {
     background-color: #e0c3ff;
     border-radius: 10px;
-    padding: 20px;
+    padding: 30px; /* Hacer los recuadros más grandes */
     margin: 10px;
-    width: 150px;
-    height: 80px;
+    width: 200px; /* Aumentar el tamaño de los recuadros */
+    height: 100px; /* Aumentar la altura de los recuadros */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,19 +53,21 @@ h1 {
     color: #6a0dad;
     font-size: 16px;
     cursor: pointer;
-
-    &:hover{
-        background-color: black ;
-    }
-
-    &.selected{
-        background-color: black ;
-    }
+    transition: background-color 0.3s ease; /* Suavizar la transición del color de fondo */
 }
+
+.option:hover {
+    background-color: #d1a3ff; /* Cambiar color de fondo al pasar el mouse */
+}
+
+.option.selected {
+    background-color: #b394d4; /* Color de fondo para la opción seleccionada */
+}
+
 .start-button {
-    display: block;
-    margin: 30px auto 0;
-    padding: 10px 20px;
+    display: inline-block; /* Hacer que el botón tenga un ancho acorde al texto */
+    margin: 20px auto 0; /* Centrando el botón y añadiendo margen superior */
+    padding: 10px 20px; /* Ajustar el padding para el tamaño adecuado */
     background-color: #d1a3ff;
     border: none;
     border-radius: 20px;
@@ -67,26 +75,30 @@ h1 {
     font-size: 16px;
     cursor: pointer;
     text-decoration: none;
-    position: absolute;
-    bottom: -40px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+    position: relative;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); /* Centrar el botón en valores de x */
 
-    &.disabled{
+    &.disabled {
         background-color: #ccc;
         pointer-events: none;
         cursor: not-allowed;
     }
 
-    &:hover{
-    background-color: #b394d4 ;
+    &:hover {
+        background-color: #b394d4;
+        transform: translateX(-50%) translateY(-5px); /* Efecto de elevación y centrado al pasar el mouse */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para el botón */
     }
 }
-.opcion-extra{
+
+.opcion-extra {
     margin-top: 20px;
     text-align: center;
 }
-.opcion-yoga{
+
+.opcion-yoga {
     position: absolute;
     top: 700px;
     right: 40px;
@@ -95,8 +107,19 @@ h1 {
     color: #6a0dad;
     cursor: pointer;
     text-decoration: none;
-&:hover{
+}
+
+.opcion-yoga:hover {
     color: #b394d4;
 }
-  
+
+/* Estilo para la imagen de Timmy */
+.timmy-image {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 200px; /* Ampliar un poco más el tamaño de la imagen */
+    height: auto;
 }
+
+

@@ -136,7 +136,7 @@ form.sign-in-form {
 
 .btn {
   width: 150px;
-  background-color: #4B0082;
+  background: linear-gradient(45deg, #4B0082, #a25fe1); /* Fondo con gradiente */
   border: none;
   outline: none;
   height: 49px;
@@ -147,11 +147,34 @@ form.sign-in-form {
   margin: 10px 0;
   cursor: pointer;
   transition: 0.5s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Añadir sombra */
+  position: relative; /* Para pseudo-elementos */
+  overflow: hidden; /* Ocultar el pseudo-elemento cuando está fuera del botón */
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: rgba(255, 255, 255, 0.2); /* Color blanco semi-transparente */
+  transition: all 0.75s ease;
+}
+
+.btn:hover::before {
+  width: 0;
+  height: 0;
 }
 
 .btn:hover {
-  background-color: #4B0082;
+  transform: translateY(-3px); /* Elevar el botón al hacer hover */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Aumentar la sombra */
+  background: linear-gradient(45deg, #a25fe1, #4B0082); /* Cambiar gradiente en hover */
 }
+
 .panels-container {
   position: absolute;
   height: 100%;
@@ -222,13 +245,25 @@ form.sign-in-form {
 
 .btn.transparent {
   margin: 0;
-  background: none;
-  border: 2px solid #fff;
+  background: linear-gradient(45deg, #4b0082, #a25fe1); /* Fondo con gradiente */
+  border: none; /* Quitar el borde */
   width: 130px;
   height: 41px;
   font-weight: 600;
   font-size: 0.8rem;
+  color: white; /* Color del texto */
+  border-radius: 20px; /* Bordes redondeados */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Añadir sombra */
+  cursor: pointer; /* Añadir cursor pointer */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
 }
+
+.btn.transparent:hover {
+  transform: translateY(-3px); /* Elevar el botón al hacer hover */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Aumentar la sombra */
+  background: linear-gradient(45deg, #a25fe1, #4b0082); /* Cambiar gradiente en hover */
+}
+
 
 .right-panel .image,
 .right-panel .content {
@@ -402,3 +437,5 @@ form.sign-in-form {
     left: 50%;
   }
 }
+
+.image { width: 200px; /* Ajustar tamaño de las imágenes */ height: auto; }

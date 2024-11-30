@@ -4,11 +4,12 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { HeaderComponent } from '../components/header/header.component';
 import { ExerciseService } from '../servicios/exercise.service';  // Asegúrate de importar el servicio correctamente
 import { Exercise } from '../interfaces/exercise'; // Asegúrate de importar la interfaz correctamente
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-seleccion-de-ejercicios',
   standalone: true,
-  imports: [CommonModule, RouterModule, HeaderComponent],
+  imports: [CommonModule, RouterModule, HeaderComponent, FormsModule],
   templateUrl: './seleccion-de-ejercicios.component.html',
   styleUrls: ['./seleccion-de-ejercicios.component.scss']
 })
