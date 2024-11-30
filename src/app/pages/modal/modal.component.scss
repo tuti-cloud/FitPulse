@@ -1,4 +1,8 @@
-@use "./../../../..//public/styles/colores.scss";
+@use "./../../../../public/styles/colores.scss";
+
+* {
+    font-family: "Oswald";
+}
 
 body {
     display: flex;
@@ -7,7 +11,7 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #f5e9ff;
-    font-family: Arial, sans-serif;
+    font-family: "Oswald";
     margin: 0;
     position: relative; /* Para posicionar la imagen de Timmy */
 }
@@ -20,6 +24,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 700px; /* Hacer el modal más grande */
     margin: 0 auto; /* Centrar el contenedor horizontalmente */
+    margin-top: 70px;
 }
 
 h1 {
@@ -51,7 +56,7 @@ h1 {
     align-items: center;
     text-align: center;
     color: #6a0dad;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease; /* Suavizar la transición del color de fondo */
 }
@@ -66,13 +71,13 @@ h1 {
 
 .start-button {
     display: inline-block; /* Hacer que el botón tenga un ancho acorde al texto */
-    margin: 20px auto 0; /* Centrando el botón y añadiendo margen superior */
-    padding: 10px 20px; /* Ajustar el padding para el tamaño adecuado */
+    margin: 30px auto 0; /* Centrando el botón y añadiendo margen superior */
+    padding: 15px 30px; /* Aumentar el padding para hacer el botón más grande */
     background-color: #d1a3ff;
     border: none;
     border-radius: 20px;
     color: white;
-    font-size: 16px;
+    font-size: 18px; /* Aumentar el tamaño de la fuente */
     cursor: pointer;
     text-decoration: none;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
@@ -87,38 +92,19 @@ h1 {
     }
 
     &:hover {
-        background-color: #b394d4;
+        background-color: colores.$color-principal;
         transform: translateX(-50%) translateY(-5px); /* Efecto de elevación y centrado al pasar el mouse */
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para el botón */
+        box-shadow: 0 4px 10px colores.$color-terciario; /* Sombra para el botón */
     }
 }
 
-.opcion-extra {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.opcion-yoga {
-    position: absolute;
-    top: 700px;
-    right: 40px;
-    left: 0px;
-    font-size: 18px;
-    color: #6a0dad;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.opcion-yoga:hover {
-    color: #b394d4;
-}
 
 /* Estilo para la imagen de Timmy */
 .timmy-image {
     position: absolute;
     bottom: 10px;
     right: 10px;
-    width: 200px; /* Ampliar un poco más el tamaño de la imagen */
+    width: 250px; /* Ampliar un poco más el tamaño de la imagen */
     height: auto;
 }
 

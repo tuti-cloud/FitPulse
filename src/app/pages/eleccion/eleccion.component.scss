@@ -1,82 +1,125 @@
+@use "./../../../../public/styles/colores.scss";
+
 * {
-    text-decoration: none;
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+  background-color: #f3e8ff;
+}
+
+.fixed-top-left {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 50px; /* Ajustar el tamaño según prefieras */
+  height: auto;
+}
+
+.fixed-bottom-right {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 50px; /* Ajustar el tamaño según prefieras */
+  height: auto;
+}
+
+.container {
+  text-align: center;
+  background-color: #f3e8ff;
+  padding: 40px; /* Ajustar padding según el contenido */
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 800px; /* Limitar el ancho máximo */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrando verticalmente */
+  align-items: center; /* Centrando horizontalmente */
+  position: relative;
+  margin: auto; /* Centrando en la pantalla */
+  animation: move 5s infinite; /* Añadir animación de movimiento */
+  height: auto;
+  margin-top: 150px; /* Bajar la posición vertical */
+}
+
+@keyframes move {
+  0%, 100% {
+    transform: translateY(0);
   }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f3e8ff;
-    font-family: Arial, sans-serif;
+  50% {
+    transform: translateY(-20px); /* Movimiento hacia arriba más profundo */
   }
-  
-  .container {
-    text-align: center;
-    background-color: #f3e8ff;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    margin: 0 auto;
-    margin-top: 250px;
-  }
-  
-  h1 {
-    color: #5e2d89;
-    font-size: 2.5em;
-    margin-bottom: 30px;
-  }
-  
+}
+
+h1 {
+  color: #5e2d89;
+  font-size: 2.5em; /* Tamaño del texto */
+  margin-bottom: 30px;
+}
+
+.options {
+  display: flex;
+  justify-content: center; /* Centrado horizontal de las opciones */
+  align-items: center; /* Centrado vertical de las opciones */
+  width: 100%;
+  max-width: 800px;
+  flex-wrap: wrap; /* Permite que las opciones se ajusten en dispositivos más pequeños */
+  gap: 20px; /* Espaciado entre opciones */
+}
+
+.option {
+  text-align: center;
+}
+
+.option img {
+  width: 200px; /* Tamaño de la imagen */
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.option img:hover {
+  transform: scale(1.1); /* Efecto de zoom */
+}
+
+.option p {
+  font-size: 1.5em;
+  color: colores.$color-principal;
+  margin-top: 10px;
+}
+
+button {
+  text-decoration: none;
+  background: none;
+  border: none; /* Eliminar borde */
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+button:hover {
+  transform: scale(1.1); /* Aumentar tamaño */
+  box-shadow: none; /* Eliminar sombra al hacer hover */
+}
+
+@media (max-width: 600px) {
   .options {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
+    flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
   }
-  
   .option {
-    text-align: center;
+    margin-bottom: 20px;
   }
-  
-  .option img {
-    width: 200px;
-    height: auto;
-  }
-  
-  .option p {
-    font-size: 1.5em;
-    color: #000;
-    margin-top: 10px;
-  }
-  
-  button {
-    text-decoration: none;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    transform: scale(1.1); /* Aumentar un 10% el tamaño */
-    transition: transform 0.3s ease; /* Suavizar la transición */
-  }
-  
-  @media (max-width: 600px) {
-    .options {
-      flex-direction: column;
-    }
-    .option {
-      margin-bottom: 20px;
-    }
-  }
+}
+
+
+
+
+
   

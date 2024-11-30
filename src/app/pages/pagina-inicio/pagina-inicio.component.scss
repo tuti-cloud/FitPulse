@@ -198,6 +198,8 @@ iframe {
   position: relative;
 }
 
+
+
 .download-icons {
   display: flex;
   gap: 20px;
@@ -208,11 +210,17 @@ iframe {
 .download-icons img {
   width: 120px;
   height: auto;
+  transition: transform 0.3s ease; /* Añadir transición suave */
 }
 
 .download-icons .second-image {
   width: 133px; /* Aumentar el ancho de la segunda imagen en 2px */
 }
+
+.download-icons img:hover {
+  transform: scale(1.1); /* Aumentar un 10% el tamaño al hacer hover */
+}
+
 
 
 

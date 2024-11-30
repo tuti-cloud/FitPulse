@@ -9,29 +9,60 @@ body {
     background-color: #fff;
     font-family: Arial, sans-serif;
 }
+
+.fixed-top-left {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 200px; /* Ampliar significativamente el tamaño de la imagen */
+    height: auto;
+}
+
+.fixed-bottom-right {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 200px; /* Ampliar significativamente el tamaño de la imagen */
+    height: auto;
+}
+
 .container {
     background-color: #f3e8ff;
     border-radius: 20px;
-    padding: 40px;
+    padding: 50px; /* Ajustar el padding del contenedor */
     text-align: center;
-    width: 500px;
+    width: 650px; /* Ajustar el tamaño del contenedor */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    top: 250px;
-    right: 500px;
-    left: 500px;
+    top: 150px; /* Posicionar el contenedor un poco más arriba */
+    right: 0;
+    left: 0;
     position: relative;
+    margin: auto; /* Centrando el contenedor */
+    animation: move 5s infinite; /* Añadir animación */
 }
+
+@keyframes move {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px); /* Movimiento hacia arriba */
+    }
+}
+
 h1 {
     color: #5e2d89;
     font-size: 24px;
     margin-bottom: 20px;
 }
+
 .gender-buttons {
     display: flex;
     justify-content: center;
     gap: 20px;
     margin-bottom: 20px;
 }
+
 .gender-buttons button {
     background-color: #f3e8ff;
     border: 2px solid #5e2d89;
@@ -40,52 +71,77 @@ h1 {
     font-size: 18px;
     padding: 10px 20px;
     cursor: pointer;
-   &.selected{
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.gender-buttons button.selected {
     background-color: #6a0dad;
-    color: colores.$color-texto;
-   }
-
-   &:hover{
-    background-color: #5a0c9d;
-    color: colores.$color-texto;
-   }
-
+    color: colores.$color-texto-invertido;
 }
+
 .gender-buttons button:hover {
-    background-color: #e0cfff;
+    background-color: #5a0c9d;
+    color: colores.$color-texto-invertido;
 }
+
 .input-group {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
 }
+
 .input-group label {
     display: block;
     margin-bottom: 5px;
     color: #5e2d89;
 }
+
 .input-group input {
     width: 30%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
 .boton-iniciar {
     background-color: #cdaafc;
     border: none;
     border-radius: 20px;
     color: #fff;
     font-size: 18px;
-    padding: 10px 40px;
+    padding: 12px 35px; /* Ajustar el tamaño del botón */
     cursor: pointer;
-
-    &.disabled{
-        background-color: #ccc;
-        pointer-events: none;
-        cursor: not-allowed;
-    }
-
-    &:hover{
-    background-color: #b394d4 ;
-    }
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.boton-iniciar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.15);
+    transition: all 0.6s ease;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.boton-iniciar:hover::before {
+    width: 0;
+    height: 0;
+}
+
+.boton-iniciar:hover {
+    background-color: colores.$color-principal;
+    transform: translateY(-3px); /* Efecto de elevación más sutil */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para el botón */
+}
+
+.boton-iniciar.disabled {
+    background-color: #ccc;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
