@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { YogaService } from '../../../servicios/yoga.service';
-import { Yoga } from '../../../interfaces/yoga';
+import { YogaService } from '../../servicios/yoga.service';
+import { Yoga } from '../../interfaces/yoga';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common'; // Importa CommonModule
-import { HeaderComponent } from '../../../components/header/header.component';
+import { HeaderComponent } from '../../components/header/header.component';
 import { FormsModule } from '@angular/forms';
 
 @Component({

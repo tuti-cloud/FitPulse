@@ -5,10 +5,11 @@ import { PaginaInicioComponent } from './pages/pagina-inicio/pagina-inicio.compo
 import { RegistrarseComponent } from './pages/registrarse/registrarse.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ModalComponent } from './pages/modal/modal.component';
-import { YogaComponent } from './pages/rutina/yoga/yoga.component';
+import { YogaComponent } from './pages/yoga/yoga.component';
 import { ModalDatosComponent } from './pages/modal-datos/modal-datos.component';
 import { SeleccionDeEjerciciosComponent } from './seleccion-de-ejercicios/seleccion-de-ejercicios.component';
 import { EleccionComponent } from './pages/eleccion/eleccion.component';
+import { AuthGuard } from './servicios/auth-guard.service';
 
 export const routes: Routes = [
   // { path: 'rutina', component: RutinaComponent },
