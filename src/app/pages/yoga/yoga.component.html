@@ -1,34 +1,24 @@
 <app-header></app-header>
 <div class="yoga-container">
-  <h1>Sesi&oacute;n {{ sessionNumber }}</h1>  <!-- Cambié el título para mostrar el número de sesión -->
+  <h1>Sesi&oacute;n {{ sessionNumber }}</h1>
 
   <div class="pose-grid">
-    <!-- Mostrar las poses actuales en un diseño tipo grid -->
     <div class="pose-card" *ngFor="let pose of displayedPoses; let i = index">
-      <img
-        [src]="pose.image"
-        alt="Imagen de la pose de yoga"
-      />
+      <img [src]="pose.image" alt="Imagen de la pose de yoga" />
       <h2>{{ pose.name }}</h2>
-      
-      <!-- Mostrar las respiraciones y checkbox -->
       <p>Respiraciones: {{ pose.breaths }}</p>
-      <label for="checkbox-{{ i }}">
-        <input
-          type="checkbox"
-          [(ngModel)]="completedPoses[i]"
-          id="checkbox-{{ i }}"
-        />
+      <label>
+        <input type="checkbox" [(ngModel)]="completedPoses[i]" />
         Completado
       </label>
     </div>
   </div>
 
-  <!-- Contenedor para centrar el botón -->
   <div class="button-container">
     <button (click)="completeSet()">Siguiente Conjunto</button>
   </div>
 </div>
+
 
 
 

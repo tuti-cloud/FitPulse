@@ -7,12 +7,18 @@
         <h3>{{ exercise.name }}</h3>
         <img [src]="exercise.gifUrl" alt="{{ exercise.name }}">
         <div class="details">
-          <div class="sets-reps">5 series de 8 repeticiones</div>
-          <div class="status">Terminado</div>
+          <div class="sets-reps">
+            {{ exercise.series }} series de {{ exercise.reps }} repeticiones
+          </div>
+          <div class="status">
+            <input type="checkbox" />
+            Terminado
+          </div>
         </div>
       </div>
     </div>
   </div>
+
   <div *ngIf="selectedOptions.includes('Abdomen')">
     <h2 class="section-title">Rutina para Abdomen</h2>
     <div class="exercise-grid">
@@ -20,12 +26,18 @@
         <h3>{{ exercise.name }}</h3>
         <img [src]="exercise.gifUrl" alt="{{ exercise.name }}">
         <div class="details">
-          <div class="sets-reps">5 series de 8 repeticiones</div>
-          <div class="status">Terminado</div>
+          <div class="sets-reps">
+            {{ exercise.series }} series de {{ exercise.reps }} repeticiones
+          </div>
+          <div class="status">
+            <input type="checkbox" />
+            Terminado
+          </div>
         </div>
       </div>
     </div>
   </div>
+
   <div *ngIf="selectedOptions.includes('Espalda y Bíceps')">
     <h2 class="section-title">Rutina para Espalda y Bíceps</h2>
     <div class="exercise-grid">
@@ -33,12 +45,18 @@
         <h3>{{ exercise.name }}</h3>
         <img [src]="exercise.gifUrl" alt="{{ exercise.name }}">
         <div class="details">
-          <div class="sets-reps">5 series de 8 repeticiones</div>
-          <div class="status">Terminado</div>
+          <div class="sets-reps">
+            {{ exercise.series }} series de {{ exercise.reps }} repeticiones
+          </div>
+          <div class="status">
+            <input type="checkbox" />
+            Terminado
+          </div>
         </div>
       </div>
     </div>
   </div>
+
   <div *ngIf="selectedOptions.includes('Pecho y Hombro y Triceps')">
     <h2 class="section-title">Rutina para Pecho, Hombro y Triceps</h2>
     <div class="exercise-grid">
@@ -46,13 +64,24 @@
         <h3>{{ exercise.name }}</h3>
         <img [src]="exercise.gifUrl" alt="{{ exercise.name }}">
         <div class="details">
-          <div class="sets-reps">5 series de 8 repeticiones</div>
-          <div class="status">Terminado</div>
+          <div class="sets-reps">
+            {{ exercise.series }} series de {{ exercise.reps }} repeticiones
+          </div>
+          <div class="status">
+            <input type="checkbox" />
+            Terminado
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- <div class="button-container">
-    <button (click)="completeSet()">Siguiente Conjunto</button>
-  </div> -->
 </div>
+
+
+
+
+
+
+
+
+

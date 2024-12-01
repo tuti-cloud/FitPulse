@@ -1,102 +1,146 @@
-@use "./../../../..//public/styles/colores.scss";
+@use "./../../../../public/styles/colores.scss";
+
+* {
+    font-family: "Oswald";
+}
+
 body {
     display: flex;
+    flex-direction: column; /* Cambiar a columna para centrar verticalmente */
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #f5e9ff;
-    font-family: Arial, sans-serif;
+    font-family: "Oswald";
     margin: 0;
+    position: relative; /* Para posicionar la imagen de Timmy */
 }
+
 .container {
     background-color: #f5e9ff;
     border-radius: 20px;
     padding: 40px;
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-    margin: 500px;
-    margin-top: 200px;
-    width: 500px;
+    width: 700px; /* Hacer el modal más grande */
+    margin: 0 auto; /* Centrar el contenedor horizontalmente */
+    margin-top: 70px;
 }
+
 h1 {
     color: #6a0dad;
     font-size: 24px;
     margin-bottom: 30px;
 }
+
 .options {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap; /* Permitir que las opciones se ajusten */
 }
+
 .column {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .option {
     background-color: #e0c3ff;
     border-radius: 10px;
-    padding: 20px;
+    padding: 30px; /* Hacer los recuadros más grandes */
     margin: 10px;
-    width: 150px;
-    height: 80px;
+    width: 200px; /* Aumentar el tamaño de los recuadros */
+    height: 100px; /* Aumentar la altura de los recuadros */
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: #6a0dad;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
-
-    &:hover{
-        background-color: black ;
-    }
-
-    &.selected{
-        background-color: black ;
-    }
+    transition: background-color 0.3s ease; /* Suavizar la transición del color de fondo */
 }
+
+.option:hover {
+    background-color: #d1a3ff; /* Cambiar color de fondo al pasar el mouse */
+}
+
+.option.selected {
+    background-color: #b394d4; /* Color de fondo para la opción seleccionada */
+}
+
 .start-button {
-    display: block;
-    margin: 30px auto 0;
-    padding: 10px 20px;
+    display: inline-block; /* Hacer que el botón tenga un ancho acorde al texto */
+    margin: 30px auto 0; /* Centrando el botón y añadiendo margen superior */
+    padding: 15px 30px; /* Aumentar el padding para hacer el botón más grande */
     background-color: #d1a3ff;
     border: none;
     border-radius: 20px;
     color: white;
-    font-size: 16px;
+    font-size: 18px; /* Aumentar el tamaño de la fuente */
     cursor: pointer;
     text-decoration: none;
-    position: absolute;
-    bottom: -40px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+    position: relative;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); /* Centrar el botón en valores de x */
 
-    &.disabled{
+    &.disabled {
         background-color: #ccc;
         pointer-events: none;
         cursor: not-allowed;
     }
 
-    &:hover{
-    background-color: #b394d4 ;
+    &:hover {
+        background-color: colores.$color-principal;
+        transform: translateX(-50%) translateY(-5px); /* Efecto de elevación y centrado al pasar el mouse */
+        box-shadow: 0 4px 10px colores.$color-terciario; /* Sombra para el botón */
     }
 }
-.opcion-extra{
-    margin-top: 20px;
-    text-align: center;
-}
-.opcion-yoga{
+
+/* Estilo para la imagen de Timmy */
+.timmy-image {
     position: absolute;
-    top: 700px;
-    right: 40px;
-    left: 0px;
-    font-size: 18px;
-    color: #6a0dad;
-    cursor: pointer;
-    text-decoration: none;
-&:hover{
-    color: #b394d4;
+    bottom: 10px;
+    right: 10px;
+    width: 250px; /* Ampliar un poco más el tamaño de la imagen */
+    height: auto;
 }
-  
+
+/* Media queries para hacerlo responsive */
+
+/* Para pantallas medianas (tablets) */
+@media (max-width: 900px) {
+    .container {
+        width: 90%; /* Ajustar el tamaño del contenedor */
+        padding: 20px; /* Reducir padding */
+    }
+    .option {
+        width: 45%; /* Ajustar el tamaño de las opciones */
+        height: auto; /* Permitir altura automática */
+    }
 }
+
+/* Para pantallas pequeñas (smartphones) */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 20px; /* Ajustar el tamaño del texto */
+        margin-bottom: 20px;
+    }
+    .option {
+        width: 90%; /* Ajustar el tamaño de las opciones */
+        padding: 20px; /* Reducir padding */
+        margin: 10px auto; /* Centrar las opciones */
+    }
+    .start-button {
+        padding: 10px 20px; /* Ajustar padding del botón */
+        font-size: 16px; /* Ajustar el tamaño de la fuente */
+    }
+    .timmy-image {
+        width: 200px; /* Ajustar el tamaño de la imagen */
+    }
+}
+
+
+

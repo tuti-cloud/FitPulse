@@ -3,6 +3,7 @@
 * {
   font-family: "Oswald", sans-serif; /* Asegurar que la fuente se aplica */
   margin: 0;
+  padding: 0; /* Asegurar que no hay padding predeterminado */
 }
 
 body, html {
@@ -14,6 +15,7 @@ body, html {
   text-align: center;
   padding: 20px;
   background-color: #f3f3f3 !important;
+  border-radius: 10px; /* Añadir bordes redondeados para un aspecto más suave */
 }
 
 h1 {
@@ -103,3 +105,55 @@ button:hover {
   transform: scale(1.1);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
+
+/* Media queries para hacerlo responsive */
+
+@media (max-width: 1200px) {
+  .pose-grid {
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas en tamaños medianos */
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem; /* Ajustar el tamaño del texto */
+  }
+
+  .pose-grid {
+    grid-template-columns: 1fr; /* Una columna en tamaños pequeños */
+    row-gap: 10vh; /* Ajustar el espacio entre filas */
+  }
+
+  .pose-card {
+    padding: 10px; /* Reducir el padding de las tarjetas */
+  }
+
+  .pose-card img {
+    width: 50%; /* Ajustar el tamaño de las imágenes */
+  }
+
+  button {
+    padding: 8px 16px; /* Ajustar el padding del botón */
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem; /* Ajustar el tamaño del texto */
+  }
+
+  .pose-card p {
+    font-size: 14px; /* Ajustar el tamaño del texto en las tarjetas */
+  }
+
+  .pose-card h2 {
+    font-size: 1.2rem; /* Ajustar el tamaño del encabezado en las tarjetas */
+  }
+}
+
+
+
+
+
+
+

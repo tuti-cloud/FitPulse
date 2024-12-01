@@ -15,8 +15,12 @@ export class PaginaInicioComponent implements OnInit, AfterViewInit {
   currentIndex: number = 0; // Índice de la flashcard visible actualmente
   isScrolling: boolean = false; // Evita múltiples transiciones simultáneas
   private customCursor!: HTMLElement; // Referencia al cursor personalizado
+  private boundWheelScroll: (event: WheelEvent) => void; // Contexto enlazado del evento
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef) {
+    // Enlazar el contexto de la función onWheelScroll
+    this.boundWheelScroll = this.onWheelScroll.bind(this);
+  }
 
   ngOnInit(): void {
     // Inicializar las flashcards
@@ -33,7 +37,7 @@ export class PaginaInicioComponent implements OnInit, AfterViewInit {
     }
 
     // Manejar el evento de scroll
-    window.addEventListener('wheel', this.onWheelScroll.bind(this), { passive: false });
+    window.addEventListener('wheel', this.boundWheelScroll, { passive: false });
 
     // Inicializar el cursor personalizado
     this.initCustomCursor();
@@ -46,7 +50,6 @@ export class PaginaInicioComponent implements OnInit, AfterViewInit {
   private loadSplineObject(): void {
     const splineContainer = this.elementRef.nativeElement.querySelector('#spline-container');
     if (splineContainer) {
-      // Crear y agregar el iframe
       const iframe = document.createElement('iframe');
       iframe.src = this.splineUrl;
       iframe.frameBorder = '0';
@@ -95,7 +98,6 @@ export class PaginaInicioComponent implements OnInit, AfterViewInit {
       const currentCard = this.flashcards[this.currentIndex];
       const nextCard = this.flashcards[this.currentIndex + 1];
 
-      // Actualizar clases
       currentCard.classList.remove('visible');
       currentCard.classList.add('hidden');
       nextCard.classList.remove('hidden');
@@ -111,7 +113,6 @@ export class PaginaInicioComponent implements OnInit, AfterViewInit {
       const currentCard = this.flashcards[this.currentIndex];
       const previousCard = this.flashcards[this.currentIndex - 1];
 
-      // Actualizar clases
       currentCard.classList.remove('visible');
       currentCard.classList.add('hidden');
       previousCard.classList.remove('hidden');
@@ -128,22 +129,30 @@ export class PaginaInicioComponent implements OnInit, AfterViewInit {
   }
 
   private enableScrollToPreviousSection(): void {
-    // Eliminar el evento para permitir el comportamiento normal de scroll
-    window.removeEventListener('wheel', this.onWheelScroll.bind(this));
+    this.isScrolling = true;
 
-    // Reanudar el evento después de un breve periodo
+    // Eliminar temporalmente el listener de scroll
+    window.removeEventListener('wheel', this.boundWheelScroll);
+
     setTimeout(() => {
-      window.addEventListener('wheel', this.onWheelScroll.bind(this), { passive: false });
+      this.isScrolling = false;
+
+      // Reanudar el listener de scroll después de un breve periodo
+      window.addEventListener('wheel', this.boundWheelScroll, { passive: false });
     }, 500);
   }
 
   private enableScrollToNextSection(): void {
-    // Eliminar el evento para permitir el comportamiento normal de scroll
-    window.removeEventListener('wheel', this.onWheelScroll.bind(this));
+    this.isScrolling = true;
 
-    // Reanudar el evento después de un breve periodo
+    // Eliminar temporalmente el listener de scroll
+    window.removeEventListener('wheel', this.boundWheelScroll);
+
     setTimeout(() => {
-      window.addEventListener('wheel', this.onWheelScroll.bind(this), { passive: false });
+      this.isScrolling = false;
+
+      // Reanudar el listener de scroll después de un breve periodo
+      window.addEventListener('wheel', this.boundWheelScroll, { passive: false });
     }, 500);
   }
 
@@ -169,6 +178,7 @@ export class PaginaInicioComponent implements OnInit, AfterViewInit {
     });
   }
 }
+
 
 
 

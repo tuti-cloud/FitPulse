@@ -1,23 +1,58 @@
 <div class="container">
-    <h1>¿Cuál es tu género?</h1>
-    <div class="gender-buttons">
-      <button [ngClass]="{'selected': selectedGender === 'Masculino'}" (click)="selectGender('Masculino')">Masculino</button>
-      <button [ngClass]="{'selected': selectedGender === 'Femenino'}" (click)="selectGender('Femenino')">Femenino</button>
-    </div>
-    <div class="input-group">
-      <div>
-        <label for="edad">Edad:</label>
-        <input type="text" id="edad" name="edad" [(ngModel)]="edad" required>
-      </div>
-      <div>
-        <label for="altura">Altura (cm):</label>
-        <input type="text" id="altura" name="altura" [(ngModel)]="altura" required>
-      </div>
-      <div>
-        <label for="peso">Peso (kg):</label>
-        <input type="text" id="peso" name="peso" [(ngModel)]="peso" required>
-      </div>
-    </div>
-    <button  [routerLink]="['/modal']" routerLinkActive="activa"  class="boton-iniciar" [disabled]="!canStart()">Iniciar →</button>
-  </div>
+  <h1>¿Cuál es tu género?</h1>
   
+  <!-- Botones para seleccionar género -->
+  <div class="gender-buttons">
+    <button 
+      [ngClass]="{'selected': selectedGender === 'Masculino'}" 
+      (click)="selectGender('Masculino')">
+      Masculino
+    </button>
+    <button 
+      [ngClass]="{'selected': selectedGender === 'Femenino'}" 
+      (click)="selectGender('Femenino')">
+      Femenino
+    </button>
+  </div>
+
+  <!-- Inputs para edad, altura y peso -->
+  <div class="input-group">
+    <div>
+      <label for="edad">Edad:</label>
+      <input 
+        type="text" 
+        id="edad" 
+        name="edad" 
+        [(ngModel)]="edad" 
+        required>
+    </div>
+    <div>
+      <label for="altura">Altura (cm):</label>
+      <input 
+        type="text" 
+        id="altura" 
+        name="altura" 
+        [(ngModel)]="altura" 
+        required>
+    </div>
+    <div>
+      <label for="peso">Peso (kg):</label>
+      <input 
+        type="text" 
+        id="peso" 
+        name="peso" 
+        [(ngModel)]="peso" 
+        required>
+    </div>
+  </div>
+
+  <!-- Botón para iniciar -->
+  <button 
+    class="boton-iniciar" 
+    (click)="start()">Iniciar</button>
+</div>
+
+<!-- Imágenes decorativas -->
+<img src="img/timmy.png" class="fixed-top-left" alt="Timmy">
+<img src="img/luz.png" class="fixed-bottom-right" alt="Luz">
+

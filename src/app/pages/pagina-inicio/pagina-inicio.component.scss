@@ -6,13 +6,17 @@
 }
 
 body {
-  display: block; /* Cambiar flex por block para flujo natural */
   margin: 0;
   padding: 0;
   background-color: colores.$color-texto-invertido;
-  text-align: center;
   cursor: none;
-  background-color: #e4dcdc;
+  min-height: 100vh; /* Garantizar altura completa */
+  display: flex; /* Flexbox principal */
+  flex-direction: column; /* Elementos apilados en columna */
+}
+.mover {
+  position: relative;
+  top: 20px; /* Puedes ajustar este valor para mover más o menos */
 }
 
 .logo {
@@ -62,6 +66,7 @@ body {
 
 .section-2 {
   margin-top: 60px; /* Espacio adicional por si el contenido lo requiere */
+  margin-top: 150px;
 }
 /* Secciones */
 .section-1 {
@@ -78,9 +83,14 @@ body {
   max-width: 675px;
   padding-left: 30px;
   position: relative; /* Cambiar de absolute a relative */
-  left: 10%;
   margin-bottom: 50px; /* Separación adicional */
+  margin-top: 30px; // Mantener el margen superior para separar de la sección anterior
+
+  // Desplazamiento hacia la izquierda
+  margin-left: -20px; // Ajusta este valor según sea necesario
 }
+
+
 
 h3 {
   font-size: 71.4px;
@@ -108,16 +118,23 @@ h4 {
   
   span {
     color: colores.$color-principal;
+    transition: color 0.3s ease, text-shadow 0.3s ease; /* Transición suave */
+  }
+  span:hover{
+     /* Cambiar color del texto al hacer hover */
+    text-shadow: 2px 2px 4px colores.$color-secundario; /* Añadir sombra al texto */
   }
 }
 
 p {
-  font-size: 25.5px;
+  font-size: 1.6rem; /* En lugar de 25px */
+;
   margin: 0 0 25.5px;
 }
 
 .descripcion {
-  font-size: 28px;
+  font-size: 1.8rem; /* En lugar de 25px */
+;
   color: colores.$color-secundario;
   font-weight: bold;
   margin: 51px 0 25.5px;
@@ -129,7 +146,7 @@ p {
   border: none;
   padding: 18.7px 51px;
   border-radius: 30px;
-  font-size: 25.5px;
+  font-size: 1.5rem; /* En lugar de 25px */;
   cursor: pointer;
   text-transform: uppercase;
   margin-top: 38.25px;
@@ -188,6 +205,8 @@ iframe {
   position: relative;
 }
 
+
+
 .download-icons {
   display: flex;
   gap: 20px;
@@ -198,11 +217,17 @@ iframe {
 .download-icons img {
   width: 120px;
   height: auto;
+  transition: transform 0.3s ease; /* Añadir transición suave */
 }
 
 .download-icons .second-image {
   width: 133px; /* Aumentar el ancho de la segunda imagen en 2px */
 }
+
+.download-icons img:hover {
+  transform: scale(1.1); /* Aumentar un 10% el tamaño al hacer hover */
+}
+
 
 
 
@@ -345,6 +370,12 @@ iframe {
   transform: translate(-50%, -50%);
   transition: transform 0.1s, opacity 0.2s;
 }
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 1684dedddaff97d20f548887f369692ba24d0381
 /* Footer */
 .footer {
   background-color: #3b3b3b85;

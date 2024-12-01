@@ -1,19 +1,20 @@
 <div class="container">
-    <h1>
-     ¿Qué quieres hacer hoy?
-    </h1>
-    <div class="options">
-     <div class="option">
-        <button [routerLink]="['/modal']" routerLinkActive="activa" > <img alt="timmy" height="200" src="img/timmy.png" width="200"/></button>
-      <p>
-       EJERCICIO
-      </p>
-     </div>
-     <div class="option">
-      <button [routerLink]="['/yoga']" routerLinkActive="activa" ><img alt="luz" height="200" src="img/luz.png" width="200"/></button>
-      <p>
-       YOGA
-      </p>
-     </div>
+  <h1>¿Qué quieres hacer hoy?</h1>
+  <div class="options">
+    <div class="option">
+      <button type="button" [routerLink]="['/modal']" routerLinkActive="activa">
+        <img alt="timmy" height="200" src="img/timmy.png" width="200" />
+      </button>
+      <p>EJERCICIO</p>
     </div>
-   </div>
+    <div class="option">
+      <button type="button" [routerLink]="['/yoga']" routerLinkActive="activa">
+        <img alt="luz" height="200" src="img/luz.png" width="200" />
+      </button>
+      <p>YOGA</p>
+    </div>
+  </div>
+</div>
+
+
+

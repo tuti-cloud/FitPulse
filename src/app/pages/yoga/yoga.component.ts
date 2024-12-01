@@ -1,108 +1,115 @@
 import { Component, OnInit } from '@angular/core';
 import { YogaService } from '../../servicios/yoga.service';
 import { Yoga } from '../../interfaces/yoga';
-import Swal from 'sweetalert2';
-import { CommonModule } from '@angular/common'; // Importa CommonModule
+import Swal from 'sweetalert2'; // Asegúrate de tenerlo instalado e importado
+import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-yoga',
-  imports: [CommonModule, HeaderComponent, FormsModule], // Asegúrate de incluir CommonModule aquí
+  imports: [CommonModule, HeaderComponent, FormsModule],
   standalone: true,
   templateUrl: './yoga.component.html',
   styleUrls: ['./yoga.component.scss'],
 })
 export class YogaComponent implements OnInit {
-  yogaPoses: Yoga[] = [];
-  displayedPoses: Yoga[] = [];
-  completedPoses: boolean[] = []; // Para controlar las casillas de verificación
-  private currentIndex: number = 0;
-  public sessionNumber: number = 1; // Propiedad para el número de sesión
+  yogaPoses: Yoga[] = []; // Todas las posturas cargadas desde la API
+  displayedPoses: Yoga[] = []; // Posturas que se mostrarán en la sesión actual
+  completedPoses: boolean[] = []; // Seguimiento de posturas completadas
+  currentIndex: number = 0; // Índice actual para paginación
+  sessionNumber: number = 1; // Número de sesión actual
 
   constructor(private yogaService: YogaService) {}
 
   ngOnInit(): void {
+    this.loadYogaPoses(); // Cargar las posturas al inicializar el componente
+  }
+
+  /**
+   * Carga las posturas de yoga desde el servicio y las inicializa.
+   */
+  loadYogaPoses(): void {
+    Swal.fire({
+      title: 'Cargando posturas de yoga...',
+      allowOutsideClick: false,
+      timerProgressBar: true,
+      didOpen: () => Swal.showLoading(),
+    });
+
     this.yogaService.getYogaPoses().subscribe({
-      next: (data: Yoga[]) => {
-        if (Array.isArray(data) && data.length > 0) {
-          this.yogaPoses = data;
-          this.loadPoses(); // Cargar las primeras 6 posturas
-        } else {
-          console.error('La API devolvió un formato inesperado:', data);
-        }
+      next: (poses: Yoga[]) => {
+        this.yogaPoses = poses;
+        this.loadPoses(); // Cargar las primeras posturas
+        Swal.close();
       },
-      error: (err) => console.error('Error al obtener las posturas de yoga:', err),
+      error: (error) => {
+        console.error('Error al cargar las posturas:', error);
+        Swal.fire('Error', 'No se pudieron cargar las posturas. Intenta más tarde.', 'error');
+      },
     });
   }
 
+  /**
+   * Carga el siguiente conjunto de posturas para la sesión actual.
+   */
   loadPoses(): void {
     const nextSet = this.yogaPoses.slice(this.currentIndex, this.currentIndex + 6);
 
-    // Reasignar respiraciones para todas las poses en cada sesión
-    nextSet.forEach(pose => {
-      pose.breaths = this.getRandomBreaths(); // Asignamos respiraciones aleatorias a todas las poses
-    });
+    nextSet.forEach((pose) => (pose.breaths = this.getRandomBreaths()));
 
     this.displayedPoses = nextSet;
-    this.completedPoses = new Array(nextSet.length).fill(false); // Reiniciar las casillas de verificación
+    this.completedPoses = new Array(nextSet.length).fill(false);
     this.currentIndex += 6;
   }
 
-  // Método para generar un número aleatorio de respiraciones (del 1 al 10)
+  /**
+   * Genera un número aleatorio de respiraciones para una postura.
+   */
   getRandomBreaths(): number {
     return Math.floor(Math.random() * 10) + 1;
   }
 
+  /**
+   * Maneja la finalización de un conjunto de posturas con una confirmación de SweetAlert2.
+   */
   completeSet(): void {
     if (this.completedPoses.every((completed) => completed)) {
-      // Si todas las checkbox están marcadas
+      // Si todas las posturas están completadas, procede normalmente
       if (this.currentIndex < this.yogaPoses.length) {
-        this.loadPoses(); // Cargar el siguiente conjunto de poses
-        this.sessionNumber++; // Incrementar el número de sesión
+        this.loadPoses();
+        this.sessionNumber++;
       } else {
-        Swal.fire('¡Terminaste todas las posturas!');
+        Swal.fire('¡Felicidades!', 'Terminaste todas las posturas.', 'success');
       }
     } else {
+      // Si no todas las posturas están completadas, muestra un modal de confirmación
       Swal.fire({
-        title: '¿Te gustaría cambiar la sesión?',
-        icon: 'question',
-        iconHtml: '؟',
-        confirmButtonText: 'Sí, cambiar',
-        cancelButtonText: 'No, continuar con la actual',
+        title: 'Algunas posturas no están completadas',
+        text: '¿Estás seguro de que quieres cambiar de sesión?',
+        icon: 'warning',
         showCancelButton: true,
-        showCloseButton: true,
+        confirmButtonText: 'Sí, cambiar!',
+        cancelButtonText: 'No, no lo cambies',
+        reverseButtons: true,
       }).then((result) => {
         if (result.isConfirmed) {
-          // Si el usuario selecciona "Sí, cambiar", reiniciamos las casillas de verificación
-          this.completedPoses = new Array(this.displayedPoses.length).fill(false);
-          // Cargar el siguiente conjunto de poses
+          // Si el usuario elige "Sí", marca todas las posturas como completadas y pasa a la siguiente sesión
+          this.completedPoses.fill(true);
           if (this.currentIndex < this.yogaPoses.length) {
             this.loadPoses();
-            this.sessionNumber++; // Incrementar el número de sesión
+            this.sessionNumber++;
           } else {
-            Swal.fire('¡Terminaste todas las posturas!');
+            Swal.fire('¡Felicidades!', 'Terminaste todas las posturas.', 'success');
           }
         } else {
-          // Si el usuario selecciona "No, continuar con la actual", no hacemos nada
-          console.log('El usuario decidió continuar con la sesión actual.');
+          // Si el usuario elige "No", no se hace nada
+          Swal.fire('Operación cancelada', 'No se ha cambiado de sesión.', 'info');
         }
       });
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
