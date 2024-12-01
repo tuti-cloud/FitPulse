@@ -150,7 +150,7 @@ form.sign-in-form {
   font-weight: 600;
   margin: 10px 0;
   cursor: pointer;
-  transition: 0.5s;
+  transition: background 2s ease, box-shadow 0.5s ease, transform 0.5s ease; /* Transición más lenta para el gradiente */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Añadir sombra */
   position: relative; /* Para pseudo-elementos */
   overflow: hidden; /* Ocultar el pseudo-elemento cuando está fuera del botón */
@@ -178,6 +178,7 @@ form.sign-in-form {
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Aumentar la sombra */
   background: linear-gradient(45deg, #a25fe1, #4B0082); /* Cambiar gradiente en hover */
 }
+
 
 .panels-container {
   position: absolute;
