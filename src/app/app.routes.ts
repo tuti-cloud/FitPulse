@@ -18,7 +18,7 @@ export const routes: Routes = [
   { path: 'pagina-inicio', component: PaginaInicioComponent },
   {path: 'registrarse' , component:RegistrarseComponent},
   { path: 'login', component:LoginComponent},
-  {path: 'modal', component:ModalComponent},
+  {path: 'modal', component:ModalComponent , canActivate:[AuthGuard] },
   {path:'modal-datos', component:ModalDatosComponent},
   {path:'yoga', component:YogaComponent},
   {path:'seleccion-de-ejercicios', component:SeleccionDeEjerciciosComponent},

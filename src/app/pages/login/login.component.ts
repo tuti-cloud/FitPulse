@@ -1,8 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { DatosService } from '../../servicios/datos.service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule} from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -18,9 +19,10 @@ export class LoginComponent implements OnInit {
   registerPassword: string = '';
 
  serviciodatos=inject(DatosService);
+ router=inject(Router)
 
   ngOnInit(): void {
-    this.serviciodatos = new DatosService();
+    
 
     const signInBtn = document.querySelector("#sign-in-btn") as HTMLElement;
     const signUpBtn = document.querySelector("#sign-up-btn") as HTMLElement;
@@ -34,23 +36,71 @@ export class LoginComponent implements OnInit {
       container.classList.remove("sign-up-mode");
     });
   }
-
   register() {
+    if (!this.registerUsername || !this.registerPassword) {
+     
+      Swal.fire({
+        icon: "error",
+        title: "Complete todos los campos",
+        text: "Intentelo de nuevo",
+        });
+      return;  
+    }
+  
+    
+  
+    // Intentar registrar
     if (this.serviciodatos.register({ username: this.registerUsername, password: this.registerPassword })) {
-      alert('Usuario registrado exitosamente.');
+      
+      Swal.fire({
+        icon: "success",
+        title: "Usuario Registrado Correctamente",
+        text: "",
+        
+      });;
       const container = document.querySelector(".container") as HTMLElement;
       container.classList.remove("sign-up-mode");
+      this.router.navigate(['/modal-datos']);
     } else {
-      alert('El nombre de usuario ya existe.');
+      
+      Swal.fire({
+        icon: "error",
+        title: "Nombre de usuario en uso",
+        text: "Intentelo De Nuevo Con Otro",
+        
+      });;
     }
   }
+  
+  
+  
+  login(event: Event) {
+    event.preventDefault();
+    if (!this.loginUsername || !this.loginPassword) {
 
-  login() {
+      Swal.fire({
+        icon: "error",
+        title: "Complete todos los campos",
+        text: "Intentelo de nuevo",
+        });
+      return;
+    }
     if (this.serviciodatos.login(this.loginUsername, this.loginPassword)) {
-      localStorage.setItem('currentUser', this.loginUsername);
-      alert('Login exitoso.');
+      Swal.fire({
+        icon: "success",
+        title: "Acceso Correcto",
+        text: "",
+        
+      });;
+      this.router.navigate(['/eleccion']);
     } else {
-      alert('Nombre de usuario o contraseña incorrectos.');
+      Swal.fire({
+        icon: "error",
+        title: "Credenciales Incorrectas",
+        text: "Intentelo de nuevo",
+        
+      });;
     }
   }
-}
+  
+}  

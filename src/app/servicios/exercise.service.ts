@@ -12,19 +12,13 @@ export class ExerciseService {
   }
   private apiUrl = 'https://exercisedb.p.rapidapi.com/exercises';
   private headers = new HttpHeaders({
-    'X-RapidAPI-Key': '194644aa73mshf2beeb524f60d38p176e48jsn5c1ba658a958',
+    'X-RapidAPI-Key': '26790f18edmshd9dd7dbc10050dbp11c1f3jsnf4ae0282b999',
     'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
   });
 
   constructor(private http: HttpClient) { }
 
-  // getExerciseByName(name: string): Observable<Exercise[]> {
-  //   return this.http.get<Exercise[]>(`${this.apiUrl}/name/${name}`, { headers: this.headers });
-  // }
-
-  // getAllExercises(): Observable<Exercise[]> {
-  //   return this.http.get<Exercise[]>('https://exercisedb.p.rapidapi.com/exercises', { headers: this.headers });
-  // }
+ 
 
 
   

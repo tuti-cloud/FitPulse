@@ -125,7 +125,7 @@ p {
 
 .boton-iniciar {
   background-color: colores.$color-secundario; /* Usando el color proporcionado */
-  color: colores.$color-texto-invertido; /* Supongo que `colores.$color-texto-invertido` es blanco */
+  color: colores.$color-texto-invertido; /* Supongo que colores.$color-texto-invertido es blanco */
   border: none;
   padding: 18.7px 51px;
   border-radius: 30px;
@@ -344,4 +344,217 @@ iframe {
   box-shadow: 0 0 15px 5px colores.$color-terciario; /* Sombra alrededor del cursor */
   transform: translate(-50%, -50%);
   transition: transform 0.1s, opacity 0.2s;
+}
+/* Footer */
+.footer {
+  background-color: #3b3b3b85;
+  color: #fff;
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 0.9rem;
+}
+
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.footer .social-icons {
+  margin: 15px 0;
+  display: flex;
+  justify-content: center; /* Centrar los iconos de redes sociales */
+  gap: 20px; /* Espacio entre los iconos */
+}
+
+.footer .social-icons a {
+  margin: 0 10px;
+  display: inline-block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Añadir transición para la sombra */
+  color: #fff; /* Asegurar que los iconos sean blancos */
+  font-size: 1.5rem; /* Aumentar el tamaño de los iconos */
+}
+
+.footer .social-icons a i {
+  margin: 0 15px; /* Ampliar el margen alrededor de las etiquetas i */
+  transition: transform 0.3s ease, color 0.3s ease; /* Transiciones suaves */
+}
+
+.footer .social-icons a:hover i {
+  transform: translateY(-5px); /* Elevar el icono al hacer hover */
+  color: colores.$color-principal; /* Cambiar color del icono al hacer hover */
+}
+
+.footer .footer-links a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 5px;
+  transition: color 0.3s ease;
+}
+
+.footer .footer-links a:hover {
+  color: colores.$color-principal; /* Color de resalte al pasar el mouse */
+}
+
+
+/* Media queries para pantallas pequeñas */
+@media (max-width: 768px) {
+  /* Cambiar el orden de los elementos */
+  .spline-container {
+    position: relative; /* Dejar de usar posición absoluta */
+    width: 100%;
+    height: 50vh;
+    margin: 20px auto;
+    order: 1; /* Asegurar que aparezca después del logo */
+  }
+
+  .logo {
+    order: 0; /* Mantener el logo primero */
+    margin-bottom: 20px; /* Añadir espacio entre el logo y spline */
+  }
+
+  .contenedor-principal {
+    order: 2; /* Los textos van después de spline */
+    padding-left: 5px; /* Ajustar padding para pantallas pequeñas */
+    text-align: center; /* Centrar el texto */
+  }
+
+  /* Ajustes de texto más pequeño en sección 1 */
+  .contenedor-principal h3 {
+    font-size: 1.5rem; /* Reducir el tamaño del título */
+    margin-bottom: 15px; /* Ajustar el espaciado inferior */
+  }
+
+  .contenedor-principal p {
+    font-size: 2rem; /* Reducir tamaño del texto */
+    line-height: 1.4; /* Compactar un poco más */
+    margin-bottom: 10px; /* Ajustar márgenes */
+  }
+  .contenedor-principal h3 {
+    font-size: 2rem;
+  }
+  .contenedor-principal h4 {
+    font-size: 1.5rem;
+  }
+
+  /* Ajustes para flashcards */
+  .flashcard-container {
+    padding-bottom: 150px; /* Evitar superposición con el footer */
+  }
+
+  .flashcard {
+    width: 90%; /* Reducir el tamaño en pantallas pequeñas */
+    height: auto; /* Ajustar automáticamente la altura */
+    padding: 20px; /* Añadir padding interno */
+    flex-direction: column; /* Cambiar a columna en lugar de fila */
+  }
+
+  .flashcard .content {
+    font-size: 1.2rem; /* Reducir tamaño de letra */
+    line-height: 1.5; /* Espaciado más compacto */
+    width: 100%; /* Extender el texto completamente */
+    margin-bottom: 20px; /* Añadir margen entre texto e imagen */
+  }
+
+  .flashcard .image-wrapper {
+    width: 100%; /* Ajustar la imagen al ancho disponible */
+    margin: 0 auto; /* Centrar imagen */
+  }
+
+  .flashcard .image img {
+    max-width: 80%; /* Reducir el tamaño de la imagen */
+    height: auto;
+  }
+
+  /* Reducir margen entre las flashcards y el footer */
+  .flashcard:last-child {
+    margin-bottom: 20px;
+  }
+  /* Ajustar el contenedor principal para evitar superposición con el footer */
+.contenedor-principal {
+  margin-bottom: 100px;
+}
+
+.flashcard-container {
+  padding-bottom: 200px; /* Más espacio para evitar superposición */
+}
+}
+
+
+
+@media screen and (min-width: 600px) and (max-width: 1023px) {
+  /* Tablets */
+  h3 {
+    font-size: 2.5rem;
+  }
+
+  .contenedor-principal {
+    width: 85%;
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    padding-left: 20px; /* Mantener padding interno si es necesario */
+  }
+  
+
+  .flashcard {
+    width: 80%;
+    height: auto; /* Ajustar automáticamente la altura */
+    padding: 20px;
+  }
+
+  .flashcard .content {
+    font-size: 1.5rem; /* Ajustar tamaño del texto */
+  }
+
+  .flashcard .image-wrapper {
+    width: 100%; /* Asegurar que la imagen ocupe todo el ancho disponible */
+    text-align: center; /* Centrar la imagen */
+  }
+
+  .flashcard .image-wrapper img {
+    max-width: 100%; /* Asegurar que no exceda el ancho disponible */
+    height: auto; /* Mantener la relación de aspecto */
+    object-fit: contain; /* Asegurar que toda la imagen sea visible */
+  }
+
+  .spline-container {
+    width: 50vw;
+    height: 60vh;
+    top: 5%;
+  }
+
+  .download-icons img {
+    width: 100px; /* Ajustar tamaño para tablets */
+  }
+
+  .footer-content {
+    font-size: 0.8rem; /* Reducir el tamaño del texto */
+    text-align: center; /* Centrar el texto en el footer */
+    padding: 10px; /* Reducir el padding para ganar espacio */
+  }
+  .footer{
+    width: 100%;
+  }
+}
+
+
+@media screen and (min-width: 1024px) {
+  /* Desktops */
+  .contenedor-principal {
+    max-width: 60%;
+    left: 20%;
+  }
+
+  .flashcard {
+    width: 60%;
+    height: 65vh;
+  }
+
+  .spline-container {
+    width: 35vw;
+    height: 80vh;
+  }
+}
+@media (hover: none) {
+  .custom-cursor {
+    display: none;
+  }
 }
