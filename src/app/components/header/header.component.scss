@@ -5,13 +5,14 @@
 }
 
 .fondo {
-  background-color: colores.$color-principal-superbajado; 
+  background-color: colores.$color-principal-superbajado;
   padding: 20px 50px;
-  display: flex; 
+  display: flex;
   justify-content: space-between; /* Distribuir logo y nav */
-  align-items: center; 
+  align-items: center;
   box-sizing: border-box;
-  width: 100%; 
+  width: 100%;
+  flex-wrap: wrap; /* Permitir que los elementos se acomoden en varias líneas en dispositivos pequeños */
 }
 
 .logo {
@@ -23,70 +24,149 @@
 .logo img {
   width: 65px; /* Ajuste del tamaño de la imagen */
   height: auto;
-  margin-top: 0; /* Remover margen superior para alinearlo con nav */
   margin-right: 10px; /* Espacio entre la imagen y el texto */
   transition: transform 0.3s ease; /* Transición suave para transform */
 }
 
 .logo h4 {
-  margin: 0; /* Eliminar el margen por defecto del h4 */
-  padding-top: 0; /* Remover padding superior para alinearlo con nav */
-  font-size: 2rem; /* Aumentar tamaño del h4 */
-  transition: color 0.3s ease, text-shadow 0.3s ease; /* Transición suave */
+  margin: 0;
+  font-size: 2rem;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
   display: flex;
-  align-items: center; /* Alinear verticalmente */
+  align-items: center;
 }
 
-/* Definir la animación de latido de corazón */
+/* Animación de latido */
 @keyframes heartbeat {
   0%, 100% {
     transform: scale(1);
   }
   20%, 60% {
-    transform: scale(1.3); /* Aumentar más el tamaño */
+    transform: scale(1.3);
   }
   40%, 80% {
-    transform: scale(1.15); /* Ajustar tamaño intermedio */
+    transform: scale(1.15);
   }
 }
 
-/* Aplicar la animación al hacer hover */
 .logo img:hover {
-  animation: heartbeat 1.5s ease-in-out infinite; /* Hacer la animación más lenta */
+  animation: heartbeat 1.5s ease-in-out infinite;
 }
 
-
-
 .logo h4:hover {
-  color: colores.$color-principal; /* Cambiar color del texto al hacer hover */
-  text-shadow: 2px 2px 4px colores.$color-secundario; /* Añadir sombra al texto */
+  color: colores.$color-principal;
+  text-shadow: 2px 2px 4px colores.$color-secundario;
 }
 
 .fondo h1 {
-  font-size: 2rem; 
-  color: #333; 
-  margin: 0; 
+  font-size: 2rem;
+  color: #333;
+  margin: 0;
   padding: 0;
-  margin-right: 20px; 
+  margin-right: 20px;
 }
 
 nav {
-  display: flex; 
+  display: flex;
   align-items: center;
-  justify-content: flex-end; /* Alinear a la derecha */
-  flex-grow: 1; /* Permitir que ocupe el espacio restante */
-  gap: 80px; /* Aumentar el espacio entre los enlaces */
+  justify-content: flex-end;
+  flex-grow: 1; /* Permitir que nav ocupe el espacio restante */
+  gap: 80px; /* Espacio entre los enlaces */
+  flex-wrap: wrap; /* Permitir que los enlaces se reorganicen */
 }
 
 .links {
-  font-size: 1.5rem; 
-  color: #333; 
-  text-decoration: none; 
-  transition: color 0.3s ease, text-shadow 0.3s ease; /* Transición suave */
+  font-size: 1.5rem;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
   cursor: pointer;
 }
 
 .links:hover {
-  color: colores.$color-principal; /* Cambiar color al hacer hover */
-  text-shadow: 2px 2px 4px colores.$color-secundario; /* Añadir sombra al texto */
+  color: colores.$color-principal;
+  text-shadow: 2px 2px 4px colores.$color-secundario;
 }
+
+/* Media queries */
+
+/* Para pantallas medianas (tablets y laptops pequeñas) */
+@media (max-width: 1024px) {
+  .fondo {
+    padding: 15px 30px; /* Reducir padding */
+    flex-wrap: wrap; /* Permitir que los elementos se acomoden en líneas múltiples */
+  }
+
+  .logo img {
+    width: 50px; /* Reducir tamaño de la imagen */
+  }
+
+  .logo h4 {
+    font-size: 1.8rem; /* Reducir tamaño del texto */
+  }
+
+  nav {
+    gap: 50px; /* Reducir espacio entre enlaces */
+  }
+
+  .links {
+    font-size: 1.3rem; /* Reducir tamaño de los enlaces */
+  }
+}
+
+/* Para pantallas pequeñas (smartphones) */
+@media (max-width: 768px) {
+  .fondo {
+    flex-direction: column; /* Cambiar a diseño vertical */
+    align-items: flex-start; /* Alinear los elementos al inicio */
+    padding: 10px 20px;
+  }
+
+  .logo {
+    margin-bottom: 10px; /* Espacio entre logo y nav */
+    margin-left: 0; /* Remover margen izquierdo */
+  }
+
+  .logo img {
+    width: 40px; /* Reducir aún más el tamaño de la imagen */
+  }
+
+  .logo h4 {
+    font-size: 1.5rem;
+  }
+
+  nav {
+    justify-content: flex-start; /* Alinear los enlaces a la izquierda */
+    gap: 30px;
+  }
+
+  .links {
+    font-size: 1.2rem; /* Ajustar tamaño de los enlaces */
+  }
+}
+
+/* Para pantallas muy pequeñas (extra pequeñas) */
+@media (max-width: 480px) {
+  .fondo {
+    padding: 5px 15px;
+  }
+
+  .logo img {
+    width: 35px; /* Ajustar tamaño de la imagen */
+  }
+
+  .logo h4 {
+    font-size: 1.2rem;
+  }
+
+  nav {
+    flex-direction: column; /* Cambiar enlaces a una columna */
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .links {
+    font-size: 1rem; /* Reducir tamaño de los enlaces */
+  }
+}
+

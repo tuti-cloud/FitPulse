@@ -36,6 +36,7 @@ h1 {
 .options {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap; /* Permitir que las opciones se ajusten */
 }
 
 .column {
@@ -98,7 +99,6 @@ h1 {
     }
 }
 
-
 /* Estilo para la imagen de Timmy */
 .timmy-image {
     position: absolute;
@@ -107,5 +107,40 @@ h1 {
     width: 250px; /* Ampliar un poco más el tamaño de la imagen */
     height: auto;
 }
+
+/* Media queries para hacerlo responsive */
+
+/* Para pantallas medianas (tablets) */
+@media (max-width: 900px) {
+    .container {
+        width: 90%; /* Ajustar el tamaño del contenedor */
+        padding: 20px; /* Reducir padding */
+    }
+    .option {
+        width: 45%; /* Ajustar el tamaño de las opciones */
+        height: auto; /* Permitir altura automática */
+    }
+}
+
+/* Para pantallas pequeñas (smartphones) */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 20px; /* Ajustar el tamaño del texto */
+        margin-bottom: 20px;
+    }
+    .option {
+        width: 90%; /* Ajustar el tamaño de las opciones */
+        padding: 20px; /* Reducir padding */
+        margin: 10px auto; /* Centrar las opciones */
+    }
+    .start-button {
+        padding: 10px 20px; /* Ajustar padding del botón */
+        font-size: 16px; /* Ajustar el tamaño de la fuente */
+    }
+    .timmy-image {
+        width: 200px; /* Ajustar el tamaño de la imagen */
+    }
+}
+
 
 

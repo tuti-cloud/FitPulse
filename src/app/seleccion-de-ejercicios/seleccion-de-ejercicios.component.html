@@ -1,6 +1,5 @@
 <app-header></app-header>
 <div class="results-container">
-  <!-- Sección para Piernas y Glúteos -->
   <div *ngIf="selectedOptions.includes('Piernas y Glúteos')">
     <h2 class="section-title">Rutina para Piernas y Glúteos</h2>
     <div class="exercise-grid">
@@ -8,17 +7,18 @@
         <h3>{{ exercise.name }}</h3>
         <img [src]="exercise.gifUrl" alt="{{ exercise.name }}">
         <div class="details">
-          <div class="sets-reps">{{ exercise.series }} series de {{ exercise.reps }} repeticiones</div>
+          <div class="sets-reps">
+            {{ exercise.series }} series de {{ exercise.reps }} repeticiones
+          </div>
           <div class="status">
             <input type="checkbox" />
-            <span>Terminado</span>
+            Terminado
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Sección para Abdomen -->
   <div *ngIf="selectedOptions.includes('Abdomen')">
     <h2 class="section-title">Rutina para Abdomen</h2>
     <div class="exercise-grid">
@@ -26,17 +26,18 @@
         <h3>{{ exercise.name }}</h3>
         <img [src]="exercise.gifUrl" alt="{{ exercise.name }}">
         <div class="details">
-          <div class="sets-reps">{{ exercise.series }} series de {{ exercise.reps }} repeticiones</div>
+          <div class="sets-reps">
+            {{ exercise.series }} series de {{ exercise.reps }} repeticiones
+          </div>
           <div class="status">
             <input type="checkbox" />
-            <span>Terminado</span>
+            Terminado
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Sección para Espalda y Bíceps -->
   <div *ngIf="selectedOptions.includes('Espalda y Bíceps')">
     <h2 class="section-title">Rutina para Espalda y Bíceps</h2>
     <div class="exercise-grid">
@@ -44,34 +45,43 @@
         <h3>{{ exercise.name }}</h3>
         <img [src]="exercise.gifUrl" alt="{{ exercise.name }}">
         <div class="details">
-          <div class="sets-reps">{{ exercise.series }} series de {{ exercise.reps }} repeticiones</div>
+          <div class="sets-reps">
+            {{ exercise.series }} series de {{ exercise.reps }} repeticiones
+          </div>
           <div class="status">
             <input type="checkbox" />
-            <span>Terminado</span>
+            Terminado
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Sección para Pecho, Hombro y Tríceps -->
   <div *ngIf="selectedOptions.includes('Pecho y Hombro y Triceps')">
-    <h2 class="section-title">Rutina para Pecho, Hombro y Tríceps</h2>
+    <h2 class="section-title">Rutina para Pecho, Hombro y Triceps</h2>
     <div class="exercise-grid">
       <div *ngFor="let exercise of exercises['Pecho y Hombro y Triceps']" class="exercise-card">
         <h3>{{ exercise.name }}</h3>
         <img [src]="exercise.gifUrl" alt="{{ exercise.name }}">
         <div class="details">
-          <div class="sets-reps">{{ exercise.series }} series de {{ exercise.reps }} repeticiones</div>
+          <div class="sets-reps">
+            {{ exercise.series }} series de {{ exercise.reps }} repeticiones
+          </div>
           <div class="status">
             <input type="checkbox" />
-            <span>Terminado</span>
+            Terminado
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+
+
+
+
 
 
 

@@ -22,6 +22,8 @@ body, html {
   color: #333;
 }
 
+
+
 .exercise-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Tres columnas en cada fila */
@@ -108,6 +110,55 @@ button:hover {
   background: linear-gradient(45deg, #4b0082, #a25fe1);
   transform: scale(1.1);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Media queries para hacerlo responsive */
+
+/* Para pantallas medianas (tablets) */
+@media (max-width: 1200px) {
+  .exercise-grid {
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas en tamaños medianos */
+    row-gap: 5vh; /* Ajustar el espacio entre filas */
+  }
+
+  .exercise-card {
+    width: 80%; /* Hacer las tarjetas más anchas */
+    padding: 20px; /* Ajustar el padding de las tarjetas */
+  }
+}
+
+/* Para pantallas pequeñas (smartphones) */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.5rem; /* Ajustar el tamaño del texto */
+    margin: 20px 0;
+  }
+
+  .exercise-grid {
+    grid-template-columns: 1fr; /* Una columna en tamaños pequeños */
+    row-gap: 5vh; /* Ajustar el espacio entre filas */
+  }
+
+  .exercise-card {
+    width: 90%; /* Ajustar el tamaño de las tarjetas */
+    padding: 15px; /* Ajustar el padding de las tarjetas */
+  }
+
+  .exercise-card h3 {
+    font-size: 1rem; /* Ajustar el tamaño del texto del título */
+  }
+
+  .exercise-card img {
+    width: 80%; /* Ajustar el tamaño de las imágenes */
+  }
+
+  .details {
+    font-size: 16px; /* Ajustar el tamaño del texto */
+  }
+
+  button {
+    padding: 8px 16px; /* Ajustar el padding del botón */
+  }
 }
 
 
