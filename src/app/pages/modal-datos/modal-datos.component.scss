@@ -12,7 +12,7 @@ body {
 
 .fixed-top-left {
     position: absolute;
-    top: 10px;
+    top: 10px; /* Ajustar la posición más arriba */
     left: 10px;
     width: 200px; /* Ampliar significativamente el tamaño de la imagen */
     height: auto;
@@ -145,3 +145,34 @@ h1 {
     cursor: not-allowed;
 }
 
+/* Media Queries para hacer el diseño responsive */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 30px; /* Reducir el padding en dispositivos móviles */
+        top: 220px; /* Posicionar el contenedor más abajo en dispositivos móviles */
+    }
+
+    .input-group {
+        display: block;
+    }
+
+    .input-group input {
+        width: 100%;
+        margin-bottom: 10px; /* Añadir margen entre los inputs */
+    }
+
+    .input-group label {
+        margin-bottom: 10px;
+    }
+
+    .gender-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .gender-buttons button {
+        width: 100%;
+        padding: 10px 0; /* Ajustar el padding de los botones */
+    }
+}

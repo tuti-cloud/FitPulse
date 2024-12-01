@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 
@@ -12,6 +12,8 @@ import Swal from 'sweetalert2';
   styleUrl: './modal-datos.component.scss',
 })
 export class ModalDatosComponent {
+
+  router=inject(Router)
   selectedGender: string = '';
   edad: string = '';
   altura: string = '';
@@ -40,7 +42,7 @@ export class ModalDatosComponent {
       });
     } else {
       // Lógica para avanzar si los datos están completos
-      console.log('Todos los campos están completos. Continuar.');
+      this.router.navigate(['/eleccion']);
     }
   }
 }

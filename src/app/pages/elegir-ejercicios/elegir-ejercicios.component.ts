@@ -6,10 +6,10 @@ import { Router } from '@angular/router';
   selector: 'app-modal',
   standalone: true,
   imports: [RouterModule,CommonModule],
-  templateUrl: './modal.component.html',
-  styleUrl: './modal.component.scss'
+  templateUrl: './elegir-ejercicios.component.html',
+  styleUrl: './elegir-ejercicios.component.scss'
 })
-export class ModalComponent {
+export class ElegirEjerciciosComponent {
 
     selectedOptions: string[] = [];
   

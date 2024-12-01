@@ -113,34 +113,42 @@ h1 {
 /* Para pantallas medianas (tablets) */
 @media (max-width: 900px) {
     .container {
-        width: 90%; /* Ajustar el tamaño del contenedor */
-        padding: 20px; /* Reducir padding */
+        width: 90%;
+        padding: 20px;
+        height: auto; /* Permitir altura automática */
     }
     .option {
-        width: 45%; /* Ajustar el tamaño de las opciones */
-        height: auto; /* Permitir altura automática */
+        width: 45%;
+        height: 200px; /* Ajustar altura de las opciones */
+        margin: 15px;
     }
 }
 
 /* Para pantallas pequeñas (smartphones) */
 @media (max-width: 600px) {
     h1 {
-        font-size: 20px; /* Ajustar el tamaño del texto */
+        font-size: 20px;
         margin-bottom: 20px;
     }
     .option {
-        width: 90%; /* Ajustar el tamaño de las opciones */
-        padding: 20px; /* Reducir padding */
-        margin: 10px auto; /* Centrar las opciones */
+        width: 90%;
+        padding: 10px;
+        margin: 15px auto;
+        height: 140px; /* Ajustar altura de las opciones */
     }
     .start-button {
-        padding: 10px 20px; /* Ajustar padding del botón */
-        font-size: 16px; /* Ajustar el tamaño de la fuente */
+        padding: 10px 20px;
+        font-size: 16px;
     }
     .timmy-image {
-        width: 200px; /* Ajustar el tamaño de la imagen */
+        width: 200px;
+    }
+    .container {
+        top: 250px;
+        height: auto; /* Permitir altura automática en dispositivos móviles */
     }
 }
+
 
 
 

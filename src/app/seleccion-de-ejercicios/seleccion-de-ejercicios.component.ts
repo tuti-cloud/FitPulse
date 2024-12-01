@@ -67,7 +67,7 @@ export class SeleccionDeEjerciciosComponent implements OnInit {
         default:
           console.error(`Opción desconocida: ${option}`);
       }
-  
+
       targets.forEach(target => {
         this.exerciseService.getExercisesByBodyPart(target).subscribe(data => {
           console.log(`Ejercicios obtenidos para ${option} (${target}):`, data);
@@ -99,16 +99,3 @@ export class SeleccionDeEjerciciosComponent implements OnInit {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 }
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-
