@@ -1,26 +1,32 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProgressService {
-  private exercisesProgress = new BehaviorSubject<number>(0);
-  private yogaProgress = new BehaviorSubject<number>(0);
+  private yogaProgressSubject = new BehaviorSubject<number>(0);
+  private exercisesProgressSubject = new BehaviorSubject<number>(0);
 
-  getExercisesProgress() {
-    return this.exercisesProgress.asObservable();
+  // Obtener el progreso de yoga
+  getYogaProgress(): Observable<number> {
+    return this.yogaProgressSubject.asObservable();
   }
 
-  getYogaProgress() {
-    return this.yogaProgress.asObservable();
+  // Actualizar el progreso de yoga
+  updateYogaProgress(completed: number, total: number): void {
+    const progress = (completed / total) * 100;
+    this.yogaProgressSubject.next(progress);
   }
 
-  updateExercisesProgress(progress: number, totalExercises: number) {
-    this.exercisesProgress.next((progress / totalExercises) * 100);
+  // Obtener el progreso de ejercicios
+  getExercisesProgress(): Observable<number> {
+    return this.exercisesProgressSubject.asObservable();
   }
 
-  updateYogaProgress(progress: number) {
-    this.yogaProgress.next(progress);
+  // Actualizar el progreso de ejercicios
+  updateExercisesProgress(completed: number, total: number): void {
+    const progress = (completed / total) * 100;
+    this.exercisesProgressSubject.next(progress);
   }
 }

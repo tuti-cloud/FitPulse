@@ -9,12 +9,12 @@
       <h2>{{ pose.name }}</h2>
       <p>Respiraciones: {{ pose.breaths }}</p>
       <label>
-        <input type="checkbox" [(ngModel)]="completedPoses[i]" (ngModelChange)="toggleCompletion(i)" />
-
+        <input type="checkbox" [(ngModel)]="completedPoses[i]" (ngModelChange)="updateProgress()" />
         Completado
       </label>
     </div>
-  </div>
+    
+  
 
   <div class="button-container">
     <button (click)="completeSet()">Siguiente Conjunto</button>

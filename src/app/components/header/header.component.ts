@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProgressService } from '../../servicios/progress.service';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +15,10 @@ export class HeaderComponent implements OnInit {
   exercisesProgressPercentage: number = 0;  // Progreso para los ejercicios
   yogaProgressPercentage: number = 0;  // Progreso para el yoga
 
-  constructor(private progressService: ProgressService) {}
+  constructor(
+    private progressService: ProgressService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     // Suscribirse al progreso de los ejercicios
@@ -29,24 +32,30 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  // Mostrar resultados del progreso, tanto de ejercicios como de yoga
-  showResultsModal(type: string): void {
-    let progress: number = 0;  // Inicializamos 'progress' para evitar el error
+  showResultsModal(): void {
+    // Detectar si estamos en la ruta de Yoga o Ejercicios basándonos en la clase activa
+    const activeLink = document.querySelector('.links.active') as HTMLElement;
+    let progress: number = 0;
+    let progressType: string = '';
 
-    // Verifica si es el progreso de ejercicios o yoga
-    if (type === 'ejercicios') {
-      progress = this.exercisesProgressPercentage;
-    } else if (type === 'yoga') {
+    // Si el enlace activo es de Yoga, mostramos el progreso de Yoga
+    if (activeLink?.innerText.includes('Yogaterapia')) {
       progress = this.yogaProgressPercentage;
+      progressType = 'Yoga';
+    } 
+    // Si el enlace activo es de Ejercicios, mostramos el progreso de Ejercicios
+    else if (activeLink?.innerText.includes('Ejercicios')) {
+      progress = this.exercisesProgressPercentage;
+      progressType = 'Ejercicios';
     }
 
-    // Construir el mensaje basado en el progreso
+    // Mostrar el modal con el progreso
     const progressMessage = progress === 100
-      ? '¡Felicidades! Has alcanzado el 100% de tu progreso.'
-      : `Progreso: ${progress.toFixed(2)}%`;
+      ? `¡Felicidades! Has alcanzado el 100% de tu progreso en ${progressType}.`
+      : `Progreso en ${progressType}: ${progress.toFixed(2)}%`;
 
     Swal.fire({
-      title: 'Resultados',
+      title: `Resultados de ${progressType}`,
       text: progressMessage,
       icon: progress === 100 ? 'success' : 'info',
       confirmButtonText: 'Cerrar',
