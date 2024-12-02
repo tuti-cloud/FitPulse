@@ -56,7 +56,8 @@ export class YogaComponent implements OnInit {
   }
 
   loadPoses(): void {
-    const nextSet = this.yogaPoses.slice(0, 6);
+    const startIndex = (this.sessionNumber - 1) * 6; // Calcular el índice inicial para la sesión actual
+    const nextSet = this.yogaPoses.slice(startIndex, startIndex + 6); // Tomar 6 posturas para la sesión
     this.displayedPoses = nextSet;
     this.completedPoses = new Array(nextSet.length).fill(false);  
     this.updateProgress();
@@ -75,10 +76,29 @@ export class YogaComponent implements OnInit {
     if (this.completedPoses.every((completed) => completed)) {
       Swal.fire('¡Felicidades!', 'Terminaste todas las posturas de esta sesión.', 'success');
     } else {
-      Swal.fire('¡Advertencia!', 'No todas las posturas están completadas.', 'info');
+      // Si no todas las casillas están marcadas, preguntar al usuario
+      Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'No todas las posturas están completas. ¿Quieres cambiar la sesión?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, cambiar sesión',
+        cancelButtonText: 'No, seguir en esta sesión',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.sessionNumber++; // Incrementar el número de sesión
+          this.loadPoses(); // Cargar las posturas de la nueva sesión
+          Swal.fire('¡Sesión cambiada!', 'Has cambiado a la siguiente sesión.', 'success');
+        } else {
+          // Si el usuario cancela, no hacer nada
+          Swal.fire('¡Seguimos en la misma sesión!', 'Puedes seguir completando las posturas.', 'info');
+        }
+      });
     }
   }
 }
+
+
 
 
 
