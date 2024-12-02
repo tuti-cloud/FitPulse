@@ -1,19 +1,18 @@
 <header>
-
-
-
   <div class="fondo">
     <div class="logo">
       <img src="img/logo.png" alt="Logo de FitPulse">
       <h4>FitPulse</h4>
     </div>
     <nav>
-      <a class="links" href="">Resultados</a>
-      <a class="links" [routerLink]="['/modal']" routerLinkActive="activa">Ejercicios</a>
+      <!-- Mostrar resultados de progreso al hacer clic en el enlace -->
+      <a class="links" (click)="showResultsModal('ejercicios')" routerLinkActive="activa">Resultados</a>
+      <a class="links" [routerLink]="['/elegir-ejercicios']" routerLinkActive="activa">Ejercicios</a>
       <a class="links" [routerLink]="['/yoga']" routerLinkActive="activa">Yogaterapia</a>
-      <a class="links" [routerLink]="['/resultados']">
+      <a class="links" [routerLink]="['/pagina-inicio']">
         <i class='bx bxs-user'></i>
       </a>
     </nav>
   </div>
 </header>
+

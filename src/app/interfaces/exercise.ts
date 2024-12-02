@@ -7,6 +7,7 @@ export interface Exercise {
   target: string;
   series?: number; // Nuevo campo para series
   reps?: number;   // Nuevo campo para repeticiones
+  completed?:boolean
 }
 
   

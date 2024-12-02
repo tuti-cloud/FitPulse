@@ -10,7 +10,7 @@ import { ModalDatosComponent } from './pages/modal-datos/modal-datos.component';
 import { SeleccionDeEjerciciosComponent } from './seleccion-de-ejercicios/seleccion-de-ejercicios.component';
 import { EleccionComponent } from './pages/eleccion/eleccion.component';
 import { AuthGuard } from './servicios/auth-guard.service';
-import { ResultadosComponent } from './resultados/resultados.component';
+
 
 export const routes: Routes = [
   // { path: 'rutina', component: RutinaComponent },
@@ -24,5 +24,4 @@ export const routes: Routes = [
   {path:'yoga', component:YogaComponent},
   {path:'seleccion-de-ejercicios', component:SeleccionDeEjerciciosComponent},
   {path:'eleccion', component:EleccionComponent},
-  {path:'resultados', component:ResultadosComponent}
 ];

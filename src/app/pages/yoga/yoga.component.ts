@@ -1,34 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { YogaService } from '../../servicios/yoga.service';
 import { Yoga } from '../../interfaces/yoga';
-import Swal from 'sweetalert2'; // Asegúrate de tenerlo instalado e importado
+import { ProgressService } from '../../servicios/progress.service';
+import Swal from 'sweetalert2'; 
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from '../../components/header/header.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { HeaderComponent } from '../../components/header/header.component';
 
 @Component({
   selector: 'app-yoga',
-  imports: [CommonModule, HeaderComponent, FormsModule],
   standalone: true,
+  imports: [CommonModule, FormsModule, RouterModule, HeaderComponent],
   templateUrl: './yoga.component.html',
   styleUrls: ['./yoga.component.scss'],
 })
 export class YogaComponent implements OnInit {
-  yogaPoses: Yoga[] = []; // Todas las posturas cargadas desde la API
-  displayedPoses: Yoga[] = []; // Posturas que se mostrarán en la sesión actual
-  completedPoses: boolean[] = []; // Seguimiento de posturas completadas
-  currentIndex: number = 0; // Índice actual para paginación
-  sessionNumber: number = 1; // Número de sesión actual
+  yogaPoses: Yoga[] = [];
+  displayedPoses: Yoga[] = [];
+  completedPoses: boolean[] = [];  // Lista para mantener el estado de las checkboxes
+  sessionNumber: number = 1;
+  progressPercentage: number = 0; // Progreso de la sesión
 
-  constructor(private yogaService: YogaService) {}
+  progressService = inject(ProgressService);
+  yogaService = inject(YogaService);
 
   ngOnInit(): void {
-    this.loadYogaPoses(); // Cargar las posturas al inicializar el componente
+    this.loadYogaPoses(); 
   }
 
-  /**
-   * Carga las posturas de yoga desde el servicio y las inicializa.
-   */
+  // Método para cargar las posturas de yoga
   loadYogaPoses(): void {
     Swal.fire({
       title: 'Cargando posturas de yoga...',
@@ -40,7 +41,7 @@ export class YogaComponent implements OnInit {
     this.yogaService.getYogaPoses().subscribe({
       next: (poses: Yoga[]) => {
         this.yogaPoses = poses;
-        this.loadPoses(); // Cargar las primeras posturas
+        this.loadPoses(); // Cargar las posturas en la vista
         Swal.close();
       },
       error: (error) => {
@@ -50,68 +51,38 @@ export class YogaComponent implements OnInit {
     });
   }
 
-  /**
-   * Carga el siguiente conjunto de posturas para la sesión actual.
-   */
+  // Método para cargar un conjunto de posturas de yoga
   loadPoses(): void {
-    const nextSet = this.yogaPoses.slice(this.currentIndex, this.currentIndex + 6);
-
-    nextSet.forEach((pose) => (pose.breaths = this.getRandomBreaths()));
-
+    const nextSet = this.yogaPoses.slice(0, 6);  // Solo cargar 6 posturas
     this.displayedPoses = nextSet;
-    this.completedPoses = new Array(nextSet.length).fill(false);
-    this.currentIndex += 6;
+    this.completedPoses = new Array(nextSet.length).fill(false);  // Inicializamos los valores en 'false'
+    this.updateProgress(); // Actualizamos el progreso
   }
 
-  /**
-   * Genera un número aleatorio de respiraciones para una postura.
-   */
-  getRandomBreaths(): number {
-    return Math.floor(Math.random() * 10) + 1;
+  // Método para actualizar el progreso basado en las checkboxes
+  updateProgress(): void {
+    const totalExercises = this.displayedPoses.length;  // Total de posturas mostradas
+    const completedExercises = this.completedPoses.filter(checked => checked).length;  // Cuántas posturas están completadas
+
+    // Calcular el porcentaje de progreso
+    this.progressPercentage = (totalExercises > 0) ? (completedExercises / totalExercises) * 100 : 0;
+
+    // Actualizar el progreso en el servicio
+    this.progressService.updateExercisesProgress(completedExercises, totalExercises);
   }
 
-  /**
-   * Maneja la finalización de un conjunto de posturas con una confirmación de SweetAlert2.
-   */
+  // Método que se ejecuta cuando se marca o desmarca una checkbox
+  toggleCompletion(index: number): void {
+    this.completedPoses[index] = !this.completedPoses[index];  // Actualizamos el estado de la checkbox
+    this.updateProgress();  // Actualizamos el progreso
+  }
+
+  // Método para avanzar al siguiente conjunto de posturas
   completeSet(): void {
     if (this.completedPoses.every((completed) => completed)) {
-      // Si todas las posturas están completadas, procede normalmente
-      if (this.currentIndex < this.yogaPoses.length) {
-        this.loadPoses();
-        this.sessionNumber++;
-      } else {
-        Swal.fire('¡Felicidades!', 'Terminaste todas las posturas.', 'success');
-      }
+      Swal.fire('¡Felicidades!', 'Terminaste todas las posturas de esta sesión.', 'success');
     } else {
-      // Si no todas las posturas están completadas, muestra un modal de confirmación
-      Swal.fire({
-        title: 'Algunas posturas no están completadas',
-        text: '¿Estás seguro de que quieres cambiar de sesión?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sí, cambiar!',
-        cancelButtonText: 'No, no lo cambies',
-        reverseButtons: true,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Si el usuario elige "Sí", marca todas las posturas como completadas y pasa a la siguiente sesión
-          this.completedPoses.fill(true);
-          if (this.currentIndex < this.yogaPoses.length) {
-            this.loadPoses();
-            this.sessionNumber++;
-          } else {
-            Swal.fire('¡Felicidades!', 'Terminaste todas las posturas.', 'success');
-          }
-        } else {
-          // Si el usuario elige "No", no se hace nada
-          Swal.fire('Operación cancelada', 'No se ha cambiado de sesión.', 'info');
-        }
-      });
+      Swal.fire('¡Advertencia!', 'No todas las posturas están completadas.', 'info');
     }
   }
 }
-
-
-
-
-

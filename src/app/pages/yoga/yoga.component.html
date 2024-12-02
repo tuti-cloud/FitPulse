@@ -1,4 +1,5 @@
 <app-header></app-header>
+
 <div class="yoga-container">
   <h1>Sesi&oacute;n {{ sessionNumber }}</h1>
 
@@ -8,7 +9,8 @@
       <h2>{{ pose.name }}</h2>
       <p>Respiraciones: {{ pose.breaths }}</p>
       <label>
-        <input type="checkbox" [(ngModel)]="completedPoses[i]" />
+        <input type="checkbox" [(ngModel)]="completedPoses[i]" (ngModelChange)="toggleCompletion(i)" />
+
         Completado
       </label>
     </div>
@@ -18,7 +20,6 @@
     <button (click)="completeSet()">Siguiente Conjunto</button>
   </div>
 </div>
-
 
 
 
