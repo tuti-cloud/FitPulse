@@ -68,7 +68,10 @@ export class PaginaInicioComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    const section2 = document.querySelector('.section-2') as HTMLElement;
+    // Verifica si el elemento .section-2 existe
+    const section2 = document.querySelector('.section-2') as HTMLElement | null;
+    if (!section2) return; // Si no existe, no continuar con la función
+
     const rect = section2.getBoundingClientRect();
 
     if (rect.top > 0 && rect.bottom > window.innerHeight) {
