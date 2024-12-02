@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit {
     // Construir el mensaje basado en el progreso
     const progressMessage = progress === 100
       ? '¡Felicidades! Has alcanzado el 100% de tu progreso.'
-      : `Progreso: ${progress.toFixed(2)}%`;
+      : `Progreso: ${progress.toFixed(2)}%`; // Aquí se corrigió el error de sintaxis
 
     Swal.fire({
       title: 'Resultados',
@@ -59,7 +59,3 @@ export class HeaderComponent implements OnInit {
     });
   }
 }
-
-
-
-
