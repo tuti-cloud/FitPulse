@@ -75,10 +75,29 @@ export class YogaComponent implements OnInit {
     if (this.completedPoses.every((completed) => completed)) {
       Swal.fire('¡Felicidades!', 'Terminaste todas las posturas de esta sesión.', 'success');
     } else {
-      Swal.fire('¡Advertencia!', 'No todas las posturas están completadas.', 'info');
+      // Si no todas las casillas están marcadas, preguntar al usuario
+      Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'No todas las posturas están completas. ¿Quieres cambiar la sesión?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, cambiar sesión',
+        cancelButtonText: 'No, seguir en esta sesión',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Si el usuario confirma, cambiar la sesión igual que si todas las posturas fueran completadas
+          this.sessionNumber++;
+          this.loadPoses(); // Cargar las posturas de la siguiente sesión
+          Swal.fire('¡Sesión cambiada!', 'Has cambiado a la siguiente sesión.', 'success');
+        } else {
+          // Si el usuario cancela, no hacer nada
+          Swal.fire('¡Seguimos en la misma sesión!', 'Puedes seguir completando las posturas.', 'info');
+        }
+      });
     }
   }
 }
+
 
 
 
