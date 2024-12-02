@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProgressService } from '../../servicios/progress.service';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
-import { RouterModule, ActivatedRoute } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -15,10 +16,7 @@ export class HeaderComponent implements OnInit {
   exercisesProgressPercentage: number = 0;  // Progreso para los ejercicios
   yogaProgressPercentage: number = 0;  // Progreso para el yoga
 
-  constructor(
-    private progressService: ProgressService,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private progressService: ProgressService, private router: Router) {}
 
   ngOnInit(): void {
     // Suscribirse al progreso de los ejercicios
@@ -32,30 +30,29 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  // Mostrar resultados del progreso, dependiendo del componente actual
   showResultsModal(): void {
-    // Detectar si estamos en la ruta de Yoga o Ejercicios basándonos en la clase activa
-    const activeLink = document.querySelector('.links.active') as HTMLElement;
-    let progress: number = 0;
-    let progressType: string = '';
+    // Obtener la ruta activa
+    const currentRoute = this.router.url;
 
-    // Si el enlace activo es de Yoga, mostramos el progreso de Yoga
-    if (activeLink?.innerText.includes('Yogaterapia')) {
-      progress = this.yogaProgressPercentage;
-      progressType = 'Yoga';
-    } 
-    // Si el enlace activo es de Ejercicios, mostramos el progreso de Ejercicios
-    else if (activeLink?.innerText.includes('Ejercicios')) {
+    let progress: number = 0;  // Inicializamos 'progress' para evitar el error
+
+    // Verifica si estamos en el componente de ejercicios o yoga
+    if (currentRoute.includes('ejercicios')) {
       progress = this.exercisesProgressPercentage;
-      progressType = 'Ejercicios';
+    } else if (currentRoute.includes('yoga')) {
+      progress = this.yogaProgressPercentage;
     }
 
-    // Mostrar el modal con el progreso
+    console.log('Progreso a mostrar en el modal:', progress);  // Depuración
+
+    // Construir el mensaje basado en el progreso
     const progressMessage = progress === 100
-      ? `¡Felicidades! Has alcanzado el 100% de tu progreso en ${progressType}.`
-      : `Progreso en ${progressType}: ${progress.toFixed(2)}%`;
+      ? '¡Felicidades! Has alcanzado el 100% de tu progreso.'
+      : `Progreso: ${progress.toFixed(2)}%`; // Aquí se corrigió el error de sintaxis
 
     Swal.fire({
-      title: `Resultados de ${progressType}`,
+      title: 'Resultados',
       text: progressMessage,
       icon: progress === 100 ? 'success' : 'info',
       confirmButtonText: 'Cerrar',
