@@ -81,13 +81,10 @@ body {
   justify-content: center;
   width: 100%;
   max-width: 675px;
-  padding-left: 30px;
   position: relative; /* Cambiar de absolute a relative */
   margin-bottom: 50px; /* Separación adicional */
   margin-top: 30px; // Mantener el margen superior para separar de la sección anterior
-
-  // Desplazamiento hacia la izquierda
-  margin-left: -20px; // Ajusta este valor según sea necesario
+  margin-left: -130px; // Ajusta este valor según sea necesario
 }
 
 
@@ -443,7 +440,11 @@ iframe {
   .contenedor-principal {
     order: 2; /* Los textos van después de spline */
     padding-left: 5px; /* Ajustar padding para pantallas pequeñas */
+    padding-right: 5px; /* Añadir padding derecho para balancear */
     text-align: center; /* Centrar el texto */
+    margin-left: auto; /* Centrando el contenedor horizontalmente */
+    margin-right: auto; /* Centrando el contenedor horizontalmente */
+    align-items: center;
   }
 
   /* Ajustes de texto más pequeño en sección 1 */
@@ -457,9 +458,11 @@ iframe {
     line-height: 1.4; /* Compactar un poco más */
     margin-bottom: 10px; /* Ajustar márgenes */
   }
+
   .contenedor-principal h3 {
     font-size: 2rem;
   }
+
   .contenedor-principal h4 {
     font-size: 1.5rem;
   }
@@ -474,6 +477,9 @@ iframe {
     height: auto; /* Ajustar automáticamente la altura */
     padding: 20px; /* Añadir padding interno */
     flex-direction: column; /* Cambiar a columna en lugar de fila */
+    align-items: center;
+    margin-left: auto; /* Centrando el contenedor horizontalmente */
+    margin-right: auto; /* Centrando el contenedor horizontalmente */
   }
 
   .flashcard .content {
@@ -497,14 +503,20 @@ iframe {
   .flashcard:last-child {
     margin-bottom: 20px;
   }
-  /* Ajustar el contenedor principal para evitar superposición con el footer */
-.contenedor-principal {
-  margin-bottom: 100px;
-}
 
-.flashcard-container {
-  padding-bottom: 200px; /* Más espacio para evitar superposición */
-}
+  /* Ajustar el contenedor principal para evitar superposición con el footer */
+  .contenedor-principal {
+    margin-bottom: 100px;
+  }
+
+  .flashcard-container {
+    padding-bottom: 100px; /* Más espacio para evitar superposición */
+  }
+
+  .footer{
+    width: 100%;
+  }
+  
 }
 
 

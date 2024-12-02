@@ -38,8 +38,11 @@ export class YogaComponent implements OnInit {
       didOpen: () => Swal.showLoading(),
     });
 
+    console.log('Iniciando la solicitud para cargar las posturas de yoga.');
+
     this.yogaService.getYogaPoses().subscribe({
       next: (poses: Yoga[]) => {
+        console.log('Posturas de yoga cargadas correctamente:', poses);
         this.yogaPoses = poses;
         this.loadPoses(); // Cargar las posturas en la vista
         Swal.close();
@@ -86,3 +89,10 @@ export class YogaComponent implements OnInit {
     }
   }
 }
+
+
+
+
+
+
+
