@@ -6,8 +6,8 @@
     </div>
     <nav>
       <!-- Mostrar resultados de progreso al hacer clic en el enlace -->
-      <a class="links" (click)="showResultsModal('ejercicios')" routerLinkActive="activa">Resultados</a>
-      <a class="links" [routerLink]="['/resultados']">Resultados</a>
+      <a class="links" (click)="showResultsModal()" routerLinkActive="activa">Resultados</a>
+
       <a class="links" [routerLink]="['/elegir-ejercicios']" routerLinkActive="activa">Ejercicios</a>
       <a class="links" [routerLink]="['/yoga']" routerLinkActive="activa">Yogaterapia</a>
       <a class="links" [routerLink]="['/pagina-inicio']">
@@ -16,4 +16,5 @@
     </nav>
   </div>
 </header>
+
 

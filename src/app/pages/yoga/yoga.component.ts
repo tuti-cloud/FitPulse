@@ -18,18 +18,23 @@ import { HeaderComponent } from '../../components/header/header.component';
 export class YogaComponent implements OnInit {
   yogaPoses: Yoga[] = [];
   displayedPoses: Yoga[] = [];
-  completedPoses: boolean[] = [];  // Lista para mantener el estado de las checkboxes
+  completedPoses: boolean[] = [];
   sessionNumber: number = 1;
-  progressPercentage: number = 0; // Progreso de la sesión
+  progressPercentage: number = 0;
 
   progressService = inject(ProgressService);
   yogaService = inject(YogaService);
 
   ngOnInit(): void {
-    this.loadYogaPoses(); 
+    this.loadYogaPoses();
+
+    this.progressService.getYogaProgress().subscribe({
+      next: (progress) => {
+        this.progressPercentage = progress; // Escuchar cambios en el progreso de Yoga
+      },
+    });
   }
 
-  // Método para cargar las posturas de yoga
   loadYogaPoses(): void {
     Swal.fire({
       title: 'Cargando posturas de yoga...',
@@ -38,49 +43,34 @@ export class YogaComponent implements OnInit {
       didOpen: () => Swal.showLoading(),
     });
 
-    console.log('Iniciando la solicitud para cargar las posturas de yoga.');
-
     this.yogaService.getYogaPoses().subscribe({
       next: (poses: Yoga[]) => {
-        console.log('Posturas de yoga cargadas correctamente:', poses);
         this.yogaPoses = poses;
-        this.loadPoses(); // Cargar las posturas en la vista
+        this.loadPoses(); 
         Swal.close();
       },
       error: (error) => {
-        console.error('Error al cargar las posturas:', error);
         Swal.fire('Error', 'No se pudieron cargar las posturas. Intenta más tarde.', 'error');
       },
     });
   }
 
-  // Método para cargar un conjunto de posturas de yoga
   loadPoses(): void {
-    const nextSet = this.yogaPoses.slice(0, 6);  // Solo cargar 6 posturas
+    const nextSet = this.yogaPoses.slice(0, 6);
     this.displayedPoses = nextSet;
-    this.completedPoses = new Array(nextSet.length).fill(false);  // Inicializamos los valores en 'false'
-    this.updateProgress(); // Actualizamos el progreso
+    this.completedPoses = new Array(nextSet.length).fill(false);  
+    this.updateProgress();
   }
 
-  // Método para actualizar el progreso basado en las checkboxes
   updateProgress(): void {
-    const totalExercises = this.displayedPoses.length;  // Total de posturas mostradas
-    const completedExercises = this.completedPoses.filter(checked => checked).length;  // Cuántas posturas están completadas
+    const totalExercises = this.displayedPoses.length;
+    const completedExercises = this.completedPoses.filter((checked) => checked).length;
 
-    // Calcular el porcentaje de progreso
-    this.progressPercentage = (totalExercises > 0) ? (completedExercises / totalExercises) * 100 : 0;
+    console.log("Progreso actualizado:", { completed: completedExercises, total: totalExercises });
 
-    // Actualizar el progreso en el servicio
-    this.progressService.updateExercisesProgress(completedExercises, totalExercises);
+    this.progressService.updateYogaProgress(completedExercises, totalExercises);
   }
 
-  // Método que se ejecuta cuando se marca o desmarca una checkbox
-  toggleCompletion(index: number): void {
-    this.completedPoses[index] = !this.completedPoses[index];  // Actualizamos el estado de la checkbox
-    this.updateProgress();  // Actualizamos el progreso
-  }
-
-  // Método para avanzar al siguiente conjunto de posturas
   completeSet(): void {
     if (this.completedPoses.every((completed) => completed)) {
       Swal.fire('¡Felicidades!', 'Terminaste todas las posturas de esta sesión.', 'success');
@@ -89,6 +79,12 @@ export class YogaComponent implements OnInit {
     }
   }
 }
+
+
+
+
+
+
 
 
 

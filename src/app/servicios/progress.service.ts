@@ -2,25 +2,51 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProgressService {
-  private exercisesProgress = new BehaviorSubject<number>(0);
-  private yogaProgress = new BehaviorSubject<number>(0);
+  private yogaProgressSubject = new BehaviorSubject<number>(0);
+  private exercisesProgressSubject = new BehaviorSubject<number>(0);
+
+  constructor() {}
+
+  // Métodos para obtener el progreso como Observables
+  getYogaProgress() {
+    return this.yogaProgressSubject.asObservable();
+  }
 
   getExercisesProgress() {
-    return this.exercisesProgress.asObservable();
+    return this.exercisesProgressSubject.asObservable();
   }
 
-  getYogaProgress() {
-    return this.yogaProgress.asObservable();
+  // Métodos para actualizar el progreso de Yoga
+  updateYogaProgress(completed: number, total: number): void {
+    const progress = this.calculateProgress(completed, total);
+    console.log('Actualizando progreso de yoga:', { completed, total, progress }); // Log para depurar
+    this.yogaProgressSubject.next(progress);
   }
 
-  updateExercisesProgress(progress: number, totalExercises: number) {
-    this.exercisesProgress.next((progress / totalExercises) * 100);
+  // Métodos para actualizar el progreso de Ejercicios
+  updateExercisesProgress(completed: number, total: number): void {
+    const progress = this.calculateProgress(completed, total);
+    this.exercisesProgressSubject.next(progress);
   }
 
-  updateYogaProgress(progress: number) {
-    this.yogaProgress.next(progress);
+  private calculateProgress(completed: number, total: number): number {
+    return total > 0 ? (completed / total) * 100 : 0;
+  }
+
+  resetYogaProgress(): void {
+    this.yogaProgressSubject.next(0);
+  }
+
+  resetExercisesProgress(): void {
+    this.exercisesProgressSubject.next(0);
   }
 }
+
+
+
+
+
+

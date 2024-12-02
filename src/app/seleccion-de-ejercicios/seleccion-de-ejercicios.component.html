@@ -5,13 +5,13 @@
     <div class="exercise-grid">
       <div *ngFor="let exercise of exercises['Piernas y Glúteos']" class="exercise-card">
         <h3>{{ exercise.name }}</h3>
-        <img [src]="exercise.gifUrl" alt="{{ exercise.name }}">
+        <img [src]="exercise.gifUrl" alt="{{ exercise.name }}" />
         <div class="details">
           <div class="sets-reps">
             {{ exercise.series }} series de {{ exercise.reps }} repeticiones
           </div>
           <div class="status">
-            <input type="checkbox" [(ngModel)]="exercise.completed" (ngModelChange)="updateProgress()">
+            <input type="checkbox" [(ngModel)]="exercise.completed" (ngModelChange)="updateProgress()" />
             Terminado
           </div>
         </div>
@@ -24,13 +24,13 @@
     <div class="exercise-grid">
       <div *ngFor="let exercise of exercises['Abdomen']" class="exercise-card">
         <h3>{{ exercise.name }}</h3>
-        <img [src]="exercise.gifUrl" alt="{{ exercise.name }}">
+        <img [src]="exercise.gifUrl" alt="{{ exercise.name }}" />
         <div class="details">
           <div class="sets-reps">
             {{ exercise.series }} series de {{ exercise.reps }} repeticiones
           </div>
           <div class="status">
-            <input type="checkbox" [(ngModel)]="exercise.completed" (ngModelChange)="updateProgress()">
+            <input type="checkbox" [(ngModel)]="exercise.completed" (ngModelChange)="updateProgress()" />
             Terminado
           </div>
         </div>
@@ -43,13 +43,13 @@
     <div class="exercise-grid">
       <div *ngFor="let exercise of exercises['Espalda y Bíceps']" class="exercise-card">
         <h3>{{ exercise.name }}</h3>
-        <img [src]="exercise.gifUrl" alt="{{ exercise.name }}">
+        <img [src]="exercise.gifUrl" alt="{{ exercise.name }}" />
         <div class="details">
           <div class="sets-reps">
             {{ exercise.series }} series de {{ exercise.reps }} repeticiones
           </div>
           <div class="status">
-            <input type="checkbox" [(ngModel)]="exercise.completed" (ngModelChange)="updateProgress()">
+            <input type="checkbox" [(ngModel)]="exercise.completed" (ngModelChange)="updateProgress()" />
             Terminado
           </div>
         </div>
@@ -62,13 +62,13 @@
     <div class="exercise-grid">
       <div *ngFor="let exercise of exercises['Pecho y Hombro y Triceps']" class="exercise-card">
         <h3>{{ exercise.name }}</h3>
-        <img [src]="exercise.gifUrl" alt="{{ exercise.name }}">
+        <img [src]="exercise.gifUrl" alt="{{ exercise.name }}" />
         <div class="details">
           <div class="sets-reps">
             {{ exercise.series }} series de {{ exercise.reps }} repeticiones
           </div>
           <div class="status">
-            <input type="checkbox" [(ngModel)]="exercise.completed" (ngModelChange)="updateProgress()">
+            <input type="checkbox" [(ngModel)]="exercise.completed" (ngModelChange)="updateProgress()" />
             Terminado
           </div>
         </div>

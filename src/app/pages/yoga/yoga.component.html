@@ -2,24 +2,23 @@
 
 <div class="yoga-container">
   <h1>Sesi&oacute;n {{ sessionNumber }}</h1>
-
   <div class="pose-grid">
     <div class="pose-card" *ngFor="let pose of displayedPoses; let i = index">
       <img [src]="pose.image" alt="Imagen de la pose de yoga" />
       <h2>{{ pose.name }}</h2>
       <p>Respiraciones: {{ pose.breaths }}</p>
       <label>
-        <input type="checkbox" [(ngModel)]="completedPoses[i]" (ngModelChange)="toggleCompletion(i)" />
-
+        <input type="checkbox" [(ngModel)]="completedPoses[i]" (ngModelChange)="updateProgress()" />
         Completado
       </label>
     </div>
   </div>
 
-  <div class="button-container">
-    <button (click)="completeSet()">Siguiente Conjunto</button>
-  </div>
+  <button (click)="completeSet()">Completar Sesión</button>
 </div>
+
+
+
 
 
 
