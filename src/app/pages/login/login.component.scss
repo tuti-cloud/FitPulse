@@ -174,9 +174,9 @@ form.sign-in-form {
 }
 
 .btn:hover {
-  transform: translateY(-3px); /* Elevar el botón al hacer hover */
-  box-shadow: 0 8px 12px colores.$color-texto; /* Aumentar la sombra */
-  background: linear-gradient(45deg, colores.$color-secundario, colores.$color-principal); /* Cambiar gradiente en hover */
+  transform: translateY(-3px); 
+  box-shadow: 0 8px 12px colores.$color-texto; 
+  background: linear-gradient(45deg, colores.$color-secundario, colores.$color-principal); 
 }
 
 
@@ -228,13 +228,13 @@ form.sign-in-form {
   transition: transform 1.1s ease-in-out;
   transition-delay: 0.4s;
   position: relative;
-  left: 10px; /* Mueve la imagen más a la derecha */
+  left: 10px; 
   top: 10px;
 }
 
 .left-panel {
   pointer-events: all;
-  padding: 2rem 17% 2rem 12%; /* Reduce el padding superior para subir los elementos */
+  padding: 2rem 17% 2rem 12%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -244,11 +244,11 @@ form.sign-in-form {
 }
 
 .left-panel h1 {
-  margin-bottom: 1rem; /* Ajusta el margen inferior si es necesario */
+  margin-bottom: 1rem; 
 }
 
 .left-panel button {
-  margin-top: 1rem; /* Ajusta el margen superior si es necesario */
+  margin-top: 1rem;
 }
 
 
@@ -268,14 +268,14 @@ form.sign-in-form {
   transition: transform 1.1s ease-in-out;
   transition-delay: 0.4s;
   position: relative;
-  left: -10px; /* Mueve la imagen un poco más a la izquierda */
+  left: -10px; 
 }
 .right-panel h1 {
-  margin-bottom: 1rem; /* Ajusta el margen inferior si es necesario */
+  margin-bottom: 1rem; 
 }
 
 .right-panel button {
-  margin-top: 1rem; /* Ajusta el margen superior si es necesario */
+  margin-top: 1rem; 
 }
 
 .panel .content {
@@ -298,17 +298,17 @@ form.sign-in-form {
 }
 
 .btn.transparent {
-  width: 140px; /* Aumentar el ancho */
-  height: 45px; /* Aumentar la altura */
-  font-size: 0.9rem; /* Aumentar el tamaño de la fuente */
-  background: linear-gradient(45deg, colores.$color-principal, colores.$color-secundario); /* Fondo con gradiente */
-  color: colores.$color-texto-invertido; /* Color del texto */
-  border: none; /* Quitar borde */
-  border-radius: 25px; /* Bordes redondeados */
-  cursor: pointer; /* Cambiar el cursor a pointer */
-  position: relative; /* Necesario para el pseudo-elemento */
-  overflow: hidden; /* Para ocultar el pseudo-elemento */
-  transition: all 0.3s ease-in-out; /* Transición suave */
+  width: 140px; 
+  height: 45px;
+  font-size: 0.9rem; 
+  background: linear-gradient(45deg, colores.$color-principal, colores.$color-secundario); 
+  color: colores.$color-texto-invertido; 
+  border: none; 
+  border-radius: 25px; 
+  cursor: pointer; 
+  position: relative; 
+  overflow: hidden; 
+  transition: all 0.3s ease-in-out; 
 }
 
 .btn.transparent::before {
@@ -330,8 +330,8 @@ form.sign-in-form {
 }
 
 .btn.transparent:hover {
-  transform: scale(1.05); /* Aumentar ligeramente el tamaño */
-  box-shadow: 0 4px 15px colores.$color-texto; /* Añadir sombra */
+  transform: scale(1.05); 
+  box-shadow: 0 4px 15px colores.$color-texto; 
 }
 
 .right-panel .image,
@@ -339,7 +339,6 @@ form.sign-in-form {
   transform: translateX(800px);
 }
 
-/* ANIMATION */
 
 .container.sign-up-mode:before {
   transform: translate(100%, -50%);

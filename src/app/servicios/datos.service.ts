@@ -17,7 +17,7 @@ export class DatosService {
   register(user: User): boolean {
     this.loadUsers();
     if (this.users.find(u => u.username === user.username)) {
-      return false; // Usuario ya existente
+      return false; 
     }
     this.users.push(user);
     localStorage.setItem('users', JSON.stringify(this.users));

@@ -12,39 +12,39 @@ import { RouterModule } from '@angular/router';
 export class PaginaInicioComponent implements OnInit, AfterViewInit {
   splineUrl: string = 'https://my.spline.design/untitled-65d38539d62bc8f679abf7d45988bad6/';
   flashcards: NodeListOf<HTMLElement> | null = null;
-  currentIndex: number = 0; // Índice de la flashcard visible actualmente
-  isScrolling: boolean = false; // Evita múltiples transiciones simultáneas
-  private customCursor!: HTMLElement; // Referencia al cursor personalizado
-  private boundWheelScroll: (event: WheelEvent) => void; // Contexto enlazado del evento
+  currentIndex: number = 0; 
+  isScrolling: boolean = false; 
+  private customCursor!: HTMLElement; 
+  private boundWheelScroll: (event: WheelEvent) => void; 
 
   constructor(private elementRef: ElementRef) {
-    // Enlazar el contexto de la función onWheelScroll
+    
     this.boundWheelScroll = this.onWheelScroll.bind(this);
   }
 
   ngOnInit(): void {
-    // Inicializar las flashcards
+    
     this.flashcards = document.querySelectorAll('.flashcard');
 
     if (this.flashcards) {
       this.flashcards.forEach((card, index) => {
         if (index === 0) {
-          card.classList.add('visible'); // La primera flashcard es visible inicialmente
+          card.classList.add('visible'); 
         } else {
-          card.classList.add('hidden'); // Las demás están ocultas
+          card.classList.add('hidden'); 
         }
       });
     }
 
-    // Manejar el evento de scroll
+    
     window.addEventListener('wheel', this.boundWheelScroll, { passive: false });
 
-    // Inicializar el cursor personalizado
+   
     this.initCustomCursor();
   }
 
   ngAfterViewInit(): void {
-    this.loadSplineObject(); // Cargar el objeto Spline
+    this.loadSplineObject(); 
   }
 
   private loadSplineObject(): void {
@@ -64,34 +64,30 @@ export class PaginaInicioComponent implements OnInit, AfterViewInit {
     if (!this.flashcards) return;
 
     if (this.isScrolling) {
-      event.preventDefault(); // Bloquear scroll mientras hay una transición activa
+      event.preventDefault(); 
       return;
     }
 
-    // Verifica si el elemento .section-2 existe
+    
     const section2 = document.querySelector('.section-2') as HTMLElement | null;
-    if (!section2) return; // Si no existe, no continuar con la función
+    if (!section2) return; 
 
     const rect = section2.getBoundingClientRect();
 
     if (rect.top > 0 && rect.bottom > window.innerHeight) {
-      // Scroll fuera de la sección de flashcards, comportamiento normal
+   
       return;
     }
 
-    event.preventDefault(); // Bloquear el scroll predeterminado en la sección de flashcards
+    event.preventDefault(); 
 
     if (event.deltaY > 0 && this.currentIndex < this.flashcards.length - 1) {
-      // Scroll hacia abajo y no estamos en la última flashcard
       this.showNextCard();
     } else if (event.deltaY < 0 && this.currentIndex > 0) {
-      // Scroll hacia arriba y no estamos en la primera flashcard
       this.showPreviousCard();
     } else if (event.deltaY < 0 && this.currentIndex === 0) {
-      // En la primera flashcard, permitir scroll hacia arriba para salir
       this.enableScrollToPreviousSection();
     } else if (event.deltaY > 0 && this.currentIndex === this.flashcards.length - 1) {
-      // En la última flashcard, permitir scroll hacia abajo para salir
       this.enableScrollToNextSection();
     }
   }
@@ -128,19 +124,19 @@ export class PaginaInicioComponent implements OnInit, AfterViewInit {
 
   private startTransitionCooldown(): void {
     this.isScrolling = true;
-    setTimeout(() => (this.isScrolling = false), 1000); // 1 segundo para transiciones suaves
+    setTimeout(() => (this.isScrolling = false), 1000); 
   }
 
   private enableScrollToPreviousSection(): void {
     this.isScrolling = true;
 
-    // Eliminar temporalmente el listener de scroll
+
     window.removeEventListener('wheel', this.boundWheelScroll);
 
     setTimeout(() => {
       this.isScrolling = false;
 
-      // Reanudar el listener de scroll después de un breve periodo
+  
       window.addEventListener('wheel', this.boundWheelScroll, { passive: false });
     }, 500);
   }
@@ -148,13 +144,13 @@ export class PaginaInicioComponent implements OnInit, AfterViewInit {
   private enableScrollToNextSection(): void {
     this.isScrolling = true;
 
-    // Eliminar temporalmente el listener de scroll
+
     window.removeEventListener('wheel', this.boundWheelScroll);
 
     setTimeout(() => {
       this.isScrolling = false;
 
-      // Reanudar el listener de scroll después de un breve periodo
+ 
       window.addEventListener('wheel', this.boundWheelScroll, { passive: false });
     }, 500);
   }

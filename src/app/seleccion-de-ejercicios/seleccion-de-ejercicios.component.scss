@@ -33,9 +33,9 @@
   text-align: center;
   background-color: #f3f3f3;
   border-radius: 10px;
-  padding: 30px; /* Ajustar el tamaño de las tarjetas */
-  width: 60%; /* Hacer las tarjetas menos anchas */
-  box-shadow: 0 4px 10px #7c7c7d; /* Agregar sombra con el color colores.$color-principal */
+  padding: 30px; 
+  width: 60%; 
+  box-shadow: 0 4px 10px #7c7c7d; 
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
@@ -110,7 +110,6 @@ button:hover {
 
 
 
-/* Para pantallas medianas (tablets) */
 @media (max-width: 1200px) {
   .exercise-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -123,7 +122,6 @@ button:hover {
   }
 }
 
-/* Para pantallas pequeñas (smartphones) */
 @media (max-width: 768px) {
   .section-title {
     font-size: 1.5rem; 
@@ -145,15 +143,15 @@ button:hover {
   }
 
   .exercise-card img {
-    width: 80%; /* Ajustar el tamaño de las imágenes */
+    width: 80%; 
   }
 
   .details {
-    font-size: 16px; /* Ajustar el tamaño del texto */
+    font-size: 16px; 
   }
 
   button {
-    padding: 8px 16px; /* Ajustar el padding del botón */
+    padding: 8px 16px; 
   }
 }
 

@@ -41,7 +41,7 @@ export class ModalDatosComponent {
         confirmButtonText: 'Ok',
       });
     } else {
-      // Lógica para avanzar si los datos están completos
+
       this.router.navigate(['/eleccion']);
     }
   }
