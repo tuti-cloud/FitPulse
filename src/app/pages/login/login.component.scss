@@ -1,4 +1,4 @@
-@use "./../../../..//public/styles/colores.scss";
+@use "./../../../../public/styles/colores.scss";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
 * {
@@ -15,7 +15,7 @@ input {
 .container {
   position: relative;
   width: 100%;
-  background-color: #fff;
+  background-color: colores.$color-texto-invertido;
   min-height: 100vh;
   overflow: hidden;
 }
@@ -134,24 +134,24 @@ form.sign-in-form {
 }
 
 .social-icon:hover {
-  color: #4B0082;
-  border-color: #4B0082;
+  color: colores.$color-principal;
+  border-color: colores.$color-principal;
 }
 
 .btn {
   width: 150px;
-  background: linear-gradient(45deg, #4B0082, #a25fe1); /* Fondo con gradiente */
+  background: linear-gradient(45deg, colores.$color-principal, colores.$color-secundario); /* Fondo con gradiente */
   border: none;
   outline: none;
   height: 49px;
   border-radius: 49px;
-  color: #fff;
+  color: colores.$color-texto-invertido;
   text-transform: uppercase;
   font-weight: 600;
   margin: 10px 0;
   cursor: pointer;
   transition: background 2s ease, box-shadow 0.5s ease, transform 0.5s ease; /* Transición más lenta para el gradiente */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Añadir sombra */
+  box-shadow: 0 4px 6px colores.$color-texto; /* Añadir sombra */
   position: relative; /* Para pseudo-elementos */
   overflow: hidden; /* Ocultar el pseudo-elemento cuando está fuera del botón */
 }
@@ -175,8 +175,8 @@ form.sign-in-form {
 
 .btn:hover {
   transform: translateY(-3px); /* Elevar el botón al hacer hover */
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Aumentar la sombra */
-  background: linear-gradient(45deg, #a25fe1, #4B0082); /* Cambiar gradiente en hover */
+  box-shadow: 0 8px 12px colores.$color-texto; /* Aumentar la sombra */
+  background: linear-gradient(45deg, colores.$color-secundario, colores.$color-principal); /* Cambiar gradiente en hover */
 }
 
 
@@ -198,7 +198,7 @@ form.sign-in-form {
   top: -10%;
   right: 48%;
   transform: translateY(-50%);
-  background-image: linear-gradient(-45deg, #4B0082 0%, #8400e2 100%);
+  background-image: linear-gradient(-45deg, colores.$color-principal 0%, colores.$color-principal 100%);
   transition: 1.8s ease-in-out;
   border-radius: 50%;
   z-index: 6;
@@ -279,7 +279,7 @@ form.sign-in-form {
 }
 
 .panel .content {
-  color: #fff;
+  color: colores.$color-texto-invertido;
   transition: transform 0.9s ease-in-out;
   transition-delay: 0.6s;
 }
@@ -301,8 +301,8 @@ form.sign-in-form {
   width: 140px; /* Aumentar el ancho */
   height: 45px; /* Aumentar la altura */
   font-size: 0.9rem; /* Aumentar el tamaño de la fuente */
-  background: linear-gradient(45deg, #4b0082, #a25fe1); /* Fondo con gradiente */
-  color: #fff; /* Color del texto */
+  background: linear-gradient(45deg, colores.$color-principal, colores.$color-secundario); /* Fondo con gradiente */
+  color: colores.$color-texto-invertido; /* Color del texto */
   border: none; /* Quitar borde */
   border-radius: 25px; /* Bordes redondeados */
   cursor: pointer; /* Cambiar el cursor a pointer */
@@ -331,7 +331,7 @@ form.sign-in-form {
 
 .btn.transparent:hover {
   transform: scale(1.05); /* Aumentar ligeramente el tamaño */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Añadir sombra */
+  box-shadow: 0 4px 15px colores.$color-texto; /* Añadir sombra */
 }
 
 .right-panel .image,

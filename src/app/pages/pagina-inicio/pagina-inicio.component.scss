@@ -3,12 +3,12 @@
 /* Estilo del body */
 * {
   font-family: "Oswald";
+  
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: colores.$color-texto-invertido;
   cursor: none;
   min-height: 100vh; /* Garantizar altura completa */
   display: flex; /* Flexbox principal */
@@ -270,8 +270,8 @@ iframe {
   transition: transform 1s ease, opacity 1s ease;
   width: 60%; /* Reducir tamaño en un 5% más */
   height: 65vh; /* Reducir tamaño en un 5% más */
-  background: #fff;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  background: colores.$color-texto-invertido;
+  box-shadow: 0 4px 20px colores.$color-texto;
   border-radius: 10px;
   overflow: hidden;
   opacity: 0;
@@ -282,15 +282,15 @@ iframe {
 }
 
 .flashcard-1 {
-  background-color: #4b0082;
+  background-color: colores.$color-principal;
 }
 
 .flashcard-2 {
-  background-color: #A25FE1;
+  background-color: colores.$color-secundario;
 }
 
 .flashcard-3 {
-  background-color: #AF6ADB;
+  background-color: colores.$color-terciario;
 }
 
 .flashcard.visible {
@@ -350,7 +350,7 @@ iframe {
   font-size: 2.5rem; /* Aumentar el tamaño del título */
   font-weight: bold; /* Hacerlo en negrita */
   margin-bottom: 20px; /* Añadir margen inferior */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Añadir sombra para destacar */
+  text-shadow: 2px 2px 4px colores.$color-texto; /* Añadir sombra para destacar */
 }
 
 .custom-cursor {
@@ -359,7 +359,7 @@ iframe {
   left: 0;
   width: 10px;
   height: 10px;
-  background-color: #a25fe1; /* Color base del cursor */
+  background-color: colores.$color-secundario; /* Color base del cursor */
   border-radius: 75%;
   pointer-events: none;
   z-index: 1000;
@@ -373,7 +373,7 @@ iframe {
 /* Footer */
 .footer {
   background-color: #3b3b3b85;
-  color: #fff;
+  color: colores.$color-texto-invertido;
   text-align: center;
   padding: 20px 10px;
   font-size: 0.9rem;
@@ -395,7 +395,7 @@ iframe {
   margin: 0 10px;
   display: inline-block;
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Añadir transición para la sombra */
-  color: #fff; /* Asegurar que los iconos sean blancos */
+  color: colores.$color-texto-invertido; /* Asegurar que los iconos sean blancos */
   font-size: 1.5rem; /* Aumentar el tamaño de los iconos */
 }
 
@@ -410,7 +410,7 @@ iframe {
 }
 
 .footer .footer-links a {
-  color: #fff;
+  color: colores.$color-texto-invertido;
   text-decoration: none;
   margin: 0 5px;
   transition: color 0.3s ease;
