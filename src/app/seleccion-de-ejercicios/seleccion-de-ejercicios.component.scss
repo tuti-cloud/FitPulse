@@ -1,13 +1,13 @@
 @use "./../../../public/styles/colores.scss";
 
 * {
-  font-family: "Oswald", sans-serif; /* Asegurar que la fuente se aplica */
+  font-family: "Oswald", sans-serif; 
   margin: 0;
 }
 
 body, html {
-  background-color: #a25fe152; /* Cambiar el fondo de la página */
-  height: 100%; /* Asegurar que el fondo cubre toda la página */
+  background-color: #a25fe152; 
+  height: 100%; 
 }
 
 .results-container {
@@ -18,7 +18,7 @@ body, html {
 
 .section-title {
   font-size: 2rem;
-  margin: 30px 0; /* Añadir margen superior e inferior */
+  margin: 30px 0; 
   color: #333;
 }
 
@@ -26,61 +26,61 @@ body, html {
 
 .exercise-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Tres columnas en cada fila */
-  column-gap: 20px; /* Espaciado horizontal entre columnas */
-  row-gap: 10vh; /* Reducir el espacio entre filas */
-  justify-items: center; /* Centrar las tarjetas horizontalmente */
-  margin-top: 30px; /* Separar el grid del título */
+  grid-template-columns: repeat(3, 1fr); 
+  column-gap: 20px; 
+  row-gap: 10vh;
+  justify-items: center; 
+  margin-top: 30px; 
 }
 
 .exercise-card {
   text-align: center;
-  background-color: #f3f3f3; /* Fondo claro para contraste */
+  background-color: #f3f3f3;
   border-radius: 10px;
-  padding: 30px; /* Ajustar el tamaño de las tarjetas */
-  width: 60%; /* Hacer las tarjetas menos anchas */
-  box-shadow: 0 4px 10px #7c7c7d; /* Agregar sombra con el color #4b0082 */
+  padding: 30px; 
+  width: 60%;
+  box-shadow: 0 4px 10px #7c7c7d; 
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .exercise-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 8px 20px colores.$color-secundario; /* Agregar sombra más fuerte en hover */
+  box-shadow: 0 8px 20px colores.$color-secundario; 
 }
 
 .exercise-card h3 {
-  font-size: 1.2rem; /* Reducir el tamaño del texto del título */
-  color: #000; /* Cambiar el color del texto a negro */
+  font-size: 1.2rem;
+  color: #000; 
   margin-bottom: 10px;
 }
 
 .exercise-card img {
-  width: 60%; /* Mantener el tamaño de las imágenes */
+  width: 60%;
   border-radius: 8px;
-  margin-bottom: 15px; /* Separar la imagen del contenido */
+  margin-bottom: 15px; 
 }
 
 .details {
-  font-size: 20px; /* Mantener el tamaño del texto */
+  font-size: 20px;
   font-weight: bold;
-  color: #000; /* Cambiar el color del texto a negro */
+  color: #000; 
   margin-top: 10px;
 }
 
 .details .sets-reps {
-  margin-bottom: 5px; /* Espaciado inferior */
-  color: colores.$color-principal; /* Mantener el color principal para las repeticiones */
+  margin-bottom: 5px; 
+  color: colores.$color-principal; 
 }
 
 .details .status {
-  color: #000; /* Cambiar el color del texto a negro */
+  color: #000;
 }
 
 .exercise-card label {
   display: flex;
-  justify-content: center; /* Centrar la checkbox */
-  align-items: center; /* Centrar verticalmente */
-  margin-top: 10px; /* Añadir margen superior */
+  justify-content: center; 
+  align-items: center;
+  margin-top: 10px;
   font-size: 14px;
   color: #333;
 }
@@ -91,8 +91,8 @@ body, html {
 
 .button-container {
   display: flex;
-  justify-content: center; /* Centrar horizontalmente */
-  margin-top: 30px; /* Separar del grid */
+  justify-content: center; 
+  margin-top: 30px; 
 }
 
 button {
@@ -112,40 +112,40 @@ button:hover {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Media queries para hacerlo responsive */
+
 
 /* Para pantallas medianas (tablets) */
 @media (max-width: 1200px) {
   .exercise-grid {
-    grid-template-columns: repeat(2, 1fr); /* Dos columnas en tamaños medianos */
-    row-gap: 5vh; /* Ajustar el espacio entre filas */
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 5vh;
   }
 
   .exercise-card {
-    width: 80%; /* Hacer las tarjetas más anchas */
-    padding: 20px; /* Ajustar el padding de las tarjetas */
+    width: 80%; 
+    padding: 20px;
   }
 }
 
 /* Para pantallas pequeñas (smartphones) */
 @media (max-width: 768px) {
   .section-title {
-    font-size: 1.5rem; /* Ajustar el tamaño del texto */
+    font-size: 1.5rem; 
     margin: 20px 0;
   }
 
   .exercise-grid {
-    grid-template-columns: 1fr; /* Una columna en tamaños pequeños */
-    row-gap: 5vh; /* Ajustar el espacio entre filas */
+    grid-template-columns: 1fr;
+    row-gap: 5vh; 
   }
 
   .exercise-card {
-    width: 90%; /* Ajustar el tamaño de las tarjetas */
-    padding: 15px; /* Ajustar el padding de las tarjetas */
+    width: 90%;
+    padding: 15px; 
   }
 
   .exercise-card h3 {
-    font-size: 1rem; /* Ajustar el tamaño del texto del título */
+    font-size: 1rem; 
   }
 
   .exercise-card img {

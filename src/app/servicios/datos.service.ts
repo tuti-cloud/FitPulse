@@ -5,9 +5,9 @@ import { User } from '../interfaces/user';
   providedIn: 'root'
 })
 export class DatosService {
-  private users: User[] = [];
+  users: User[] = [];
 
-  constructor() {
+  loadUsers(): void {
     const storedUsers = localStorage.getItem('users');
     if (storedUsers) {
       this.users = JSON.parse(storedUsers);
@@ -15,6 +15,7 @@ export class DatosService {
   }
 
   register(user: User): boolean {
+    this.loadUsers();
     if (this.users.find(u => u.username === user.username)) {
       return false; // Usuario ya existente
     }
@@ -24,6 +25,7 @@ export class DatosService {
   }
 
   login(username: string, password: string): boolean {
+    this.loadUsers();
     const user = this.users.find(u => u.username === username && u.password === password);
     if (user) {
       localStorage.setItem('currentUser', username);
@@ -36,8 +38,7 @@ export class DatosService {
     return !!localStorage.getItem('currentUser');
   }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('currentUser');
   }
 }
-

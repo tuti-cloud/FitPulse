@@ -8,7 +8,7 @@ export class ProgressService {
   private yogaProgressSubject = new BehaviorSubject<number>(0);
   private exercisesProgressSubject = new BehaviorSubject<number>(0);
 
-  constructor() {}
+
 
   // Obtener el progreso de yoga
   getYogaProgress(): Observable<number> {

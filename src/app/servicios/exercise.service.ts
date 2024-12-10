@@ -12,7 +12,6 @@ export class ExerciseService {
     'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
   };
 
-  constructor() { }
 
   getExercisesByBodyPart(target: string): Observable<Exercise[]> {
     const url = `${this.apiUrl}/target/${target}`;
