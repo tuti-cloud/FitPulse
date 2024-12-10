@@ -6,10 +6,7 @@
   padding: 0; /* Asegurar que no hay padding predeterminado */
 }
 
-body, html {
-  background-color: #a25fe152; /* Cambiar el fondo de la página */
-  height: 100%; /* Asegurar que el fondo cubre toda la página */
-}
+
 
 .yoga-container {
   text-align: center;
@@ -21,7 +18,7 @@ body, html {
 h1 {
   font-size: 3rem;
   color: colores.$color-terciario;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 2px 2px 4px colores.$color-texto;
   margin-bottom: 40px;
   animation: fadeIn 2s ease-in-out;
   letter-spacing: 2px; /* Espaciado entre letras */
@@ -50,7 +47,7 @@ h1 {
   background-color: #f3f3f3; /* Fondo claro para contraste */
   border-radius: 10px;
   padding: 15px; /* Reducir el tamaño de las tarjetas */
-  box-shadow: 0 4px 10px #7c7c7d; /* Agregar sombra con el color #4b0082 */
+  box-shadow: 0 4px 10px #7c7c7d; /* Agregar sombra con el color colores.$color-principal */
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
@@ -74,7 +71,7 @@ h1 {
 .pose-card p {
   font-size: 16px;
   font-weight: bold;
-  color: #4b0082;
+  color: colores.$color-principal;
   margin-top: 10px;
 }
 
@@ -91,7 +88,7 @@ h1 {
 
 button {
   background-color: colores.$color-secundario;
-  color: white;
+  color: colores.$color-texto-invertido;
   border: none;
   padding: 10px 20px;
   border-radius: 4px;
@@ -101,9 +98,9 @@ button {
 }
 
 button:hover {
-  background: linear-gradient(45deg, #4b0082, #a25fe1);
+  background: linear-gradient(45deg, colores.$color-principal, colores.$color-secundario);
   transform: scale(1.1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px colores.$color-texto;
 }
 
 /* Media queries para hacerlo responsive */
@@ -149,7 +146,8 @@ button:hover {
   .pose-card h2 {
     font-size: 1.2rem; /* Ajustar el tamaño del encabezado en las tarjetas */
   }
-}
+} 
+
 
 
 

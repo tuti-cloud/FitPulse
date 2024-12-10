@@ -6,7 +6,7 @@ charset = utf-8
 indent_style = space
 indent_size = 2
 insert_final_newline = true
-trim_trailing_whitespace = true
+trim_trailing_colores.$color-texto-invertidospace = true
 
 [*.ts]
 quote_type = single
@@ -14,4 +14,4 @@ ij_typescript_use_double_quotes = false
 
 [*.md]
 max_line_length = off
-trim_trailing_whitespace = false
+trim_trailing_colores.$color-texto-invertidospace = false

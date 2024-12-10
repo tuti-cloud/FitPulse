@@ -21,14 +21,14 @@ body {
     border-radius: 20px;
     padding: 40px;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px colores.$color-texto;
     width: 700px; /* Hacer el modal más grande */
     margin: 0 auto; /* Centrar el contenedor horizontalmente */
     margin-top: 70px;
 }
 
 h1 {
-    color: #6a0dad;
+    color: colores.$color-principal;
     font-size: 24px;
     margin-bottom: 30px;
 }
@@ -56,7 +56,7 @@ h1 {
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #6a0dad;
+    color: colores.$color-principal;
     font-size: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease; /* Suavizar la transición del color de fondo */
@@ -77,7 +77,7 @@ h1 {
     background-color: #d1a3ff;
     border: none;
     border-radius: 20px;
-    color: white;
+    color: colores.$color-texto-invertido;
     font-size: 18px; /* Aumentar el tamaño de la fuente */
     cursor: pointer;
     text-decoration: none;
@@ -87,7 +87,7 @@ h1 {
     transform: translateX(-50%); /* Centrar el botón en valores de x */
 
     &.disabled {
-        background-color: #ccc;
+        background-color: colores.$color-texto-invertido;
         pointer-events: none;
         cursor: not-allowed;
     }

@@ -8,7 +8,7 @@ import { Yoga } from '../interfaces/yoga';
 export class YogaService {
   private apiUrl = 'https://yoga-api-nzy4.onrender.com/v1/poses'; // URL de la API
 
-  constructor() {}
+  
 
   /**
    * Obtiene las posturas de yoga desde la API usando fetch.
@@ -25,7 +25,7 @@ export class YogaService {
         .then((poses) => {
           const formattedPoses = poses.map((pose: any) => ({
             name: pose.english_name || 'Nombre no disponible',
-            image: pose.url_png || 'assets/default-image.jpg',
+            image: pose.url_png || 'img.jpg',
           }));
           observer.next(formattedPoses);
           observer.complete();

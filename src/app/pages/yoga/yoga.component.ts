@@ -45,8 +45,11 @@ export class YogaComponent implements OnInit {
 
     this.yogaService.getYogaPoses().subscribe({
       next: (poses: Yoga[]) => {
-        this.yogaPoses = poses;
-        this.loadPoses(); 
+        this.yogaPoses = poses.map((pose) => ({
+          ...pose,
+          breaths: this.getRandomBreaths(), // Asignar respiraciones aleatorias
+        }));
+        this.loadPoses();
         Swal.close();
       },
       error: (error) => {
@@ -74,7 +77,10 @@ export class YogaComponent implements OnInit {
 
   completeSet(): void {
     if (this.completedPoses.every((completed) => completed)) {
-      Swal.fire('¡Felicidades!', 'Terminaste todas las posturas de esta sesión.', 'success');
+      Swal.fire('¡Felicidades!', 'Terminaste todas las posturas de esta sesión.', 'success').then(() => {
+        this.sessionNumber++; // Incrementar el número de sesión
+        this.loadPoses(); // Cargar una nueva sesión de posturas
+      });
     } else {
       // Si no todas las casillas están marcadas, preguntar al usuario
       Swal.fire({
@@ -91,12 +97,17 @@ export class YogaComponent implements OnInit {
           Swal.fire('¡Sesión cambiada!', 'Has cambiado a la siguiente sesión.', 'success');
         } else {
           // Si el usuario cancela, no hacer nada
-          Swal.fire('¡Seguimos en la misma sesión!', 'Puedes seguir completando las posturas.', 'info');
+          Swal.fire('¡Seguimos en la misma sesión!', 'Seguí completando las posturas.', 'info');
         }
       });
     }
   }
+
+  getRandomBreaths(): number {
+    return Math.floor(Math.random() * 10) + 1; // Generar un número aleatorio entre 1 y 10
+  }
 }
+
 
 
 

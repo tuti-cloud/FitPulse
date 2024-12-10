@@ -6,7 +6,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #fff;
+    background-color: colores.$color-texto-invertido;
     font-family: Arial, sans-serif;
 }
 
@@ -32,7 +32,7 @@ body {
     padding: 50px; /* Ajustar el padding del contenedor */
     text-align: center;
     width: 650px; /* Ajustar el tamaño del contenedor */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px colores.$color-texto;
     top: 150px; /* Posicionar el contenedor un poco más arriba */
     right: 0;
     left: 0;
@@ -51,7 +51,7 @@ body {
 }
 
 h1 {
-    color: #5e2d89;
+    color: colores.$color-principal;
     font-size: 24px;
     margin-bottom: 20px;
 }
@@ -65,9 +65,9 @@ h1 {
 
 .gender-buttons button {
     background-color: #f3e8ff;
-    border: 2px solid #5e2d89;
+    border: 2px solid colores.$color-principal;
     border-radius: 10px;
-    color: #5e2d89;
+    color: colores.$color-principal;
     font-size: 18px;
     padding: 10px 20px;
     cursor: pointer;
@@ -75,12 +75,12 @@ h1 {
 }
 
 .gender-buttons button.selected {
-    background-color: #6a0dad;
+    background-color: colores.$color-principal;
     color: colores.$color-texto-invertido;
 }
 
 .gender-buttons button:hover {
-    background-color: #5a0c9d;
+    background-color: colores.$color-principal;
     color: colores.$color-texto-invertido;
 }
 
@@ -93,13 +93,13 @@ h1 {
 .input-group label {
     display: block;
     margin-bottom: 5px;
-    color: #5e2d89;
+    color: colores.$color-principal;
 }
 
 .input-group input {
     width: 30%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid colores.$color-texto-invertido;
     border-radius: 5px;
 }
 
@@ -107,7 +107,7 @@ h1 {
     background-color: #cdaafc;
     border: none;
     border-radius: 20px;
-    color: #fff;
+    color: colores.$color-texto-invertido;
     font-size: 18px;
     padding: 12px 35px; /* Ajustar el tamaño del botón */
     cursor: pointer;
@@ -136,11 +136,11 @@ h1 {
 .boton-iniciar:hover {
     background-color: colores.$color-principal;
     transform: translateY(-3px); /* Efecto de elevación más sutil */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para el botón */
+    box-shadow: 0 4px 10px colores.$color-texto; /* Sombra para el botón */
 }
 
 .boton-iniciar.disabled {
-    background-color: #ccc;
+    background-color: colores.$color-texto-invertido;
     pointer-events: none;
     cursor: not-allowed;
 }

@@ -5,15 +5,11 @@
   margin: 0;
 }
 
-body, html {
-  background-color: #a25fe152; /* Cambiar el fondo de la página */
-  height: 100%; /* Asegurar que el fondo cubre toda la página */
-}
 
 .results-container {
   text-align: center;
   padding: 20px;
-  background-color: #f3f3f3 !important;
+  background-color: #f3f3f3;
 }
 
 .section-title {
@@ -39,7 +35,7 @@ body, html {
   border-radius: 10px;
   padding: 30px; /* Ajustar el tamaño de las tarjetas */
   width: 60%; /* Hacer las tarjetas menos anchas */
-  box-shadow: 0 4px 10px #7c7c7d; /* Agregar sombra con el color #4b0082 */
+  box-shadow: 0 4px 10px #7c7c7d; /* Agregar sombra con el color colores.$color-principal */
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
@@ -97,7 +93,7 @@ body, html {
 
 button {
   background-color: colores.$color-secundario;
-  color: white;
+  color: colores.$color-texto-invertido;
   border: none;
   padding: 10px 20px;
   border-radius: 4px;
@@ -107,9 +103,9 @@ button {
 }
 
 button:hover {
-  background: linear-gradient(45deg, #4b0082, #a25fe1);
+  background: linear-gradient(45deg, colores.$color-principal, colores.$color-secundario);
   transform: scale(1.1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px colores.$color-texto;
 }
 
 /* Media queries para hacerlo responsive */
