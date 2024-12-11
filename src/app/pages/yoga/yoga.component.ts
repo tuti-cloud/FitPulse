@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { YogaService } from '../../servicios/yoga.service';
 import { Yoga } from '../../interfaces/yoga';
 import { ProgressService } from '../../servicios/progress.service';
@@ -16,73 +16,89 @@ import { HeaderComponent } from '../../components/header/header.component';
   styleUrls: ['./yoga.component.scss'],
 })
 export class YogaComponent implements OnInit {
-  yogaPoses: Yoga[] = [];
-  displayedPoses: Yoga[] = [];
-  completedPoses: boolean[] = [];
-  sessionNumber: number = 1;
-  progressPercentage: number = 0;
+  yogaPoses: Yoga[] = []; // Lista completa de posturas de yoga
+  displayedPoses: Yoga[] = []; // Posturas para mostrar en la sesión actual
+  completedPoses: boolean[] = []; // Estado de completitud de las posturas actuales
+  sessionNumber: number = 1; // Número de sesión actual
+  progressPercentage: number = 0; // Porcentaje de progreso general
 
+  // Inyección de servicios
   progressService = inject(ProgressService);
   yogaService = inject(YogaService);
 
   ngOnInit(): void {
-    this.loadYogaPoses();
+    this.loadYogaPoses(); // Cargar las posturas de yoga al iniciar el componente
+    this.listenToProgress(); // Escuchar cambios en el progreso desde ProgressService
+  }
 
+  /**
+   * Carga las posturas de yoga desde el servicio.
+   */
+  async loadYogaPoses(): Promise<void> {
+    try {
+      Swal.fire({
+        title: 'Cargando posturas de yoga...',
+        allowOutsideClick: false,
+        timerProgressBar: true,
+        didOpen: () => Swal.showLoading(),
+      });
+
+      // Solicitar las posturas de yoga usando el servicio con Promise
+      const poses = await this.yogaService.getYogaPoses();
+      this.yogaPoses = poses.map((pose) => ({
+        ...pose,
+        breaths: this.getRandomBreaths(), // Agregar respiraciones aleatorias
+      }));
+
+      this.loadPoses(); // Cargar la primera sesión
+      Swal.close();
+    } catch (error) {
+      Swal.fire('Error', 'No se pudieron cargar las posturas. Intenta más tarde.', 'error');
+    }
+  }
+
+  /**
+   * Escucha cambios en el progreso de yoga.
+   */
+  listenToProgress(): void {
     this.progressService.getYogaProgress().subscribe({
       next: (progress) => {
-        this.progressPercentage = progress; // Escuchar cambios en el progreso de Yoga
+        this.progressPercentage = progress; // Actualizar el progreso
       },
     });
   }
 
-  loadYogaPoses(): void {
-    Swal.fire({
-      title: 'Cargando posturas de yoga...',
-      allowOutsideClick: false,
-      timerProgressBar: true,
-      didOpen: () => Swal.showLoading(),
-    });
-
-    this.yogaService.getYogaPoses().subscribe({
-      next: (poses: Yoga[]) => {
-        this.yogaPoses = poses.map((pose) => ({
-          ...pose,
-          breaths: this.getRandomBreaths(), // Asignar respiraciones aleatorias
-        }));
-        this.loadPoses();
-        Swal.close();
-      },
-      error: (error) => {
-        Swal.fire('Error', 'No se pudieron cargar las posturas. Intenta más tarde.', 'error');
-      },
-    });
-  }
-
+  /**
+   * Carga las posturas de yoga para la sesión actual.
+   */
   loadPoses(): void {
-    const startIndex = (this.sessionNumber - 1) * 6; // Calcular el índice inicial para la sesión actual
-    const nextSet = this.yogaPoses.slice(startIndex, startIndex + 6); // Tomar 6 posturas para la sesión
+    const startIndex = (this.sessionNumber - 1) * 6; // Índice inicial para la sesión
+    const nextSet = this.yogaPoses.slice(startIndex, startIndex + 6); // Seleccionar 6 posturas
     this.displayedPoses = nextSet;
-    this.completedPoses = new Array(nextSet.length).fill(false);  
-    this.updateProgress();
+    this.completedPoses = new Array(nextSet.length).fill(false); // Inicializar los estados como "no completados"
+    this.updateProgress(); // Actualizar el progreso
   }
 
+  /**
+   * Actualiza el progreso general de la sesión actual.
+   */
   updateProgress(): void {
     const totalExercises = this.displayedPoses.length;
     const completedExercises = this.completedPoses.filter((checked) => checked).length;
 
-    console.log("Progreso actualizado:", { completed: completedExercises, total: totalExercises });
-
-    this.progressService.updateYogaProgress(completedExercises, totalExercises);
+    this.progressService.updateYogaProgress(completedExercises, totalExercises); // Notificar al servicio de progreso
   }
 
+  /**
+   * Maneja la finalización de un conjunto de posturas.
+   */
   completeSet(): void {
     if (this.completedPoses.every((completed) => completed)) {
       Swal.fire('¡Felicidades!', 'Terminaste todas las posturas de esta sesión.', 'success').then(() => {
-        this.sessionNumber++; // Incrementar el número de sesión
-        this.loadPoses(); // Cargar una nueva sesión de posturas
+        this.sessionNumber++;
+        this.loadPoses();
       });
     } else {
-      // Si no todas las casillas están marcadas, preguntar al usuario
       Swal.fire({
         title: '¿Estás seguro?',
         text: 'No todas las posturas están completas. ¿Quieres cambiar la sesión?',
@@ -92,19 +108,21 @@ export class YogaComponent implements OnInit {
         cancelButtonText: 'No, seguir en esta sesión',
       }).then((result) => {
         if (result.isConfirmed) {
-          this.sessionNumber++; // Incrementar el número de sesión
-          this.loadPoses(); // Cargar las posturas de la nueva sesión
+          this.sessionNumber++;
+          this.loadPoses();
           Swal.fire('¡Sesión cambiada!', 'Has cambiado a la siguiente sesión.', 'success');
         } else {
-          // Si el usuario cancela, no hacer nada
           Swal.fire('¡Seguimos en la misma sesión!', 'Seguí completando las posturas.', 'info');
         }
       });
     }
   }
 
+  /**
+   * Genera un número aleatorio de respiraciones entre 1 y 10.
+   */
   getRandomBreaths(): number {
-    return Math.floor(Math.random() * 10) + 1; // Generar un número aleatorio entre 1 y 10
+    return Math.floor(Math.random() * 10) + 1;
   }
 }
 
