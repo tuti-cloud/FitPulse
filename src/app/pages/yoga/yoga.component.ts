@@ -30,7 +30,7 @@ export class YogaComponent implements OnInit {
 
     this.progressService.getYogaProgress().subscribe({
       next: (progress) => {
-        this.progressPercentage = progress; // Escuchar cambios en el progreso de Yoga
+        this.progressPercentage = progress; 
       },
     });
   }
@@ -47,7 +47,7 @@ export class YogaComponent implements OnInit {
       next: (poses: Yoga[]) => {
         this.yogaPoses = poses.map((pose) => ({
           ...pose,
-          breaths: this.getRandomBreaths(), // Asignar respiraciones aleatorias
+          breaths: this.getRandomBreaths(),
         }));
         this.loadPoses();
         Swal.close();
@@ -59,8 +59,8 @@ export class YogaComponent implements OnInit {
   }
 
   loadPoses(): void {
-    const startIndex = (this.sessionNumber - 1) * 6; // Calcular el índice inicial para la sesión actual
-    const nextSet = this.yogaPoses.slice(startIndex, startIndex + 6); // Tomar 6 posturas para la sesión
+    const startIndex = (this.sessionNumber - 1) * 6;
+    const nextSet = this.yogaPoses.slice(startIndex, startIndex + 6); 
     this.displayedPoses = nextSet;
     this.completedPoses = new Array(nextSet.length).fill(false);  
     this.updateProgress();
@@ -78,11 +78,10 @@ export class YogaComponent implements OnInit {
   completeSet(): void {
     if (this.completedPoses.every((completed) => completed)) {
       Swal.fire('¡Felicidades!', 'Terminaste todas las posturas de esta sesión.', 'success').then(() => {
-        this.sessionNumber++; // Incrementar el número de sesión
-        this.loadPoses(); // Cargar una nueva sesión de posturas
+        this.sessionNumber++; 
+        this.loadPoses(); 
       });
     } else {
-      // Si no todas las casillas están marcadas, preguntar al usuario
       Swal.fire({
         title: '¿Estás seguro?',
         text: 'No todas las posturas están completas. ¿Quieres cambiar la sesión?',
@@ -92,11 +91,11 @@ export class YogaComponent implements OnInit {
         cancelButtonText: 'No, seguir en esta sesión',
       }).then((result) => {
         if (result.isConfirmed) {
-          this.sessionNumber++; // Incrementar el número de sesión
-          this.loadPoses(); // Cargar las posturas de la nueva sesión
+          this.sessionNumber++; 
+          this.loadPoses(); 
           Swal.fire('¡Sesión cambiada!', 'Has cambiado a la siguiente sesión.', 'success');
         } else {
-          // Si el usuario cancela, no hacer nada
+     
           Swal.fire('¡Seguimos en la misma sesión!', 'Seguí completando las posturas.', 'info');
         }
       });
@@ -104,7 +103,7 @@ export class YogaComponent implements OnInit {
   }
 
   getRandomBreaths(): number {
-    return Math.floor(Math.random() * 10) + 1; // Generar un número aleatorio entre 1 y 10
+    return Math.floor(Math.random() * 10) + 1; 
   }
 }
 

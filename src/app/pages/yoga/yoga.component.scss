@@ -1,9 +1,9 @@
 @use "./../../../../public/styles/colores.scss";
 
 * {
-  font-family: "Oswald", sans-serif; /* Asegurar que la fuente se aplica */
+  font-family: "Oswald", sans-serif; 
   margin: 0;
-  padding: 0; /* Asegurar que no hay padding predeterminado */
+  padding: 0; 
 }
 
 
@@ -12,7 +12,7 @@
   text-align: center;
   padding: 20px;
   background-color: #f3f3f3 !important;
-  border-radius: 10px; /* Añadir bordes redondeados para un aspecto más suave */
+  border-radius: 10px; 
 }
 
 h1 {
@@ -21,7 +21,7 @@ h1 {
   text-shadow: 2px 2px 4px colores.$color-principal-bajado;
   margin-bottom: 40px;
   animation: fadeIn 2s ease-in-out;
-  letter-spacing: 2px; /* Espaciado entre letras */
+  letter-spacing: 2px; 
 }
 
 @keyframes fadeIn {
@@ -35,29 +35,29 @@ h1 {
 
 .pose-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Tres columnas en cada fila */
+  grid-template-columns: repeat(3, 1fr); 
   column-gap: 20px;
-  row-gap: 15vh; /* Reducir el espacio entre las filas */
+  row-gap: 15vh; 
   justify-items: center;
   margin-top: 30px;
 }
 
 .pose-card {
   text-align: center;
-  background-color: #f3f3f3; /* Fondo claro para contraste */
+  background-color: #f3f3f3; 
   border-radius: 10px;
-  padding: 15px; /* Reducir el tamaño de las tarjetas */
-  box-shadow: 0 4px 10px #7c7c7d; /* Agregar sombra con el color colores.$color-principal */
+  padding: 15px; 
+  box-shadow: 0 4px 10px #7c7c7d; 
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .pose-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 8px 20px colores.$color-secundario; /* Agregar sombra más fuerte en hover */
+  box-shadow: 0 8px 20px colores.$color-secundario; 
 }
 
 .pose-card img {
-  width: 30%; /* Reducir el tamaño de las imágenes */
+  width: 30%; 
   border-radius: 8px;
   margin-bottom: 15px;
 }
@@ -103,48 +103,47 @@ button:hover {
   box-shadow: 0 4px 15px colores.$color-texto;
 }
 
-/* Media queries para hacerlo responsive */
 
 @media (max-width: 1200px) {
   .pose-grid {
-    grid-template-columns: repeat(2, 1fr); /* Dos columnas en tamaños medianos */
+    grid-template-columns: repeat(2, 1fr); 
   }
 }
 
 @media (max-width: 768px) {
   h1 {
-    font-size: 2.5rem; /* Ajustar el tamaño del texto */
+    font-size: 2.5rem; 
   }
 
   .pose-grid {
-    grid-template-columns: 1fr; /* Una columna en tamaños pequeños */
-    row-gap: 10vh; /* Ajustar el espacio entre filas */
+    grid-template-columns: 1fr; 
+    row-gap: 10vh; 
   }
 
   .pose-card {
-    padding: 10px; /* Reducir el padding de las tarjetas */
+    padding: 10px; 
   }
 
   .pose-card img {
-    width: 50%; /* Ajustar el tamaño de las imágenes */
+    width: 50%; 
   }
 
   button {
-    padding: 8px 16px; /* Ajustar el padding del botón */
+    padding: 8px 16px;
   }
 }
 
 @media (max-width: 480px) {
   h1 {
-    font-size: 2rem; /* Ajustar el tamaño del texto */
+    font-size: 2rem; 
   }
 
   .pose-card p {
-    font-size: 14px; /* Ajustar el tamaño del texto en las tarjetas */
+    font-size: 14px; 
   }
 
   .pose-card h2 {
-    font-size: 1.2rem; /* Ajustar el tamaño del encabezado en las tarjetas */
+    font-size: 1.2rem; 
   }
 } 
 

@@ -14,8 +14,8 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  exercisesProgressPercentage: number = 0; // Progreso para los ejercicios
-  yogaProgressPercentage: number = 0; // Progreso para el yoga
+  exercisesProgressPercentage: number = 0;  
+  yogaProgressPercentage: number = 0; 
 
   constructor(
     private progressService: ProgressService,
@@ -24,22 +24,19 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Suscribirse al progreso de los ejercicios
     this.progressService.getExercisesProgress().subscribe(progress => {
-      this.exercisesProgressPercentage = progress; // Actualiza el progreso de ejercicios
+      this.exercisesProgressPercentage = progress;  
     });
 
-    // Suscribirse al progreso de yoga
     this.progressService.getYogaProgress().subscribe(progress => {
-      this.yogaProgressPercentage = progress; // Actualiza el progreso de yoga
+      this.yogaProgressPercentage = progress;  
     });
   }
 
-  // Mostrar resultados del progreso dependiendo del componente actual
   showResultsModal(): void {
     const currentRoute = this.router.url;
 
-    let progress: number = 0; // Inicializamos 'progress' para evitar el error
+    let progress: number = 0;  
 
     if (currentRoute.includes('ejercicios')) {
       progress = this.exercisesProgressPercentage;
@@ -47,10 +44,12 @@ export class HeaderComponent implements OnInit {
       progress = this.yogaProgressPercentage;
     }
 
-    const progressMessage =
-      progress === 100
-        ? '¡Felicidades! Has alcanzado el 100% de tu progreso.'
-        : `Progreso: ${progress.toFixed(2)}%`;
+    console.log('Progreso a mostrar en el modal:', progress); 
+
+  
+    const progressMessage = progress === 100
+      ? '¡Felicidades! Has alcanzado el 100% de tu progreso.'
+      : `Progreso: ${progress.toFixed(2)}%`; 
 
     Swal.fire({
       title: 'Resultados',

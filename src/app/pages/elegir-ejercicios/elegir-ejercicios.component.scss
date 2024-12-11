@@ -6,14 +6,14 @@
 
 body {
     display: flex;
-    flex-direction: column; /* Cambiar a columna para centrar verticalmente */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #f5e9ff;
     font-family: "Oswald";
     margin: 0;
-    position: relative; /* Para posicionar la imagen de Timmy */
+    position: relative;
 }
 
 .container {
@@ -22,8 +22,8 @@ body {
     padding: 40px;
     text-align: center;
     box-shadow: 0 0 10px colores.$color-texto;
-    width: 700px; /* Hacer el modal más grande */
-    margin: 0 auto; /* Centrar el contenedor horizontalmente */
+    width: 700px; 
+    margin: 0 auto; 
     margin-top: 70px;
 }
 

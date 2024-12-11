@@ -49,7 +49,6 @@ export class LoginComponent implements OnInit {
   
     
   
-    // Intentar registrar
     if (this.serviciodatos.register({ username: this.registerUsername, password: this.registerPassword })) {
       
       Swal.fire({

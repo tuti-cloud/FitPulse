@@ -10,9 +10,7 @@ export class YogaService {
 
   
 
-  /**
-   * Obtiene las posturas de yoga desde la API usando fetch.
-   */
+
   getYogaPoses(): Observable<Yoga[]> {
     return new Observable<Yoga[]>((observer) => {
       fetch(this.apiUrl)
