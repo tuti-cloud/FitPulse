@@ -55,10 +55,10 @@ export class SeleccionDeEjerciciosComponent implements OnInit {
   loadExercises(): void {
     let completedRequests = 0;
     const totalRequests = this.selectedOptions.length;
-
+  
     this.selectedOptions.forEach((option) => {
       let targets: string[] = [];
-
+  
       switch (option) {
         case 'Piernas y Glúteos':
           targets = ['quads', 'glutes'];
@@ -75,39 +75,38 @@ export class SeleccionDeEjerciciosComponent implements OnInit {
         default:
           console.error(`Opción desconocida: ${option}`);
       }
-
+  
       targets.forEach((target) => {
-        this.exerciseService.getExercisesByBodyPart(target).subscribe({
-          next: (data) => {
+        this.exerciseService.getExercisesByBodyPart(target)
+          .then((data) => {
             if (!this.exercises[option]) {
               this.exercises[option] = [];
             }
-
+  
             const exercisesWithRandom = data.slice(0, this.maxExercises).map((exercise) => ({
               ...exercise,
               series: this.getRandomNumber(3, 6),
               reps: this.getRandomNumber(8, 15),
               completed: false,
             }));
-
+  
             this.exercises[option] = this.exercises[option].concat(exercisesWithRandom);
             this.updateProgress();
-          },
-          error: (error) => {
+          })
+          .catch((error) => {
             console.error(`Error al cargar ejercicios para ${option}:`, error);
-          },
-          complete: () => {
+          })
+          .finally(() => {
             completedRequests++;
             if (completedRequests === totalRequests) {
               this.isLoading = false;
               Swal.close();
             }
-          },
-        });
+          });
       });
     });
   }
-
+  
   updateProgress(): void {
     let totalExercises = 0;
     let completedExercises = 0;

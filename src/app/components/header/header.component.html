@@ -5,16 +5,16 @@
       <h4>FitPulse</h4>
     </div>
     <nav>
-      <!-- Mostrar resultados de progreso al hacer clic en el enlace -->
+      <!-- Enlaces de navegación -->
       <a class="links" (click)="showResultsModal()" routerLinkActive="activa">Resultados</a>
-
       <a class="links" [routerLink]="['/elegir-ejercicios']" routerLinkActive="activa">Ejercicios</a>
       <a class="links" [routerLink]="['/yoga']" routerLinkActive="activa">Yogaterapia</a>
-      <a class="links" [routerLink]="['/pagina-inicio']">
-        <i class='bx bxs-user'></i>
+
+      <!-- Botón para el usuario -->
+      <a class="links" [routerLink]="['/login']" (click)="logout()">
+        <i class='bx bx-log-out' ></i>
       </a>
     </nav>
   </div>
 </header>
-
 

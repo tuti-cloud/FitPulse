@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { DatosService } from './datos.service';
 
@@ -6,21 +6,15 @@ import { DatosService } from './datos.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-
-  serviciodatos=inject(DatosService);
-   router= inject (Router);
-
-  ngOnInit(): void {
-    this.serviciodatos = new DatosService();
-    this.router = new Router();
-  }
+  private datosService = inject(DatosService);
+  private router = inject(Router);
 
   canActivate(): boolean {
-    if (this.serviciodatos.isLoggedIn()) {
-      return true;
+    if (this.datosService.isLoggedIn()) {
+      return true; // Acceso permitido
     } else {
-      this.router.navigate(['/login']);
-      return false;
+      this.router.navigate(['/login']); // Redirige al login si no está logueado
+      return false; // Bloquea el acceso
     }
   }
 }

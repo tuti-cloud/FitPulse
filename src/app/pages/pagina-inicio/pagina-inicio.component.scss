@@ -1,6 +1,6 @@
 @use "./../../../..//public/styles/colores.scss";
 
-/* Estilo del body */
+
 * {
   font-family: "Oswald";
   
@@ -10,8 +10,8 @@ body {
   margin: 0;
   padding: 0;
   cursor: none;
-  min-height: 100vh; /* Garantizar altura completa */
-  display: flex; /* Flexbox principal */
+  min-height: 100vh;
+  display: flex; 
   flex-direction: column; /* Elementos apilados en columna */
 }
 .mover {
