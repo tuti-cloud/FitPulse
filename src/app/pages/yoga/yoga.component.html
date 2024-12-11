@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class="yoga-container">
-  <h1>Sesi&oacute;n {{ sessionNumber }}</h1>
+  <h1>Sesión {{ sessionNumber }}</h1>
   <div class="pose-grid">
     <div class="pose-card" *ngFor="let pose of displayedPoses; let i = index">
       <img [src]="pose.image" alt="Imagen de la pose de yoga" />
@@ -16,6 +16,8 @@
 
   <button (click)="completeSet()">Completar Sesión</button>
 </div>
+
+
 
 
 

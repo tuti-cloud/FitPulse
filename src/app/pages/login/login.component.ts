@@ -18,12 +18,10 @@ export class LoginComponent implements OnInit {
   registerUsername: string = '';
   registerPassword: string = '';
 
- serviciodatos=inject(DatosService);
- router=inject(Router)
+ serviciodatos = inject(DatosService);
+ router = inject(Router);
 
   ngOnInit(): void {
-    
-
     const signInBtn = document.querySelector("#sign-in-btn") as HTMLElement;
     const signUpBtn = document.querySelector("#sign-up-btn") as HTMLElement;
     const container = document.querySelector(".container") as HTMLElement;
@@ -36,71 +34,65 @@ export class LoginComponent implements OnInit {
       container.classList.remove("sign-up-mode");
     });
   }
+
   register() {
     if (!this.registerUsername || !this.registerPassword) {
-     
       Swal.fire({
         icon: "error",
         title: "Complete todos los campos",
         text: "Intentelo de nuevo",
-        });
+      });
       return;  
     }
-  
     
-  
-    // Intentar registrar
     if (this.serviciodatos.register({ username: this.registerUsername, password: this.registerPassword })) {
-      
       Swal.fire({
         icon: "success",
         title: "Usuario Registrado Correctamente",
-        text: "",
-        
-      });;
+      });
       const container = document.querySelector(".container") as HTMLElement;
       container.classList.remove("sign-up-mode");
       this.router.navigate(['/modal-datos']);
     } else {
-      
       Swal.fire({
         icon: "error",
         title: "Nombre de usuario en uso",
         text: "Intentelo De Nuevo Con Otro",
-        
-      });;
+      });
     }
   }
-  
-  
-  
+
   login(event: Event) {
     event.preventDefault();
     if (!this.loginUsername || !this.loginPassword) {
-
       Swal.fire({
         icon: "error",
         title: "Complete todos los campos",
         text: "Intentelo de nuevo",
-        });
+      });
       return;
     }
     if (this.serviciodatos.login(this.loginUsername, this.loginPassword)) {
       Swal.fire({
         icon: "success",
         title: "Acceso Correcto",
-        text: "",
-        
-      });;
+      });
       this.router.navigate(['/eleccion']);
     } else {
       Swal.fire({
         icon: "error",
         title: "Credenciales Incorrectas",
         text: "Intentelo de nuevo",
-        
-      });;
+      });
     }
   }
-  
-}  
+
+  togglePasswordVisibility(fieldId: string): void {
+    const input = document.getElementById(fieldId) as HTMLInputElement;
+    if (input.type === 'password') {
+      input.type = 'text';
+    } else {
+      input.type = 'password';
+    }
+  }
+}

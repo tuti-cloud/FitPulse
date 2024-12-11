@@ -1,19 +1,19 @@
 <div class="container">
   <div class="forms-container">
     <div class="signin-signup">
-<!-- Formulario de inicio de sesión -->
-<form class="sign-in-form" (ngSubmit)="login($event)">
-  <h2 class="title">Iniciar sesión</h2>
-  <div class="input-field">
-    <i class="fas fa-user"></i>
-    <input type="text" placeholder="Nombre de usuario" [(ngModel)]="loginUsername" name="loginUsername" required />
-  </div>
-  <div class="input-field">
-    <i class="fas fa-lock"></i>
-    <input type="password" placeholder="Contraseña" [(ngModel)]="loginPassword" name="loginPassword" required />
-  </div>
-  <input type="submit" value="Ingresar" class="btn solid" />
-
+      <!-- Formulario de inicio de sesión -->
+      <form class="sign-in-form" (ngSubmit)="login($event)">
+        <h2 class="title">Iniciar sesión</h2>
+        <div class="input-field">
+          <i class="fas fa-user"></i>
+          <input type="text" placeholder="Nombre de usuario" [(ngModel)]="loginUsername" name="loginUsername" required />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-lock"></i>
+          <input type="password" placeholder="Contraseña" [(ngModel)]="loginPassword" name="loginPassword" required id="loginPassword" />
+          <i class="fas fa-eye" (click)="togglePasswordVisibility('loginPassword')" style="cursor: pointer;"></i>
+        </div>
+        <input type="submit" value="Ingresar" class="btn solid" />
 
         <p class="social-text">Conocé todas nuestras redes</p>
         <div class="social-media">
@@ -36,11 +36,11 @@
         </div>
         <div class="input-field">
           <i class="fas fa-lock"></i>
-          <input type="password" placeholder="Contraseña" [(ngModel)]="registerPassword" name="registerPassword" required />
+          <input type="password" placeholder="Contraseña" [(ngModel)]="registerPassword" name="registerPassword" required id="registerPassword" />
+          <i class="fas fa-eye" (click)="togglePasswordVisibility('registerPassword')" style="cursor: pointer;"></i>
         </div>
         <button type="submit" class="btn solid">Registrarse</button>
-     
-      
+
         <p class="social-text">Conocé todas nuestras redes</p>
         <div class="social-media">
           <a href="https://www.instagram.com" class="social-icon">

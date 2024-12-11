@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Exercise } from '../interfaces/exercise';
 
 @Injectable({
@@ -8,32 +7,27 @@ import { Exercise } from '../interfaces/exercise';
 export class ExerciseService {
   private apiUrl = 'https://exercisedb.p.rapidapi.com/exercises';
   private headers = {
-    'X-RapidAPI-Key': '26790f18edmshd9dd7dbc10050dbp11c1f3jsnf4ae0282b999',
-    'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
+    'X-RapidAPI-Key': 'f675e24c8emsh869ab407a22c109p10bb81jsn03a645413fc8',  
+    'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com' 
   };
 
-  constructor() { }
-
-  getExercisesByBodyPart(target: string): Observable<Exercise[]> {
+  getExercisesByBodyPart(target: string): Promise<Exercise[]> {
     const url = `${this.apiUrl}/target/${target}`;
     console.log(`Llamando a la API: ${url}`);
 
-    return new Observable<Exercise[]>((observer) => {
-      fetch(url, { headers: this.headers })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Error al obtener los datos');
-          }
-          return response.json();
-        })
-        .then(data => {
-          observer.next(data);
-          observer.complete();
-        })
-        .catch(error => {
-          observer.error(error);
-        });
-    });
+    return fetch(url, { headers: this.headers })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error al obtener los datos');
+        }
+        return response.json();
+      })
+      .then(data => {
+        return data;
+      })
+      .catch(error => {
+        console.error('Error en la llamada a la API:', error);
+        throw error;
+      });
   }
 }
-
