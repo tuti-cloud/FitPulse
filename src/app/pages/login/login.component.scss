@@ -505,3 +505,30 @@ form.sign-in-form {
     left: 50%;
   }
 }
+.input-field {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 15px;
+  border: 1px solid #ccc; /* Agrega el borde */
+  padding: 10px;
+  border-radius: 50px;
+
+  input {
+    border: none;
+    outline: none;
+    background: none;
+    padding: 0 10px;
+    flex: 1;
+  }
+
+  i {
+    color: #999;
+  }
+
+  .fas.fa-eye {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+  }
+}

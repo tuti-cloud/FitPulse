@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { YogaService } from '../../servicios/yoga.service';
 import { Yoga } from '../../interfaces/yoga';
 import { ProgressService } from '../../servicios/progress.service';
@@ -25,14 +25,10 @@ export class YogaComponent implements OnInit {
   progressService = inject(ProgressService);
   yogaService = inject(YogaService);
 
+
   ngOnInit(): void {
     this.loadYogaPoses();
-
-    this.progressService.getYogaProgress().subscribe({
-      next: (progress) => {
-        this.progressPercentage = progress; 
-      },
-    });
+    this.listenToProgress();
   }
 
   loadYogaPoses(): void {
@@ -43,26 +39,34 @@ export class YogaComponent implements OnInit {
       didOpen: () => Swal.showLoading(),
     });
 
-    this.yogaService.getYogaPoses().subscribe({
-      next: (poses: Yoga[]) => {
+    this.yogaService.getYogaPoses()
+      .then((poses: Yoga[]) => {
         this.yogaPoses = poses.map((pose) => ({
           ...pose,
           breaths: this.getRandomBreaths(),
         }));
+
         this.loadPoses();
         Swal.close();
-      },
-      error: (error) => {
+      })
+      .catch(() => {
         Swal.fire('Error', 'No se pudieron cargar las posturas. Intenta más tarde.', 'error');
+      });
+  }
+
+  listenToProgress(): void {
+    this.progressService.getYogaProgress().subscribe({
+      next: (progress) => {
+        this.progressPercentage = progress;
       },
     });
   }
 
   loadPoses(): void {
     const startIndex = (this.sessionNumber - 1) * 6;
-    const nextSet = this.yogaPoses.slice(startIndex, startIndex + 6); 
+    const nextSet = this.yogaPoses.slice(startIndex, startIndex + 6);
     this.displayedPoses = nextSet;
-    this.completedPoses = new Array(nextSet.length).fill(false);  
+    this.completedPoses = new Array(nextSet.length).fill(false);
     this.updateProgress();
   }
 
@@ -70,16 +74,14 @@ export class YogaComponent implements OnInit {
     const totalExercises = this.displayedPoses.length;
     const completedExercises = this.completedPoses.filter((checked) => checked).length;
 
-    console.log("Progreso actualizado:", { completed: completedExercises, total: totalExercises });
-
     this.progressService.updateYogaProgress(completedExercises, totalExercises);
   }
 
   completeSet(): void {
     if (this.completedPoses.every((completed) => completed)) {
       Swal.fire('¡Felicidades!', 'Terminaste todas las posturas de esta sesión.', 'success').then(() => {
-        this.sessionNumber++; 
-        this.loadPoses(); 
+        this.sessionNumber++;
+        this.loadPoses();
       });
     } else {
       Swal.fire({
@@ -91,11 +93,10 @@ export class YogaComponent implements OnInit {
         cancelButtonText: 'No, seguir en esta sesión',
       }).then((result) => {
         if (result.isConfirmed) {
-          this.sessionNumber++; 
-          this.loadPoses(); 
+          this.sessionNumber++;
+          this.loadPoses();
           Swal.fire('¡Sesión cambiada!', 'Has cambiado a la siguiente sesión.', 'success');
         } else {
-     
           Swal.fire('¡Seguimos en la misma sesión!', 'Seguí completando las posturas.', 'info');
         }
       });
@@ -103,9 +104,10 @@ export class YogaComponent implements OnInit {
   }
 
   getRandomBreaths(): number {
-    return Math.floor(Math.random() * 10) + 1; 
+    return Math.floor(Math.random() * 10) + 1;
   }
 }
+
 
 
 
